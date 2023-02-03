@@ -1,0 +1,960 @@
+\documentclass{article}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{enumerate}
+\usepackage{yfonts}
+\usepackage{ dsfont }
+\usepackage{hyperref}
+
+
+\title{The Weil conjecture for curves via the Jacobian variety}
+
+\author{Fabio Neugebauer}
+
+\date{\today}
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exm}[thm]{Example}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{summ}[thm]{Summery}
+
+\newcommand{\Div}{\text{Div}_{C/k}^{\text{eff},n}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\ima}{\text{im}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Specm}{\text{Spec}_\text{max}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\n}{\mathfrak{n}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\colim}{\text{colim}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Quot}{\text{Quot}}
+\newcommand{\ie}{\emph{i.e.} }
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\inv}{\text{inv}}
+\newcommand{\pr}{\text{pr}}
+\newcommand{\Pic}{\text{Pic}}
+\newcommand{\id}{\text{id}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\Li}{\mathcal{L}}
+\newcommand{\Om}{\mathcal{O}}
+\newcommand{\Sch}{\text{Sch}}
+\newcommand{\Ab}{\text{Ab}}
+\usepackage{cite}
+\usepackage{physics}
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\section{Statement of the Weil Conjectures for Curves}
+	Let $C$ be a proper non-singular curve of genus $g$ over a finite field $\mathbb{F}_q$ with $q$ elements.  Let $k$ be an algebraic closure of $\mathbb{F}_q$ and denote $\overline{C}:=C\times_{\mathbb{F}_q} k$. Let $F: C\to C$ be the absolute Frobenius morphism of $C$, which is the identity on the underlying topological space and acts as the $q$-th power map on $\mathcal{O}_C$. Let $\overline{F}:= F \times_{\mathbb{F}_q} 1_k$ be the $k$ linear Frobenius morphism of $\overline{C}$. 
+	
+	Let $l\neq \text{char}(p)$ be a prime number. 
+	Then $\overline{F}$ induces an endomorphism $V_l(\overline{F})$ of the $\mathbb{Q}$ vector space $V_l J_k:=T_l J_k \otimes_{\mathbb{Z}} \mathbb{Q}$. Here $J_k$ denotes the Jacobian variety of $\overline{C}$ and $T_l J_k$ its Tate module.
+	
+	\begin{thm}[Weil Conjectures for Curves]
+		$V_l J_k$ is $2g$-dimensional. Let $P$ be the characteristic polynomial of $V_l(\overline{F})$ and $\alpha_1, \dots, \alpha_{2g} \in \mathbb{C}$ its roots. The Weil conjectures for curves state:
+		\begin{enumerate}
+			\item (\textit{Rationality of the zeta function}) \[\exp\left( \sum_{n=1}^\infty \# C(\mathbb{F}_{q_n}) \frac{x^n}{n}\right) =\frac{P(x)}{(1-x)(1-qx)}\]
+			and $P$ is an integer polynomial, i.e. $P \in \mathbb{Z}[x]$. 
+			\item (\textit{Riemann Hypothesis}) $\abs{\alpha_i}=q^{\frac{1}{2}}$ for all $i=1,\dots, 2g$.
+			\item (\textit{Hesse-Weil Bound}) 
+			\[\# C(\mathbb{F}_{q^n})=1-\sum_{i=1}^{2g}\alpha_i^n + q^n\]
+			and in particular $\abs{\#C(\mathbb{F}_{q^n})-(q^{n}+1)}\le 2 g q^{\frac{n}{2}}$.
+		\end{enumerate} 
+		Moreover, for $\Pic^0(C)$ the group of isomorphism classes of degree zero line bundles on $C$
+		\begin{align} \#\Pic^0(C\times_{\mathbb{F}_q} \mathbb{F}_{q^n})\le \prod_{i=1}^{2g}(1-\alpha_i^n) \label{eq1}
+		\end{align}
+		and equality holds whenever $C$ has an $\mathbb{F}_{q^n}$ valued point. 
+	\end{thm}
+	\begin{exm}[Elliptic Curves]
+		Suppose the genus of $C$ is equal to one. Then the Hesse-Weil bound gives us that $\# C(\mathbb{F}_q)=1-(\alpha_1+\alpha_2)+q$ and by the Riemann-Hypothesis $\abs{\alpha_1+\alpha_2}\le 2 \sqrt{q}$. Therefore, $\# C(\mathbb{F}_q)\ge 1-2\sqrt{q}+q=(\sqrt{q}-1)^2$. Hence $C$ will admit an $\mathbb{F}_q$ valued point, i.e. $C$ is an elliptic curve.
+	\end{exm}
+	\section{Abelian varieties}
+	For this section $k$ will be a field, $\overline{k}$ an algebraic closure of $k$ and $k_s$ the separable algebraic closure of $k$ in $\overline{k}$.
+	
+	A variety $X$ will be a scheme, which is geometrically integral, separated and of finite type over $k$. Note that products of varieties will be varieties again. If $\dim X=1$ we call $X$ a curve.
+	
+	Since we assume the variety $X$ to be geometrically integral its smooth locus is nonempty and therefore the set of closed points in $X$ with residue field a separable algebraic field extension of $k$ is dense in $X$ (see details at \cite[\href{https://stacks.math.columbia.edu/tag/04QM}{Tag 04QM}]{stacks-project}).
+	
+	We will use the notations $\Om_X(D)=\Om(D)$ for the sheaf associated to an effective Cartier divisor $D$ on $X$, i.e. $\Om(D)=I_D^{-1}$. $\Li_{X}(D)=\Li(D)$ to will denote the sheaf associated to a Weil-Divisor $D$ on $X$. 
+	
+	The following Lemma is due to Mumford. 
+	\begin{lem}[Rigidity Lemma]\label{Rigidity Lemma}
+		Let $X, Y$ and $Z$ be varieties. Suppose that $X$ is proper. If $f: X \times Y \to Z$ is a morphism with the property that, for some $y \in Y (k)$, the fibre
+		$X \times \{y\}$ is mapped to a point $z \in Z(k)$ then $f$ factors through the projection $\pr_Y : X \times  Y \to Y$.
+	\end{lem}
+	\begin{proof}
+		Suppose the theorem is true for the separable algebraic closure $k_s$ of $k$. Then there exists $g: Y_{k_s} \to Z_{k_s}$ such that $f_{k_s} = g \circ \pr_{Y_{k_s}}$. Let $\sigma \in \Aut_k(k_s)$. Then \[(1 \times \sigma^{-1}) \circ g \circ (1 \times \sigma)\circ \pr_{Y_{k_s}}=(1 \times \sigma)\circ f_{k_s} \times (1 \times \sigma^{-1})=f_{k_s}=g \circ \pr_{y_{k_s}}.\]
+		$\pr_{Y_{k_s}}$ is an epimorphism because it can be obtained by base change from a faithfully flat morphism. Therefore $g$ is Galois invariant and by Galois descent \cite[Prop. 16.9]{milne2012algebraic} there exists a unique morphism $G: Y\to Z$ such that $G_{k_s} = g$. Therefore $f_{k_s}=(g\circ \pr_Y)_{k_s}$ and by faithfully flat descent $f=g \circ \pr_Y$. 
+		
+		By the above paragraph we can assume $k=k_s$. Choose a point $x_0 \in X(k)$, and we define $g: Y \to Z$ by $f\circ (x_0, \id_Y)$. The goal is to show $f=g \circ \pr_Y$.  
+		
+		Let $U$ be an affine open neighborhood of $z$. Since $X$ is proper over $k$, the projection $\pr_Y: X\times Y \to Y$ is a closed map,  so that $V:=\pr_Y(f^{-1}(Z\setminus U))$ is closed in $Y$ (set theoretic preimage).  Let $P \notin V$ be a $k$ valued point $Y$. Then $f(X \times \{P\})\subseteq U$ by construction of $V$. 
+		
+		Every morphism from an irreducible proper variety $X$ to a affine variety is constant: The scheme-theoretic-image of the morphism is a closed subscheme of an affine variety and therefore an affine variety, say $W$. Now $X$ is proper, $X\to W$ is surjective and $W$ is separated of finite type over $k$, hence $W$ is also a proper variety. Using Grothendiecks finiteness result on proper maps the global sections of $W$ form a finite dimensional  $k$-vector space. Hence $W$ is zero-dimensional and by irreducibility $W$ must be a point. 
+		
+		Applying the previous paragraph to $f\vert_{X\times \{P\}}$ (note: $X\cong X\times \{P\}$) we conclude that $f(X\times \{P\})=g(P)$. 		
+		
+		 We have shown that the set of points, where $f=g\circ \pr_Y$ contains $\bigcup_{P\in (X\setminus V)(k)} X\times \{P\}$. Since this set is dense in $X\times Y$ we are done by \cite[Sect. 10.2.A]{vakil2017rising}.
+	\end{proof}
+	Recall that a group variety $(X, m_X, 0=e_X, (-1)_X)$ is called abelian if it is proper. We denote its group operation additive.
+	\begin{cor}\label{cor morphism between abelian varieties factor as homomorphism}
+		Let $X$ and $Y$ be abelian varieties and let $f: X \to Y$ be a morphism.
+		Then $f$ is the composition $f = t_{f(0)}\circ h$ of a homomorphism $h: X \to  Y$ and a translation $t_{f(0)}$
+		by $f(0)$ on $Y$.
+	\end{cor}
+	\begin{proof}Let $y=-f(e_X)$ and let $h=t_y \circ f$. Define $g$ to be the map that one closed  points is given by $g(x,x')=h(x+x')-h(x)-h(x')$. Then 
+		\[g(\{e_X\}\times X)=g(Y\times \{e_X\})=-h(e_X)=\{e_Y\}\]
+	and by the Rigidity Lemma this implies that $g$ factors both through the first and  the
+	second projection $X \times  X \to X$. Hence $g$ equals the constant map with value $e_Y$ and $h$ must be a homomorphism.
+	\end{proof}
+	\begin{rmk}
+		The above Lemma \ref{cor morphism between abelian varieties factor as homomorphism} applied to $(-1)_X$ shows that the group law on an abelian variety $X$ is indeed commutative. 
+		
+		An application of Lemma \ref{cor morphism between abelian varieties factor as homomorphism} to the identity morphism $X\to X$ shows that there is at most one structure of an abelian variety on $X$ such that $e \in X(k)$ is the identity element. 
+	\end{rmk}
+	We define the kernel of a homomorphism $f:X\to Y$ of abelian varieties to be the fiber of $f$ over $e_Y\in Y$. 
+	\begin{thm}[Isogenies]\label{thm isogenies} For a homomorphism $f:X\to Y$ of abelian varieties the following are equivalent
+		\begin{enumerate}[a)]
+			\item $f$ is surjective and has finite kernel.
+			\item $\dim X = \dim Y$ and $f$ is surjective.
+			\item $\dim X =\dim Y$ and $f$  has finite kernel. 
+			\item $f$ is finite and surjective. 
+		\end{enumerate}
+	If one of the above conditions is satisfied, we call $f$ an isogeny. \\ Moreover, any isogeny $f$ is flat and the following formula holds for all $q\in Y$
+	\begin{align}
+		\deg f = \dim_{k(q)} H^0(f^{-1}(q), \mathcal{O}_{f^{-1}(q)}). \label{eq3}
+	\end{align}
+	
+	\end{thm}
+	\begin{proof}
+		All nonempty fibers of $f$ have the same dimension:
+		Choose a point $p\in f^{-1}(q)(\overline{k})$. Then $(\ker f)_{\overline{k}} \xrightarrow{t_p \times_{\overline{k}} t_q} f^{-1}(q)_{\overline{k}}$ defines an isomorphism, where $t_p$ is the translation of $X_{\overline{k}}$ by $p$ and $t_q$ is defined by mapping $\{e_y\}_{\overline{k}} \to \{q\}_{\overline{k}}$. 
+		
+		Assume that $f$ is surjective. By \cite[Thm. 11.4.1]{vakil2017rising} there exists a nonempty open subset $U\subseteq Y$ such that that for all $q\in U$ over $q$ has pure dimension $\dim X - \dim Y$. By the above, $\dim \ker f = \dim X - \dim Y$. This proves a)$\implies$ b) $\implies $ c).
+		
+		Note this dimension formula always holds if we replace $Y$ by the scheme-theoretic image of $f$. Hence, if $f$ has finite kernel, $\dim X= \dim Y$ implies that the scheme-theoretic image of $f$ equals $Y$. Since $f$ is closed, this proves c)$\implies$ a). 
+		
+		Because quasi-finite, proper morphisms are finite, a) implies d).  The converse follows because quasi-finite morphisms are finite. 
+		
+		Both $X$ and $Y$ have a nonempty smooth locus. By translations we see that $X$ and $Y$ are smooth over $k$. By c) and \cite[thm. 26.2.11]{vakil2017rising} any isogeny is flat. 
+		
+		Now let $f$ be an isogeny. Because finitely generated, flat modules over Noetherian rings are locally free of finite rank, $f_*  \mathcal{O}_X$ is a locally free quasi-coherent $\mathcal{O}_Y$ module of finite rank. Since $Y$ is connected this rank is constant, say $d\in \mathbb{N}$. 
+		
+		For any $q\in Y$ there is an affine open neighborhood $U =\Spec R$ such that $(f_* \Om_X)\vert_U \cong \Om_Y^d \vert_U$. $f$ is finite and therefore affine, so $f^{-1} U = \Spec R'$ for some $R'$. Then $f^\#_U: R \to R'$ makes $R'$ a free $R$ module of rank $d$ and $f^{-1}(q)\cong \Spec(R'\otimes_R k(q))$ proves that \begin{align}
+			\dim_{k(q)} H^0(f^{-1}(q), \mathcal{O}_{f^{-1}(q)})=d. \label{eq4}
+		\end{align}
+		
+		For $q=\eta_Y$ the generic points, we have $f^{-1}(q)\cong \Spec(  R' \otimes_R \Quot(R))$, and $R' \otimes_R \Quot(R)$ is a finite $\Quot (R) $ algebra and moreover an integral domain since $X$ is assumed to be geometrically integral. Hence $R' \otimes_R \Quot(R)$ is a field that contains $R'$ and is contained in $\Quot(R')$. Now, by the universal property of the residue field of $R$ we have $R' \otimes_R \Quot(R)=\Quot(R')$. Applying (\ref{eq4}) to $\eta_Y$ therefore  completes the prove of (\ref{eq3}).
+		\end{proof}
+		\begin{thm}[Theorem of the cube and the square]\label{thm of the cube and the square}
+			Let $X,Y$ be abelian varieties.
+			\begin{enumerate}
+				\item  For $f,g, h: X\to Y$ morphisms 
+				\begin{align}
+					(f+g+h)^*\Li  \cong (f+g)^* \Li \otimes (g+h)^*\Li\otimes (f+h)^*\Li \otimes f^* \Li^{-1} \otimes g^* \Li^{-1} \otimes h^* \Li^{-1} \label{eq cube}
+				\end{align}
+			\item (\textit{theorem of the square})\\ For an invertible sheaf $\Li$ on $X$, a $k$ scheme $T$ and $\pr_X,\pr_T$ the projections of $X_T$, the map 
+			\begin{align}
+				\varphi_{\mathcal{L}}: X(T)\to \Pic(X_T): \; x \mapsto (m(1_X\times x))^{*}\mathcal{L}\otimes \pr_X^* \mathcal{L}^{-1}\otimes \pr_T^* x^*\Li^{-1} \label{eq square}
+			\end{align}
+		is a homomorphism. Note that  $\varphi_{\mathcal{L}}(x)=t_x^*\Li \otimes \Li^{-1}$ for all $x \in X(k)$ ($t_x$ the translation by $x$).  
+			\end{enumerate}
+		\end{thm}
+		\begin{proof}
+			Both parts of the theorem can be proven as corollaries of the \textit{theorem of the cube}, which is a theorem on proper varieties. References are \cite[Chp. II §1]{van2007abelian} or \cite[Chp. II.6]{Mum74}.
+		\end{proof}
+		\begin{rmk}\label{rmk abelian varieties are projective}
+			The theorem of the square can be used to prove that all abelian varities are projective. References are for example \cite[thm. 7.1]{milne1986abelian} or \cite[sect. 9.6]{bosch2013algebraic}.
+		\end{rmk}
+	
+		For an abelian variety $X$ and $n\in \mathbb{Z}$ we define $n_X: X \to X$ to be the homomorphism that one points is given by $x \mapsto n x $ and define $X[n]:=\ker n_X \subseteq X. $ Say we have $\dim X  = g$.
+		\begin{prop}[Torsion Points of Abelian Varieties]\label{torsion points of abelian varieties}
+			For $n\neq 0$ the morphism $n_X$ is an isogeny of degree $\deg n_X = n^{2g}$. If $\text{char}(k)\nmid n$ then $n_X$ is étale and $X[n](k_s)=X[n](\overline{k})\cong (\mathbb{Z}/n\mathbb{Z})^{2g}$.
+		\end{prop}
+		\begin{proof}
+			 By remark \ref{rmk abelian varieties are projective} there exists a ample line bundle $\mathcal{L}$ on $X$. We can assume $\mathcal{L}$ to be symmetric, i.e. $(-1)^*\mathcal{L}\cong \mathcal{L}$, because when $\mathcal{L}$ is ample then also  $(-1)^*\mathcal{L}\otimes \mathcal{L}$ will be ample by \cite[II Ex. 7.5 (c)]{hartshorne2013algebraic}. Applying (\ref{eq cube}) to the maps $n_X, 1_X, (-1)_X$ we obtain $n_X^*\Li^2\otimes \Li^2 \cong (n+1)_X^* \Li \otimes (n-1)_X^*\mathcal{L} $ and by induction $n_X^*\Li \cong \Li^{n^2}$. In particular, $n_X^*\Li$ is an ample line bundle provided that $n^2>0$. Its pullback along the closed immersion $\iota:X[n]\to X$ will also be an ample line bundle. But $n_X \circ \iota$ factors through the zero map and therefore $\iota^*n_X^* \Li$ is a trivial bundle, which is ample. By \cite[\href{https://stacks.math.columbia.edu/tag/01QE}{Tag 01QE}]{stacks-project} $X[n]$ is quasi-affine. Hence $X[n]\to \Spec(\Om_{X[n]}(X[n]))$ is an open immersion. But $X[n]$ is proper over $k$, so this open immersion is moreover proper and therefore a closed immersion. This proves that $X[n]$ is a proper and affine variety and therefore finite. By theorem \ref{thm isogenies} c) $n_X$ is an isogeny.
+			 
+			 Let $D$ be an divisor such that $\Li \cong \Li(D)$, then $n_X^*D$ is linearly equivalent to $n^2D$. We now invoke intersection theory on the smooth projective variety $X$ to conlcude
+			 \[n^{2d}(D)^g=(n^2 D)^g=(n_X^* D)^g=\deg(n_X)\cdot (D)^g,\]
+			 where we used \cite[Lem. 8.3]{milne1986abelian} for the last equality. Since $D$ is ample, its self-intersection number is positive, and we can conclude $n^{2d}= \deg(n_X)$.
+			 
+			 Now assume $\text{char}(k)\nmid n$. To prove that $n_X$ is étale, we may assume that $k=k_s$. The locus $U$ where $n_X$ is étale is open in $X$, so, if we prove that its complement doesn't contain any $k$ valued point, we win. A $k$-valued point is in $P$ provided that the induced map on the tangent space at $P$ is an isomorphism. Since $n_X \circ t_p = t_{nP}\circ n_X$, by the chain rule $d_p n_X \circ d_0 t_p = d_0 t_{np} d_o n_X $. Since the translations give isomorphism on the tangent spaces it suffices to prove that $d_0n_X$ is bijective. 
+		 	
+		 	Recall that we can identify $T_{(0, 0)}(X\times X)$ with $T_0 X \oplus T_0(X)$, when we set for $f:Y\to X\times X$ that  $d_{y}f=d_y(\pr_1\circ f) \oplus d_y(\pr_2\circ f)$. We claim that for $x, x'\in T_0(X)$ the equality $d_{(0,0)}m(x,x')=x+x'$ holds. Let $a: X\cong \{0\}\times X \to X \times X$ the canonical map. Then \[d_{(0,0)} m \circ (\id_{T_0 X} \oplus 0 )=d_{(0,0)} m \circ d_0 a=d_0(m\circ a)=\id_{T_0 X} \] yields that $d_{(0,0)}m$ restricted to the first factor is the identity. By symmetry and linearity we obtain our claim. Hence, for $f, g:X\to X$ homomorphisms we have  \[d_0(f+g)=d_0(m\circ(f,g))=d_0(m)\circ (d_0(\pr_1\circ (f,g)) \oplus d_0(\pr_1\circ (f,g)))=d_0 f + d_0 g.\]
+		 	Hence, by induction $d_0 n_X(x)=n x$ for all $x \in T_0 X$, which defines an isomorphism since $n\in k^*$. 
+		 	
+		 	By equation (\ref{eq3}) and $n_X$ being unramified it directly follows that $G:=X[n](k_s)=X[n](k)$ is an abelian group of order $n^{2g}$, which is killed by $n$. Further, for every divisor $d$ of $n$ the subgroup of elements that is killed by $d$ is $X[d](k_s)$ and has order $d^{2g}$. An application of the structure theorem of finitely generated abelian groups shows $X[d](k_s)\cong (\mathbb{Z}/n\mathbb{Z})^{2g}$.
+	 			\end{proof}		
+ 			Note that since $n_X$ is surjective $X(\overline{k})$ is a divisible group. 
+ 			\begin{prop}\label{prop division} If $f:X\to Y$ is an isogeny of degree $d$ then there exists a unique  isogeny  $g: Y \to X$ such that $g\circ f= d_X$ and $f\circ g=d_Y$. 
+ 			\end{prop}
+ 			\begin{proof}
+ 				If $f:X\to Y$ is an isogeny of degree $d$, then $\ker f$ is a finite group scheme which is contained in the kernel of $d_X$ by \cite{van2007abelian}[Exerc.4.4]. Since $X$ is quasi-projective, we can take the quotient $X/\ker f$ to get a factorization of $d_X$ as $X \to X/\ker f \xrightarrow{g}X$. By \cite[Sect. 12 Cor. 1]{Mum74} we can identify $X\to X/\ker f$ with $X \xrightarrow{f}Y$, so that we get $d_X=g\circ f$. By theorem \ref{thm isogenies} b) $g$ is an isogeny.  Then $g\circ d_Y = d_X \circ g = g \circ (f \circ g)$. Hence $h=d_y-(f\circ g)$ maps into the finite $k$-scheme $\ker g$. The scheme-theoretic image of $h$ is a closed irreducible subscheme of $\ker g$, so $h$ is constant and $d_Y =f\circ g$ follows.
+ 			\end{proof}
+ 		
+ 		An non-zero abelian variety $X$ is called  \textit{simple} if $X$ has no other abelian subvarieties other than $\{e_X\}$ and $X$. Note that abelian subvarieties will be closed subschemes.
+ 		
+ 		For any homomorphism of abelian varities $f: X\to Y$ its scheme-theoretic image is an abelian subvariety of $Y$. Further by \cite[5.31]{van2007abelian} the reduced underlying scheme $(\ker f)_0^{\text{red}}$ of the identity component of $\ker f$ is an abelian subvariety of $X$. 
+ 		
+ 		Hence a non-constant homomorphism $f:X\to Y$ of simple abelian varieties is surjective and the identity component of $\ker f$ is $\{e_X\}$. All connected components of a $\overline{k}$-group scheme are isomorphic as $\overline{k}$-schemes by translating back and forth.
+ 		%This is a bit sketchy. 
+ 		In particular, all components of $\ker f$ have the same dimension and we see by theorem \ref{thm isogenies}a) that $f$ is an isogeny. 
+ 		It follows by Proposition \ref{prop division} that for a simple abelian variety $X$ 
+ 		\[ \End_k^0 (X):=\End_k (X) \otimes_\mathbb{Z} \mathbb{Q} \]
+ 		is an associative division algebra over $\mathbb{Q}$. Our goal is to compose an arbitrary abelian variety into simple factors. 
+ 		\begin{thm}[Poincaré Splitting Theorem]\label{thm poincare splitting}
+ 			Let $Y$ be an abelian subvariety of $X$, then there exists an abelian subvariety $Z\subseteq X$ such that the homomorphism $Y\times Z \to X$ given by $(y,z)\mapsto y+z$ is an isogeny. 
+ 		\end{thm}
+ 		For a finite dimensional vector space $V$ admitting an inner product $V \to V^\vee, v\mapsto \langle \cdot, v \rangle$ and a subspace $W \subseteq V$ the subspace $\ker( V \to V^\vee \xrightarrow{\text{res}}W^\vee)$ constitutes  a complement of $W$ in $V$.
+ 			
+ 		To mimic this prove we need the existence of a dual abelian variety and an isomorphism $X \to X^\vee$.
+ 		
+ 		This can be accomplished using results of the following subsection. 
+ 		\subsection{A summary on the picard functor}\label{sec sum}
+ 		Given a smooth projective variety $X \to k$ over a field.
+ 			
+ 		Note that the contravariant functor $\Sch/k \to \Ab, T \mapsto \Pic(X_T)$ is not a Zariski sheaf:
+ 			
+ 		We will denote $\pr_T: X_T \to T$ to be the projection. Given $\mathcal{L}\in \Pic(T)$ such that $\pr_T^* \Li$ is not trivial. Let $(U_i)_{i\in I}$ an open cover of $T$ that trivializes $\Li$. Then $(X_{U_i})$ constitutes an open cover of $X_T$ and the pullback of  $\pr_T^* \Li$ to $X_{U_i}$ is trivial. Therefore $\Li$ is in the kernel of the map
+ 		\[\Pic(X_T) \mapsto \prod_{i\in I} \Pic(X_{U_i}),\]
+ 		while not being trivial. 
+ 			
+ 		In hope to get a representable functor we define the (relative) Picard functor of $X\to k$ by 
+ 		\begin{align}
+ 			T \mapsto \Pic(X_T)/\pr_T^* \Pic(T). \label{eq picard}
+ 		\end{align}
+ 		It turns out that our assumptions on $X\to k$ suffice and that the picard functor is indeed representable by a separated scheme $\Pic_{X/k}$ locally of finite type over $k$. Further, every closed subscheme $Z\hookrightarrow \Pic_{X/k}$ which is of finite type over $k$ is proper (in fact projective) over $k$. A proof is given in \cite[Chapt. 8, thm. 3]{bosch2012neron}.
+ 			
+ 		Let us denote the connected component of the identity in $\Pic_{X/k}$ by $\Pic^0_{X/k}$. Exploiting the properties of group schemes over fields as in \cite[\href{https://stacks.math.columbia.edu/tag/047J}{Tag 047J}]{stacks-project} it can be proven that $\Pic^0_{X/k} \hookrightarrow \Pic_{X/k}$ is a flat closed immersion, $\Pic^0_{X/k}$ is geometrically irreducible and quasi-compact over $k$.
+ 			
+ 		Combining the last two paragraphs, we conclude that $\Pic^0_{X/k}$ is a proper and geometrically irreducible group scheme over $k$. 
+ 			
+ 		$\Pic^0_{X/k}$ need not necessarily be reduced, let alone geometrically reduced. The latter happens if and only if $\Pic^0_{X/k}$ is smooth: If $\Pic^0_{X/k}$ is geometrically reduced it is a variety and will have non-empty smooth-locus. Using the translation morphism of its group structure we see that it is smooth. Conversely, if $\Pic^0_{X/k}$ is smooth then its base change to the algebraic closure will be regular. Any regular local ring is a domain and hence $\Pic^0_{X/k}$ must be geometrically reduced.  
+ 		
+ 		Luckily, there is a criterion for when $\Pic^0_{X/k}$ is smooth. 
+ 		\begin{thm}\label{thm tangent space of Picard Functor} The tangent space of $\Pic_{X/S}$ at the identity element is isomorphic to $H^1(X, \Om_X)$. Further, $\Pic^0_{X/k}$ is smooth over $k$ if and only if $\dim \Pic^0_{X/k} =\dim H^1(X, \Om_X)$.  
+ 		\end{thm}
+ 		\begin{proof}
+ 			Let $S:=\Spec(k[\varepsilon])$ where $k[\varepsilon]$ is the ring of the dual numbers over $k$. For any $k$ algebra $A$ every element in $A \otimes_k k[\varepsilon]$ can be written as an product of  element in $A$ and a unit. Therefore the map $A \to A \otimes  k[\varepsilon]$ induces a homeomorphism onto its image when passing to spectra. The map $A \to A \otimes  k[\varepsilon]$ is also finite and injective, so it will actually induce a homeomorphism. Looking at affine patches as above, we can identify the topological spaces $X$ and $X_S$. 
+ 			
+ 			On this space we have a short exact sequence of sheaves 
+ 			\begin{align}
+ 				0 \to \Om_X \xrightarrow{h} \Om_{X_S}^* \xrightarrow{\text{res}} \Om_X^* \to 1
+ 			\end{align} 
+ 			where $h$ is given on sections by $f\mapsto 1+ \varepsilon f$ and res by $a + \varepsilon b \mapsto a$. Since this sequence also yields an exact sequence on global sections,	we get an exact sequence on the first cohomology groups
+ 			\begin{align}
+ 				0 \to H^1(X, \Om_X) \to \Pic(X_s)\xrightarrow{\text{res}} \Pic(X). \label{eq 9}
+ 			\end{align}
+ 		(Cohomology in the category of sheaves of abelian groups on $X$.)
+ 		
+ 		Let $s: \Spec(k) \to S$ be the canonical morphism. Then $\Pic(X_S)\xrightarrow{\text{res}} \Pic(X)$ can be identified with the pull back along $X \xrightarrow{(1_X, s)} X_s$. 
+ 		
+ 		Since $\Pic(S)$ and $\Pic(k)$ are trivial, we have $\Pic_{X/k}(k)=\Pic(X)$ and $\Pic_{X/k}(S)=\Pic(X_S)$. Further, the pullback along $(1_X, s)$ is by definition of the contra-variant functor $\Pic_{X/k}$ the induced map $\Pic_{X/k}(S) \to \Pic_{X/k}(k)$. Its kernel $T$ consists of $f: S \to \Pic_{X/k}$ such that $f\circ s = 0$, where $0$ is the identity of the group scheme $\Pic_{X/k}$. In \cite[\href{https://stacks.math.columbia.edu/tag/0B28}{Tag 0B28}]{stacks-project} $T$ is identified with the tangent space of $\Pic_{X/k}$ at $0$, where the $k$ action on $T$ is induced by $k[\varepsilon]\to k[\varepsilon], \varepsilon\mapsto \lambda \varepsilon$. 
+ 		Therefore the sequence (\ref{eq 9}) identifies the underlying abelian group of the tangent space of $\Pic_{X/S}$ at zero with the abelian group $H^1(X, \Om_X)$.The $k$-vector space structure on $H^1(X, \Om_X)$ is given by $\lambda \cdot  \{f_{\alpha \beta} \in \Om_X (U_\alpha \cap U_\beta)\}=\{\lambda f_{\alpha \beta} \in \Om_X (U_\alpha \cap U_\beta)\}$ for any Čech 1-cocycle given a covering $(U_\alpha)$. 
+ 		
+ 		The first map in the sequence (\ref{eq 9}), sends such a Čech 1-cocycle $\{f_{\alpha \beta} \in \Om_X (U_\alpha \cap U_\beta)\}$ to a line bundle on $X_S$ that trivializes on the $U_\alpha$ and has transition functions $1+\varepsilon f_{\alpha \beta}$. Hence the $k$-vector space structure on $T$ as tangent space exactly matches the $k$-action we obtain when identifying $T$ via sequence (\ref{eq 9}) with the vector space $H^1(X, \Om_X)$. This proves that $H^1(X, \Om_X) \cong T_0(\Pic_{X/k})$ as $k$-vector spaces. 
+ 		
+ 		The only if part of the second statement of the theorem follows from $H^1(X, \Om_X) \cong T_0(\Pic^0_{X/k})$.
+ 		 		
+ 		Conversely, assuming $\dim \Pic^0_{X/k} =\dim H^1(X, \Om_X)$ we conclude that $\dim \Pic^0_{X/k}=\dim T_0(\Pic^0_{X/k})$. Hence, the stalk of $\Omega^1_{\Pic^0_{X/k}}$ at $0$ is generated by $\dim(\Pic^0_{X/k})$ elements. Therefore $\Pic^0_{X/k}$ is smooth over $k$ at $0$ of relative dimension $\dim(\Pic^0_{X/k})$. The locus of smoothness of fixed relative dimension is open and by translating it on $\Pic^0_{X/k}$ we win. 
+ 		\end{proof}
+ 		\subsubsection{The case when $X(k)\neq \emptyset$}
+ 		We assume there is $\varepsilon: k \to X$ a section to $X \to k$. Then for any $k$-scheme $T$ the projection $\pr_T: X\times T \to T$ admits a section $\varepsilon_T: T \cong k\times T \xrightarrow{\varepsilon \times  1} X\times T$. 
+ 		
+ 		Hence $\pr_T^*$ is a section to the pullback along $\varepsilon_T^*: \Pic(X_T)\to \Pic(T)$, 
+ 		and therefore the maps
+ 		\begin{align}
+ 			\ker(\varepsilon_T^*) \hookrightarrow \Pic(X_T) \twoheadrightarrow \Pic(X_T)/\pr_T^*\Pic(T) \label{eq rigidification}
+ 		\end{align}
+ 		compose to an isomorphism with inverse $\Li \mapsto \Li \otimes \pr_T^*\varepsilon_T^* \Li^{-1}$. If we consider both left and right hand side of (\ref{eq rigidification}) as contravariant functors in $T$ then (\ref{eq rigidification}) defines a natural isomorphism between those and we obtain that $\Pic_{X/k}$ also represents the functor 
+ 		\begin{align}
+ 			T\mapsto  \{\Li \in \Pic(X_T) : \varepsilon_T^* \Li \text{ is trivial}\}. \label{eq Picard with section}
+ 		\end{align}
+% 		For a representative $\mathcal{L}$ of an isomorphism class in $\Pic(X_T)$ ann isomorphism $\alpha: \Om_T \xrightarrow{\sim} \varepsilon_T^* \Li$ is called \textit{rigidification} of $\Li$ along $\varepsilon_T$.
+% 		
+% 		Let $(\Li_1, \alpha_1)$ and $(\Li_2, \alpha_2)$ be line bundles on $X_T$ with rigidification along $\varepsilon_T$. We define a homomorphism $h: (\Li_1, \alpha_1 )\to (\Li_2, \alpha_2)$ to be a homomorphism between the line bundles $h: \Li_1 \to \Li_2$ such that $(\varepsilon_T^* h)\circ \alpha_1 = \alpha_2$. 
+% 		
+% 		An endomorphism $h:(\Li, \alpha)\to (\Li, \alpha)$ provides an element in 
+% 		\[ \Hom_{\Om_{X_T}}(\Li, \Li)\xrightarrow[-\otimes \Li^{-1}]{\sim}\Hom_{\Om_{X_T}} (\Om_{X_T}, \Om_{X_T})\xrightarrow[h\mapsto h(1)]{\sim}\Gamma(X_T, \Om_{X_T})=\Gamma(T, (\pr_T)_*(\Om_{X_T})),\]
+% 		with $\varepsilon_T^* h =1$ 
+% 		Flat base change as in \cite[\href{https://stacks.math.columbia.edu/tag/02KH}{Tag 02KH}]{stacks-project} applied to the structure sheaf $\Om_T$ on $T$ along the diagram
+% 		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJYX1QiXSxbMSwwLCJYIl0sWzAsMSwiVCJdLFsxLDEsImsiXSxbMCwxLCJcXHRleHR7cHJ9X1giXSxbMCwyLCJcXHRleHR7cHJ9X1QiLDJdLFsyLDMsIlxcdGV4dHtmbGF0fSIsMl0sWzEsM11d
+% 		\[\begin{tikzcd}
+% 			{X_T} & X \\
+% 			T & k
+% 			\arrow["{\text{pr}_X}", from=1-1, to=1-2]
+% 			\arrow["{\text{pr}_T}"', from=1-1, to=2-1]
+% 			\arrow["{g\text{: flat}}"', from=2-1, to=2-2]
+% 			\arrow[from=1-2, to=2-2]
+% 		\end{tikzcd}\]
+% 		shows that the natural map $g^* H^0(X, \Om_X) \to  (\pr_T)_*(\Om_{X_T})$ is an isomorphism. Since $X$ is proper $H^0(X, \Om_X) \cong k$ and we obtain, that  $\pr_T^\#: \Om_T \xrightarrow{\sim} (\pr_T)_*(\Om_{X_T})$ and therefore $h$ must be trivial.  
+% 		
+% 		This proves that $(\Li, \alpha)$ doesn't admit nontrivial automorphisms which justifies the name rigidification. 
+% 		
+% 		We give the set of isomorphism classes of rigidified line bundles $(\Li, \alpha)$ on $X_T$ a group structure by $(\Li_1, \alpha_1)\cdot (\Li_2, \alpha_2):=(\Li_1 \otimes \Li_2, \alpha_1 \otimes_{O_T}\alpha_2)$ and we see that
+% 		\begin{align}
+% 			\left\{
+% 			\begin{tabular}{@{}c@{}}
+% 				isomorphism classes of rigidified\\ line bundles $(\Li, \alpha)$ on $X_T$
+% 			\end{tabular}
+% 			\right\} \to \{\Li \in \Pic(X_T) : \varepsilon_T^* \Li \text{ is trivial}\},\quad (\Li, \alpha)\mapsto \Li
+% 		\end{align}
+% 	is an isomorphism of groups. An by (\ref{eq Picard with section}) we conclude that $\Pic_{X/S}$ represents 
+% 	\begin{align}
+% 		T\mapsto 	\left\{
+% 		\begin{tabular}{@{}c@{}}
+% 			isomorphism classes of rigidified\\ line bundles $(\Li, \alpha)$ on $X_T$
+% 		\end{tabular}\right\}.
+% 	\end{align}
+ 	\begin{prop}[The Poincaré Bundle]\label{prop poincare}
+ 		There is an isomorphism class of line bundles $\Po$ on $X\times_k\text{Pic}_{X/k}$ such that $\varepsilon_{\Pic_{X/k}}^* \Po$ is trivial, that satisfies the following universal property:  		
+ 		For any $\Li \in \Pic(X_T)$ with $\varepsilon_{T}^* \Li $ trivial, there exists a unique $g: T \to \Pic_{X/k}$ such that $(1_X \times g)^* \Po =\Li$.  
+ 		
+ 		Moreover, $\Po\vert_{X\times 0}$ is trivial for $0\in \Pic_{X/k}(k)$ representing the identity in $\Pic(X)$.
+ 	\end{prop}
+ 	\begin{proof} This is the contravariant Yoneda Lemma applied to (\ref{eq Picard with section}). See the diagram below. The last assertion is clear from the first statement by taking $\Li=\Om_X\in \Pic(X)$.
+ 	 \end{proof}
+ 	% https://q.uiver.app/?q=WzAsOCxbMCwwLCJcXHRleHR7SG9tfV9rKFxcdGV4dHtQaWN9X3tYL2t9LCBcXHRleHR7UGljfV97WC9rfSkiXSxbMCwzLCJcXHtcXG1hdGhjYWx7TH0gXFxpbiBcXHRleHR7UGljfShYXFx0aW1lc19rXFx0ZXh0e1BpY31fe1gva30pIDogXFx2YXJlcHNpbG9uX3tcXHRleHR7UGljfV97WC9rfX1eKiBcXG1hdGhjYWx7TH0gXFx0ZXh0eyBpcyB0cml2aWFsfVxcfSJdLFszLDAsIlxcdGV4dHtIb219X2soVCwgXFx0ZXh0e1BpY31fe1gva30pIl0sWzMsMywiXFx7XFxtYXRoY2Fse0x9IFxcaW4gXFx0ZXh0e1BpY30oWF9UKSA6IFxcdmFyZXBzaWxvbl97VH1eKiBcXG1hdGhjYWx7TH0gXFx0ZXh0eyBpcyB0cml2aWFsfVxcfSJdLFsxLDEsIlxcdGV4dHtpZH1fe1xcdGV4dHtQaWN9X3tYL2t9fSJdLFsxLDIsIlxcbWF0aGNhbHtQfSJdLFsyLDIsIlxcbWF0aGNhbHtMfSJdLFsyLDEsImciXSxbMCwxLCJcXHdyIl0sWzAsMiwiXFx0ZXh0e0hvbX0oZywgXFx0ZXh0e1BpY31fe1gva30pIiwyXSxbMiwzLCJcXHdyIiwyXSxbMSwzLCIoMVxcdGltZXMgZyleKiJdLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNSw2LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs3LDYsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+ 	\begin{equation}\begin{tikzcd}
+ 		{\text{Hom}_k(\text{Pic}_{X/k}, \text{Pic}_{X/k})} &&& {\text{Hom}_k(T, \text{Pic}_{X/k})} \\
+ 		& {\text{id}_{\text{Pic}_{X/k}}} & g \\
+ 		& {\mathcal{P}} & {\mathcal{L}} \\
+ 		{\{\mathcal{L} \in \text{Pic}(X\times_k\text{Pic}_{X/k}) : \varepsilon_{\text{Pic}_{X/k}}^* \mathcal{L} \text{ is trivial}\}} &&& {\{\mathcal{L} \in \text{Pic}(X_T) : \varepsilon_{T}^* \mathcal{L} \text{ is trivial}\}}
+ 		\arrow["\wr", from=1-1, to=4-1]
+ 		\arrow["{\text{Hom}(g, \text{Pic}_{X/k})}"', from=1-1, to=1-4]
+ 		\arrow["\wr"', from=1-4, to=4-4]
+ 		\arrow["{(1\times g)^*}", from=4-1, to=4-4]
+ 		\arrow[maps to, from=2-2, to=3-2]
+ 		\arrow[maps to, from=3-2, to=3-3]
+ 		\arrow[maps to, from=2-2, to=2-3]
+ 		\arrow[maps to, from=2-3, to=3-3]
+ 	\end{tikzcd}\label{diagram}\end{equation}
+ 	
+ 	We will call $\Po_X:=\Po$ from Proposition (\ref{prop poincare}) the \textit{Poincaré bundle}. 
+ 	\subsubsection{The dual abelian variety}\label{sec dual abelian}
+ 		In the case that $X$ is an abelian variety, we will always take $\varepsilon$ to be the inclusion of the identity, which we denote $0$, into $X$. Let $\Li$ be a line bundle on $X$. On $X\times X$ we define the \textit{Mumford line bundle} $\Lambda(\Li)$ by 
+ 		\[\Lambda(\Li):=m^* \Li \otimes \pr_1^* \Li^{-1} \otimes \pr_2^* \Li^{-1}.\]
+ 		Then $\varepsilon_X^* \Lambda(\Li)$ is trivial and by proposition (\ref{prop poincare}) there is a unique $\varphi_{\mathcal{L}}: X \to \Pic_{X/k}$ such that $(1\times \varphi_{\mathcal{L}})^*\Po = \Lambda(\Li)$. 
+ 		
+ 		On $T$ valued-points this map is given by
+ 		mapping $x: T \to X$ to $\varphi_{\mathcal{L}}\circ x$ and diagram (\ref{diagram}) tells us that this point represents $(1\times \varphi_{\mathcal{L}}\circ x )^* \Po \in \Pic(X_T)$. Moreover, since 
+ 		\begin{align}(1\times \varphi_{\mathcal{L}}\circ x )^* \Po = (1 \times x)^* \Lambda(\Li)=(m\circ (1\times x))^*\Li \otimes \pr_X^*\Li^{-1}\otimes \pr_T^* x^*\Li^{-1} \label{eq varphi l on points}\end{align}
+ 		 we can identify $\varphi_{\mathcal{L}}$ on $T$-valued points with the map from the theorem of the square (\ref{thm of the cube and the square}). Now theorem (\ref{thm of the cube and the square}) part b) proves that $\varphi_{\mathcal{L}}$ is a homomorphism. In particular, $\varphi_{\mathcal{L}}(0)=0$ and because $X$ is connected $\varphi_{\mathcal{L}}$ factors through $\Pic^0_{X/k}$.   
+ 		
+  		\begin{lem}\label{the kernel of polar}Let us denote the kernel of $\varphi_{L}: X \to \Pic^0_{X/k}$ by $K(\Li)$. 
+ 			\begin{enumerate}[(i)]
+ 				\item We have $\Lambda(\Li)\vert_{X \times K(\Li)} \cong \Om_{X\times K(\Li)}$,
+ 				\item If $\Li$ is ample, then $K(\Li)$ is finite. Conversely, if  $\Li$ has a non-zero global section and $K(\Li)$ is finite, then $\Li$ is ample. 
+ 			\end{enumerate}
+ 		\end{lem}
+ 		\begin{proof} 
+ 			Let $T=K(\Li)$ and $x: K(\Li)\to X$ be the inclusion. Then $\Lambda(\Li)\vert_{X \times K(\Li)}=(1\times x)^*\Lambda(\Li)=\varphi_{L}(K(\Li))$, which is trivial by definition of $K(\Li)$. 
+ 			
+ 			For (ii) let $\Li$ be an ample line bundle on $X$. Then its pullback $\Li'$ to $K(\Li)$ is ample because $\iota: K(L)\to X$ is a closed immersion. By (i) the bundle $\Lambda(\Li)$ is trivial pulled back to $X\times  K(\Li)$. Pulling this line bundle back to $K(\Li)$ via $(\iota,-1)$ gives that $\Li'^{-1}\times (-1)^* \Li'$ is trivial on $K(\Li)$. This yields a ample and trivial sheaf on the closed subscheme $K(\Li)$ of the proper scheme $X$.
+ 			
+ 			In the first paragraph of the proof of proposition (\ref{torsion points of abelian varieties}) we showed that if the structure sheaf of a proper scheme over $k$ is ample, then the scheme is finite over $k$.  This proves the first assertion of statement (ii).
+ 			The converse statement is proposition 2.2 in \cite{van2007abelian}.
+ 		\end{proof}
+ 		\begin{thm}\label{thm dual abelian}For an abelian variety $X$ over $k$ the \textit{dual abelian variety} $X^\vee :=\Pic^0_{X/k}$ is an abelian variety over $k$.  
+ 		If $\Li\in \Pic(X)$ is ample, then $\varphi_\Li: X \to X^\vee$ is an isogeny and, further, $\dim X = \dim_k H^1(X, \Om_X) = \dim X^\vee$. In particular, if $X$ is a curve, it's a curve of genus one.
+	 \end{thm}
+	\begin{proof}
+		Choose an ample line bundle $\Li \in \Pic(X)$, which exists by (\ref{rmk abelian varieties are projective}). Then the map $\varphi_\Li : X \to \Pic^0_{X/k}$ has finite fiber over $0$ by (\ref{the kernel of polar}) and we conclude $\dim X \le \dim \Pic_{X/k}^0$. 
+		
+		It can be shown that for any group variety over a field $\dim H^1(X ,\Om_X) \le \dim X$, see \cite[Cor. 6.15]{van2007abelian} and therefore
+		\[ \dim X \le  \dim \Pic^0_{X/k}\le \dim T_0 ( \Pic^0_{X/k}) \overset{\ref{thm tangent space of Picard Functor}}{=} \dim_k H^1(X, \Om_X)\le \dim X. \]
+		Hence $\Pic_{X/k}$ is an abelian variety by (\ref{thm tangent space of Picard Functor}) and the discussion above (\ref{thm tangent space of Picard Functor}). $\varphi_{\mathcal{L}}$ will be an isogeny by theorem (\ref{thm isogenies}). 
+	\end{proof}
+	Consider two line bundles $\Li, \Li'$ on $X$. If $\Li \cong \Li'$, then $\Lambda(\Li)\cong \Lambda(\Li')$ and therefore $\varphi_{\Li}=\varphi_{\Li'}$. Hence we obtain a morphism 
+	\begin{align} \varphi: \Pic(X)\to \Hom_k(X,X^\vee), \;\Li \mapsto \varphi_{\Li}.\label{eq varphi}
+	\end{align}
+	 
+	Further $\Lambda(\Li\otimes \Li')\cong \Lambda(\Li)\otimes \Lambda(\Li')$ and therefore $\varphi_{\Li\otimes \Li'}=\varphi_\Li + \varphi_{\Li'}$, i.e. $\varphi$ is a homomorphism. 
+
+	An isogeny $\lambda: X \to X^\vee$ will be called \textit{polarization}, if there exists some invertible ample sheaf $\Li$ on $X_{\overline{k}}$ such that $\lambda_{\overline{k}}=\varphi_{\Li}$. By theorem (\ref{thm dual abelian}) and remark (\ref{rmk abelian varieties are projective}) there always exists at least one polarization. 
+	
+	If $f: X \to Y$ is a homomorphism of abelian varieties over $k$ then $(f\times 1)^* \Po_Y$  is trivial when pulled back to $\{0\} \times Y^\vee$. Therefore, by proposition (\ref{prop poincare}) there exists a unique $f^\vee: Y^\vee \to X^\vee$ such that 
+	\begin{align}
+		(1 \times f^\vee)^* \Po_X \cong (f\times 1)^* \Po_Y.
+	\end{align} 
+	Note that $f \mapsto f^\vee$ is a contravariant functor.	
+	Moreover, it can be shown that $(f+g)^\vee  =f^\vee+g^\vee$ for $f,g: X\to Y$ homomorphisms, see \cite[Chap. 7]{van2007abelian}. In particular, $n_{X}^\vee=n_{x^\vee}$ and proposition (\ref{prop division}) shows that the dual of an isogeny of degree $d$ is again an isogeny of degree $d$. The existence of such dual homomorphisms justifies the name \textit{dual abelian variety}.
+	\subsection{Endomorphisms of abelian varieties}
+	In this chapter $X$ and $Y$ will be abelian varieties over the field $k$, $X$ will have dimension $g$ and $l$ will be ap prime number not equal to $\text{char}(k)$. We give a proof of the Poincaré Splitting Theorem (\ref{thm poincare splitting}). 
+	
+	
+	\begin{proof}
+		Let $\iota: Y \to X$ be the inclusion and $\lambda: X \to X^\vee$ a polarization. 
+		
+		For $K:=\ker( X \xrightarrow{\lambda}X^\vee \xrightarrow{\iota^\vee} Y^\vee)$ define $Z$ to be the connected components of $K$ with its reduced subscheme structure. Then $Z$ is an abelian variety of dimension $ \dim X - \dim Y$. By \cite[Exerc. 11.1]{van2007abelian} $\iota^\vee \circ \lambda \circ \iota$ is a polarization of $Y$. In particular,  $Z\cap Y$ is finite. Now the kernel of the  homomorphism $Y\times Z\to X$ is contained in $(Y \cap Z)\times (Y\cap Z)$ and therefore finite. The proposition follows from theorem (\ref{thm isogenies}) part c).
+	\end{proof}
+	\begin{cor}\label{cor decomposition simple}There exist  simple abelian varieties $Y_1, \dots, Y_n$, non two of which are $k$-isogenous, and there are positive integers $m_1, \dots, m_n$ such that $X$ is isogenous to $Y_1^{m_1}\times Y_2^{m_2} \times \dots \times Y_n^{m_n}$. 
+	The factors are unique up to $k$-isogeny and permutation. 
+	
+%	If we denote the division algebra $\End_k^0(y_i)$ by $D_i$ and the ring of $m\times m$ matrices with coefficients in $D_i$ by $M_m(D_i)$ then 
+%	\[ \End_k^0(X) \cong M_{m_1}(D_1)\times \dots \times M_{m_n}(D_n)\]
+%	as $\mathbb{Q}$-algebras.
+	\end{cor}
+	\begin{proof}
+		This follows form the Poincare Splitting Theorem (\ref{thm poincare splitting}) and the fact that any homomorphism of simple abelian varieties is constant or an isogeny. 
+	\end{proof}
+	\begin{defn}[The Tate module] We define the \textit{Tate module} of $X$ by 
+	\begin{align}
+		T_l X:= \lim \left( \{0\} \xleftarrow{\cdot l} X[l](k_s) \xleftarrow{\cdot l} X[l^2](k_s) \xleftarrow{\cdot l}\dots \right).
+	\end{align}
+	\end{defn}
+	It follows from theorem (\ref{thm isogenies}) that $T_l X$ is (non-canonically) isomorphic to $\mathbb{Z}_l^{2g}$ and we introduce the $2g$ dimensional $\mathbb{Q}_l$ vector space $V_l X := T_l A \otimes_{\mathbb{Z}_l} \mathbb{Q}_l$. 
+	
+	A homomorphism of abelian varieties $f: X \to Y$ induces a homomorphism $T_l f : T_X \to T_l Y$. It sends a point $(0, x_1, x_2, \dots )\in T_l X$ to $(0, f(x_1), f(x_2), \dots)\in T_l Y$. 
+	\begin{rmk}\label{rmk tate as hom}
+	$\mathbb{Q}_l/\mathbb{Z}_l$ is the union of its subgroups $l^{-n}\mathbb{Z}_l/\mathbb{Z}_l$, which we identify with $\mathbb{Z}/l^n \mathbb{Z}$. Therefore $\mathbb{Q}_l/\mathbb{Z}_l =\colim \mathbb{Z}/l^n \mathbb{Z}$, where the colimit is taken over the homomorphisms $\mathbb{Z}/l^n \mathbb{Z} \hookrightarrow \mathbb{Z}/l^{n+1}\mathbb{Z}$ given by $(1 \mod l^n) \mapsto (l \mod l^{n+1})$ and we see that $T_l X = \Hom(\mathbb{Q}_l/\mathbb{Z}_l, X(k_s))$. Using this characterization of the Tate module and the long exact sequence of $\text{Ext}_\mathbb{Z}(\mathbb{Q}_l/\mathbb{Z}_l, \cdot )$ modules it can be shown that for any isogeny $f: X \to Y$ the induced map $T_l f: T_l X \to T_l Y$ is injective with cokernel the $l$-Sylow group of $\ker f(k_s)$ and that $V_l f: V_l X \to V_l Y$ is an isomorphism, see \cite[Cor. 10.7]{van2007abelian}.  
+	\end{rmk}
+	\begin{lem}\label{lem divisble}Let $f:X\to Y$ be a homomorphism. If $T_lf \in \Hom_{\Z_l}(T_lX,T_lY)$ is divisible by $l^n$ then $f$ is divible by $l^n$ in $\Hom(X,Y)$.
+	\end{lem}
+	\begin{proof}
+		The divisibility of $T_l(f)$ means that $f$ vanishes on $X[l^n](k_s)$. $X[l^n]$ is étale over $k$ and therefore $f$ vanishes on $X[l^n]$. By \cite[Sect. 12 Cor. 1]{Mum74} the isogeny $l^n_X:X \to X$ gives $X$ the structure of the quotient $X/X[l^n]$. Therefore $f$ factors through $l^n_X$ and hence is divisible by $l^n_Y$. 
+	\end{proof}
+	 
+	If $f \in \Hom_k(X, Y)$ and $n\in \Z\setminus \{0\}$ then $n \cdot f = 0\implies n_Y\circ f=  f\circ n_X=0$, but $[n_X]$ is surjective, so $f=0$. Hence, $\Hom_k(X, Y)$ is a torsion-free abelian group. In particular, the canonical map $\End(X)\to \End^0(X)$ is injective. 
+	
+	For $f\in \End(X)$ we define $\deg f$ to be the degree of $f$ if $f$ is an isogeny and zero otherwise. Because the degree is multiplicative we can extend this to $\deg:\End^0(X)\to \Q$ via $\deg(\frac{f}{n}):=n^{-2g}\deg{f}$. 
+	 
+	 \begin{thm}\label{thm polynomial mapping}
+	 	The map $\deg: \End_k^0(X)\to \mathbb{Q}$ is a homogeneous polynomial mapping of degree $2g$, i.e. if $e_1, \dots, e_n$ are independent elements of $\End_k^0(X)$ then there is a homogeneous polynomial $P\in \Q[x_1, \dots, x_n]$ of degree $2g$ such that $\deg(x_1 e_1+ \dots+x_ne_n )=P(x_1, \dots, x_n)$ for all $x_1, \dots, x_n \in \Q $.
+	 \end{thm}
+ 	\begin{proof}
+ 		By corollary \ref{cor decomposition simple} and proposition \ref{prop division} we may assume that $X$ is simple. Note that $\deg(nf)=n^{2g}\deg(f)$ for all $n\in \Q$ and all $f$. So, if $P$ is a polynomial mapping, it must be homogeneous of degree $2g$.  \cite[Lem. 12.3]{milne1986abelian} shows via an induction argument that it suffices to proof that for all $f, g \in \End_k^0(X)$ there exists $P\in \Q[x]$ of degree $\le 2g$ such that $\deg(n f + g)=P(n)$ for all $n\in \mathbb{Q}$. By multiplying with a big enough integer and using that $\deg(nf)=n^{2g}\deg(f)$  we may assume that $f,g\in \End(X)$ and that $n\in \mathbb{Z}$.
+ 		
+ 		Let $D$ be a very ample divisor on $X$ and let $D_n:=(nf+g)^*D$. Then by \cite[Lem. 8.3]{milne1986abelian} $\deg(nf+g)(D)^g=(D_n^g)$, since $nf+g$ is either an isogeny or the zero map. Hence, it suffices to prove that $(D_n^g)$ is a polynomial in $n$ of degree $\le 2g$. 
+ 		
+ 		By theorem \ref{thm of the cube and the square} part a) applied to the maps $nf+g, f, f: X\to X$ and $\Li=\Li(D)$ shows that $D_{n+2}-2D_{n+1}+D_n$ is linearly equivalent to $D':=(2f)^*D-2(f^*D)$. So by induction $D_n$ is linearly equivalent to $\frac{n(n-1)}{2}D' + nD_1 -(n-1)D_0$. By the multilinearity of the $g$-fold intersetion number we conclude that $(D_n)^g=\left(\frac{n(n-1)}{2}\right)^g (D')^g + \dots$ is a polynomial in $n$.
+ 	\end{proof}
+ 	\begin{thm}\label{thm injec}The $\Z_l$-linear map $\Hom_k(X, Y)\otimes \Z_l \to \Hom_{\Z_l}(T_l X, T_l Y)$ given by  $f \otimes c \mapsto c \cdot T_l(f)$ is injective. 
+ 	\end{thm}
+ 	\begin{proof}
+ 		Claim: If $X$ is simple, then the map $\End(X) \otimes \Z_l \to \End(T_l A)$ is injective:
+ 		
+ 		Suppose the map is not injective. Then there exist $f_1, \dots, f_n\in \End(X)$ and l-adic integers $c_1, \dots, c_n$ such that $c_1 T_l f_1 +c_2 T_l f_2 + \dots + c_n T_l f_n=0$. 	
+ 		
+ 		Let $M$ be the $\Z$ submodule of $\End^0(X)$ generated by the $\{f_1, \dots, f_n\}$. By theorem \ref{thm polynomial mapping} the map $\deg: \Q M:=\Q \otimes  M \to \Q$ is continuous for the real topology and so $U:=\{v\in \Q M \mid \deg(v)<1\}$ is an open neighborhood of $0$. Since $X$ is simple, every nonzero endomorphism of $X$ has degree a positive integer and therefore $(\Q  M \cap \End(X))\cap U=\{0\}$ and we see that $\Q  M \cap \End(X)$ is discrete in $\Q M$. By \cite[Prop. 4.15]{milne2008algebraic} this equivalent to $\Q M \cap \End(X)$ being a finitely generated $\Z$-module. Since $\End(X)$ is torsion-free there is $r>0$ such that $\Q M \cap \End(X)=e_1 \mathbb{Z} \oplus \dots \oplus e_r \Z$ for certain $e_i \in \End(X)$. Moreover, there are $a_1, \dots, a_r \in \mathbb{Z}_l$ such that $\sum_{i=1}^r a_i T_l(e_i)=0$. 
+ 		
+ 		Since the integers are dense in the l-adic integers, for any $m\in \mathbb{N}$ there exists $n_1(m),\dots, n_r(m) \in \Z$ such that for all $i=1, \dots, r$ we have $n_i(m)-a_i$ is divisible through $l^m$. Then also 
+ 		\[ T_l \left(\sum_{i=1}^r n_i(K) e_i \right)=\sum_{i=1}^r n_i(K) T_l(e_i)=\sum_{i=1}^r(n_i-a_i)T_l(e_i) \]
+ 		is divisible trough $l^m$ and by Lemma \ref{lem divisble} $\sum_{i=1}^r n_i(m) e_i \in \End(X)$ is divisible by $l^m$ in $\End(X)$ and therefore in $\Q M \cap \End(X)$ by definition of $\Q M$. On the other hand, since $\abs{n_i(m)-a_i}_l \le l^{-m}$ there exist $M_i,K_i \in \Z$ such that $v_l(n_i(m))=K_i$ for all $m \ge M_i$. Let $M=\max M_i$ and $K=\max K_i$. Then $\sum_{i=1}^r n_i(m)e_i$ is not divisible by a power of $l$ higher than $K$ for all $m\ge M$ in $\Q M \cap \End(X)$ since the $e_1, \dots, e_r$ form a free generating system. This contradicts the earlier statement. 
+ 		
+ 		Now we prove the general case. Note that since `limits commute' $T_l(X\times Y)=T_l(X)\times T_l(Y)$. 
+ 		
+ 	There exists isogenies $X\to \prod_{i=1}^r X_i$ and $Y\to  \prod_{j=1}^n Y_j$, where the $X_i, Y_j$ are simple abelian varieties. Proposition \ref{prop division} lets us map $\Hom(X,Y)$ into $\Hom(\prod_{i=1}^r X_i^{m_i}, \prod_{i=1}^r Y_i^{n_i})$ and since $n_X$ is an epimorphism for all $n \in \Z$ this is injective. Since every nonzero homomorphisms of simple abelian varieties is an isogeny, $\Hom(\prod_{i=1}^r X_i^{m_i}, \prod_{i=1}^r Y_i^{n_i})=\prod_{i,j}\Hom(X_i, Y_j)$ and if $X_i$ and $Y_i$ are isogenous then $\Hom(X_i , Y_i) $ embeds into $\End(X_i)$, else $\Hom(X_i , Y_i) =0$. So, the theorem follows from the special case proven above.
+  	\end{proof}
+% 	\begin{cor}
+% 		$\Hom^0(X,Y):=\Hom(X,Y)\otimes \Q$ has $\Q$ dimension $\le 4 \dim X \dim Y$. 
+% 	\end{cor}
+% 	\begin{proof}
+% 	For an abelian variety $X$ the $\Z_l$-module $T_l X$ is free of rank $2\dim X$ and therefore $\Hom_{\Z_l}(T_X, T_l Y)$ is free of rank $4\dim X \dim Y$. Since $\Z_l$ is a principal ideal domain we can conclude from theorem \ref{thm injec} that $\Z_l \otimes \Hom(X,Y)$ is a free $\Z_l$ module of rank $\le 4 \dim X \dim Y$.  This bounds the rank of the torsion free abelian group $\Hom(X,Y)$.
+% 	\end{proof}
+
+ 	Given $f\in \End^0_k(X)$ there is a necessarily unique polynomial $P_f \in \Q[x]$ of degree $2d$ such that  $P_f(n)=\deg(n_X-f)$ for all $n\in \mathbb{N}$ by theorem \ref{thm polynomial mapping}. The next theorem justifies that we will refer to $P_f$ as the \textit{characteristic polynomial} of $f$. 
+ 	\begin{thm}\label{thm charak poly} For $f \in \End^0(X)$ let $P_{f,l}\in \Q_l[x]$ be the characteristic polynomial of $V_l f  \in \End_{\Q}(V_l X)$. Then $P_{f,l}=P_f$ is independent of $l$ and has integer coefficients whenever $f \in \End(X)$. 
+ 	\end{thm}
+ 	\begin{proof} We only give a sketch, whereas a detailed proof can be found in \cite[Chapt. 12]{milne1986abelian} or \cite[thm. 12.8]{van2007abelian}. It can be assumed that $f\in \End(X)$ and, further, using corollary \ref{cor decomposition simple} that $X$ is simple. 
+ 		
+ 		We start with the notation of the proof of theorem \ref{thm polynomial mapping}, $g=\id$ and a chosen ample symmetric divisor $D$. A computation as in the proof of theorem \ref{torsion points of abelian varieties} shows that $D'\sim -2 D$ and we conclude from the last equation in the proof of theorem  \ref{thm polynomial mapping} that $P_f$ has integer coefficients and leading coefficient $1$.
+ 		
+ 		Let $P_f=\prod_{i=1}^{2g}(x-a_i)$ and let $P_{f,l}=\prod_{i=1}^{2g}(x-b_i)$. Let $F \in \mathbb{Z}[t]$. Using the properties of the determinant it can be proven that $ \det V_l(F(f))=\pm \prod_{i=1}^{2g}F(b_i)$ and similarly using the multiplicativety of the degree it can be shown that $\deg(F(f))=\pm \prod_{i=1}^{2g}F(a_i)$.
+ 		
+ 		Let $\alpha := F(f)$. Using the Smith-Normal form on $T_l \alpha$ to assume it in diagonal form, we can see that $\frac{1}{\# (\text{coker}(T_l\alpha))}=\abs{\det(T_l \alpha)}_l$. Further by remark \ref{rmk tate as hom} $ \text{coker}(T_l\alpha)$ is isomorphic to the $l$-Sylow-group $N_l$ of $(\ker \alpha) (k_s)$. $N_l$ is an étale group scheme over $k$ by \cite[Cor. 4.48]{van2007abelian} provided that $l$ is relatively prime to char$(p)$ and hence $\# N_l=\abs{\deg(\alpha)}_l^{-1}$ by equation (\ref{eq3}). Summarized we have,  \begin{align*}\abs{\prod_{i=1}^{2g}F(a_i)}_l=\abs{\deg(\alpha)}_l =\frac{1}{\# N_l}=\frac{1}{\# (\text{coker}(T_l\alpha))}=\abs{ \det (T_l \alpha)}_l =\abs{\prod_{i=1}^{2g}F(b_i)}_l 
+ 		\end{align*} for all $F\in \Z[t]$. By lemma 1 in \cite[lem. VII 1.]{lang2019abelian}, this implies that $P_{f,l}=P_f$ as elements of $\mathbb{Q}_l[x]$.  (The proof of the cited lemma relies on the denseness of the integers in the l-adic integers and the continuity of the given polynomials with respect to the $l$-adic topology). 
+ 	\end{proof}
+ 	\noindent We define the trace of $f\in \End^0(X)$ via the following equation $P_f(x)=x^{2g}-\tr(f)x^{2g-1}+\dots + \deg(f)$. 
+ 	\section{The Jacobian variety}
+ 	In this section $C$ shall be a non-singular proper curve of genus $g$ over a field $k$.
+ 	
+ 	\begin{prop}\label{prop Jacobian is smooth}$\Pic_{C/k}$ is smooth over $k$.
+ 	 \end{prop}
+  \begin{proof}
+  	We already know that $\Pic_{C/k}$ is locally of finite type over $k$ and therefore it suffices to proof that $\Pic_{C/k}$ is formally smooth. To show this let $Z$ be an affine scheme over $k$ and $i: Z_0\hookrightarrow Z$ a closed subscheme cut out by an ideal $I\subseteq \Om_Z$ that satsifies $I^2=0$. Passing to the functor that the scheme $\Pic_{C/k}$ represents we have to proof the following: The pullback along $(1\times i)$ induces a surjection $\Pic(C\times Z)/\pr_Z^* \Pic(Z)\to \Pic(C\times Z_0)/\pr_{Z_0}^* \Pic(Z_0)$. 
+ 	
+ 	Note that $b+I\in \Om_{Z_0}(Z_0)$ is invertible if and only if $b\in \Om_Z(Z)^\times$: If $b=1+c$ for $c\in I$ then $b^{-1}=(1-c)$.	Hence we obtain an exact sequence of sheaves of abelian groups on the topological space $\abs{Z}=\abs{Z_0}$ given by $0 \to I \to \Om_Z^\times \xrightarrow{i^\#} \Om_{Z_0}\to 1$, where the first map sends $s$ to $1+s$.
+ 	
+ 	This gives the following short exact  sequence on the topological space $\abs{C\times Z}=\abs{C\times Z_0}$ 
+ 	\begin{align*}
+ 		0\to \pr_Z^* I=\Om_C \otimes_k I \xrightarrow{n \mapsto 1+n} \Om_{C\times Z}^\times \xrightarrow{(1\times i)^\#} \Om_{C\times Z_0}^\times \to 1.
+ 	\end{align*}
+ We apply the pushforward along $\pr_Z$ to obtain a long exact sequence 
+ \begin{align*}
+ 	0 &\to R^0 (\pr_Z)_* (\Om_C \otimes_k I) \to R^0 (\pr_Z)_*\Om_{C\times Z}^\times  \to R^0 (\pr_Z)_*\Om_{C\times Z_0}^\times  \\ &\to 
+ 	R^1 (\pr_Z)_* (\Om_C \otimes_k I)\to R^1 (\pr_Z)_*\Om_{C\times Z}^\times  \to R^1 (\pr_Z)_* \Om_{C\times Z_0}^\times  \to \cdots
+ \end{align*}
+The map $(\pr_Z)_*\Om_{C\times Z}^\times \to (\pr_Z)_*\Om_{C\times Z_0}^\times$ is a
+surjective map of sheaves on $Z$ and therefore $R^1 (\pr_Z)_* (\Om_C \otimes_k I)\to R^1 (\pr_Z)_*\Om_{C\times Z}^\times$ is injective. Further, $R^2 (\pr_Z)_* (\Om_C \otimes_k I)$ vanishes because $\pr_Z$ is proper, $I$ is quasi-coherent and $H^2(C, \Om_C)=0$, see \cite[7.7.10 and 7.7.5 (II)]{grothendieck1961elements}. Therefore we obtain an exact sequence 
+ \begin{align*}
+ 0 \to 
+ R^1 (\pr_Z)_* (\Om_C \otimes_k I)\to R^1 (\pr_Z)_*\Om_{C\times Z}^\times  \to R^1 (\pr_Z)_* \Om_{C\times Z_0}^\times  \to 1 .
+ \end{align*}
+We apply the global section functor $H^0(Z, \cdot)$ to see that the obstruction for \[\mathrm{Pic}_{X/k}(Z) = H^0(Z, R^1(\pr_Z)_* \mathscr{O}^\times_{C\times  Z}) \rightarrow H^0(Z_0, R^1((\pr_Z))_\times \mathscr{O}^*_{C\times Z_0}) = \mathrm{Pic}_{C/k}(Z_0)\] being surjective is  $H^1(Z, R^1 (\pr_Z)_* (\Om_C \otimes_k I))$, which vanishes because $Z$ is affine and  $(\pr_Z)_* (\Om_C \otimes_k I)$ is quasi-coherent by properness of $\pr_Z$. 
+\end{proof}
+The given proof that $\Pic_{C/k}$ is formally smooth can be found in \cite[Prop. 8.4.2]{bosch2012neron} and relies on $H^2(C, \Om_C)$ vanishing. So, our assumption that $C$ is a curve plays a crucial role in this proof of smoothness of $\Pic_{C/k}$.
+
+A regular local ring is reduced and therefore $\Pic^0_{C/k}$ is geometrically reduced over $k$. Moreover, we have seen in section \ref{sec sum} that $\Pic^0_{C/k}$ is also proper and geometrically irreducible, i.e. $\Pic^0_{C/k}$ is an abelian variety. We will refer to $J:=\Pic^0_{C/k}$ as \textit{Jacobian variety} or short \textit{Jacobian} of $C$. By theorem \ref{thm tangent space of Picard Functor} $J$ has dimension $g$ and its tangent space at the zero is isomorphic to $H^1(C, \Om_C)$. In particular, if $g=0$ then $J=\Spec(k)$.
+
+ 	\subsection{The canonical map from $C$ to its Jacobian}\label{sec canonical map}
+ 	 
+ 	 	In this subsection we assume $C$ to have a $k$-rational point $P\in C(k)$ corresponding to a $k$-morphism $\varepsilon: k \to C$. By \cite[\href{https://stacks.math.columbia.edu/tag/0C6U}{Tag 0C6U}]{stacks-project}, if $g=0$ then $C\cong \mathbb{P}_k^1$ and we will assume in the following subsection that $g>0$. 
+ 	 	
+ 	 	Further, we will denote the canonical line bundle on $C\times J$ from Proposition \ref{prop poincare} by $\M^P$.
+ 	 	
+ 	 	 Since $C\times C$ is regular, we can associate an invertible sheaf $\Li^P$ to the Weil-Divisor \begin{align}\Delta -C\times \{P\}-\{P\}\times C \label{eq lp}
+	 	 \end{align} on $C\times C$. 
+ 	 	Then $\varepsilon_{C}^*\Li^p\cong \Li(P) \otimes \Li(P)^{-1}\otimes \varepsilon_{C}^*((\varepsilon_{C})_* \Om_C)^{-1}$ is trivial, since $\varepsilon_C$ is a closed immersion. 
+ 	 	
+ 	 	By proposition \ref{prop poincare} there exists a unique map $f: C\to \Pic_{C/k}$ such that $(1\times f)^*\M^P=\Li^P$.
+ 	 	
+ 	 	For $K/k$ a field extension and $Q\in C(K)\setminus{P}$ with corresponding map $x: K \to C$ we have $(1\times x)^*\Li^P= \Li_{C_K}(Q)\otimes \Li_{C_K}(P)^{-1}$.
+ 	 	
+ 	 	Consulting diagram \ref{diagram} we deduce that $f$ is given on $K$-valued by
+ 	   \begin{align}
+ 	   	f(Q)=\Li_{C_K}(Q)\otimes \Li_{C_K}(P)^{-1}. \label{eq f on points}
+ 	   	\end{align}
+ 	 	
+ 	 	
+ 	 	Since $C$ is connected and $f(P)=\Om_X$ the map $f$ factors through $\Pic^0_{X/k}=J$. 
+ 	 	
+		
+ 	 	
+ 	 	The canonical map $h_J:\Gamma( J, \Omega_J^1)\to \Omega^1_{J,0}=(T_0 J)^\vee$ is an isomorphism for any group variety over a field, see \cite[4.2 Prop. 2 ]{bosch2012neron}. Serre-duality gives a canonical isomorphism $\text{ser}:\Gamma(C, \Omega^1_C)\to H^1(C, \Om_C)^\vee$. These isomorphisms are related via the pullback along $f$. This is encoded in the next proposition, whose proof can be found in \cite[Thm. 14.4]{van2007abelian}. 
+ 	 	\begin{prop}\label{prop canonical map on tangent spaces}
+ 	 		For $\nu: H^1(C, \Om_C)\to T_0 J$ the isomorphism from theorem \ref{thm tangent space of Picard Functor} and $f^*: \Gamma(J, \Omega^1_J) \to \Gamma(C, \Omega^1_C)$ the canonical map the diagram 
+ 	 		 % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXEdhbW1hKEosIFxcT21lZ2FfSl4xKSJdLFswLDEsIlRfMChKKV5cXHZlZSJdLFsxLDEsIkheMShDLCBcXG1hdGhjYWx7T31fQyleXFx2ZWUiXSxbMSwwLCJcXEdhbW1hKEMsIFxcT21lZ2FfQ14xKSJdLFswLDEsImhfSiJdLFsxLDIsIlxcbnVeXFx2ZWUiXSxbMywyLCJcXHRleHR7c2VyfSIsMl0sWzAsMywiZl4qIiwyXV0=
+ 	 		 \[\begin{tikzcd}
+ 	 		 	{\Gamma(J, \Omega_J^1)} & {\Gamma(C, \Omega_C^1)} \\
+ 	 		 	{T_0(J)^\vee} & {H^1(C, \mathcal{O}_C)^\vee}
+ 	 		 	\arrow["{h_J}", from=1-1, to=2-1]
+ 	 		 	\arrow["{\nu^\vee}", from=2-1, to=2-2]
+ 	 		 	\arrow["{\text{ser}}"', from=1-2, to=2-2]
+ 	 		 	\arrow["{f^*}"', from=1-1, to=1-2]
+ 	 		 \end{tikzcd}\]
+  		 commutes. In particular, $f^*: \Gamma(J, \Omega^1_J) \to \Gamma(C, \Omega^1_C)$ is an isomorphism.
+ 	 	\end{prop}
+  		\begin{thm}\label{thm closed immer}
+  			$f: C\to J$ is a closed immersion. If $C$ has genus $g=1$ then $f$ is an isomorphism.  		\end{thm}
+  		\begin{proof}
+  			Whether a morphism is a closed immersion, can be checked after faithfully flat base change, so we may assume $k=\overline{k}$. Since $f$ is a morphism of smooth, projective $k$-varieties, it is a closed immersion if it separates points and tangent vectors. (The proof is the same as the “if” part of \cite[II 7.3]{hartshorne2013algebraic}). To see that $f$ separates points, assume that $Q_1, Q_2 \in C(k)$ have the same image under $f$. Then $\Li(Q_1)\otimes  \Li(Q_2)^{-1}$ is trivial, i.e. $Q_1-Q_2$ is the divisor of a function $f$. But then $f$ defines an isomorphism $C\to \mathbb{P}^1_C$, contradicting our assumption $g>0$.  
+  			
+  			We will only sketch the proof of $f$ separating tangent vectors. To see that $(df_Q): T_Q C \to T_{fQ} J$ is injective, we may assume that $Q=P$. It can be shown that the dual map of $df_P$ is $\Gamma(J, \Omega_J^1)\xrightarrow{f^*}\Gamma(C, \Omega^1_C)\xrightarrow{\text{can}} (T_p C)^\vee$. We have seen in Proposition \ref{prop canonical map on tangent spaces} that the first of these maps is an isomorphism. Therefore it suffices to proof that $\Gamma(C, \Omega^1_C)\xrightarrow{\text{can}} (T_p C)^\vee$ is surjective. The kernel of this map can be identified with $\{\omega \in\Gamma(C, \Omega^1_C) \mid \omega(P)=0 \}$ and by Serre duality the letter is dual to $H^1(C, \Li(P))$. Since $T_p C$ is one-dimensional, we now only have to proof that $\dim H^1(C, \Li(P))<\dim \Gamma(C, \Omega_C^1)$. Moreover, we know that $\dim  \Gamma(C, \Omega_C^1)=g$ by Serre  duality and $h^1(C, \Li(P))=h^0(C, \Li(P))+g-2$ by the Riemann-Roch theorem. Because we assumed $g>0$, there exist no meromorphic functions on $C$ that only have one simple pole and are regular elsewhere, as such define an isomorphism $C \to \mathbb{P}_k^1$. We conclude that $H^0(C, \Li(P))=H^0(C, \Om_C)\cong k$ and hence $h^1(C, \Li(P))=g-1<g=\dim \Gamma(C, \Omega_C^1)$. In summary, we have shown that $f$ also separates tangent vectors and hence must be a closed immersion.
+  			
+  			In the case $g=1$ both varieties $J,C$ are proper,  smooth curves and hence $f$ must be an isomorphism. 
+  		\end{proof}
+  	\begin{rmk}[\textit{Elliptic Curves}]
+  		Due to theorem \ref{thm dual abelian} abelian varieties of dimension one have genus one. By the last theorem \ref{thm closed immer}, a nonsingular, proper curves of genus one, which admits a $k$-valued point, is isomorphic to its own Jacobian variety. We conclude that these notions coincide and refer to abelian varieties of dimension one as \textit{elliptic curves}. Let $C$ be an elliptic curve and $Q_1, Q_2 \in C(\overline{k})$. Then we can read from $f$'s action on closed points, that there exists a unique $Q_3 \in C(\overline{k})$ such that $\Li(Q_1 + Q_2-2 P)\cong \Li(Q_3- P)$. Further, $(Q_1, Q_2)\mapsto Q_3$ defines the unique group law on $C$ such that $f$ is a homomorphism of abelian varieties. 
+  	\end{rmk}
+ 	\subsection{Symmetric powers of a curve}
+ 	In this subsection we assume there exists $P\in C(k)$ and that $g>0$. We will write $f$ for the canonical closed immersion $C\to J$ from theorem \ref{thm closed immer}.
+ 	
+ 	
+ 	For $n>0$ let $S_n$ be the symmetric group on $n$ letters. $S_n$ acts on $C^n$ by permuting the factors. A morphism $\varphi: C^n \to T$ is said to be symmetric if $\varphi \circ \sigma = \varphi$ for all $\sigma \in S_n$. 
+ 	
+ 	Since quasi-projective schemes admit quotients by finite groups, see \cite[p. 66 ]{Mum74}, there exists a variety $C^{(n)}$ and a symmetric morphism $\pi: C^n \to C^{(n)}$, such that 
+ 	\begin{enumerate}
+ 		\item as topological space $(C^{(n)}, \pi)$ is the quotient of $C^{(n)}$ by $S_n$.
+ 		\item for any open affine subset $U$ of $C$, $U^{(n)}$ is an open affine subset of $C^{(n)}$ and $\Om_{C^{(n)}}(U^{(n)})$ is the subring $\Om_{C^n}(U^n)^{S_n}$ of $\Om_{C^n}(U^n)$ given by elements fixed by the action of $S_n$.
+ 	\end{enumerate}
+ 	The pair $(C^{(n)}, \pi)$ has the following universal property: every symmetric $k$-morphism $\varphi: C^n\to T$ factors uniquely through $\pi$. Moreover, the map $\pi$ is finite and surjective. Since $C^n$ is proper this implies that $C^{(n)}$ is proper over $k$. 
+ 	
+ 	For $m_1, \dots, m_k \in \mathbb{N}_0$ a partion $n=m_1+\dots+m_r$ the natural isomorphism $C^{m_1}\times \dots\times C^{m_r}\to C^{n}$ induces a natural morpism $s=s_{m_1,\dots,m_r}: C^{(m_1)}\times \dots \times C^{(m_r)} \to C^{(n)}$ that we will refer to the sum map.
+ 	
+ 	\begin{prop} \label{prop power smooth} Suppose given a partition $n = m_1 + \dots + m_r$ and points $P_1,\dots , P_r \in C(k)$ with $P_i \neq P_j$
+ 		if $i \neq j$. 
+ 		Write $m_i P_i \in C^{(m_i)}(k)$ for the image of the point $(P_i,\dots, P_i)\in C^{m_i}$ under the quotient map $C^{m_i}\to C^{(m_i)}$.
+ 		\begin{enumerate}[(i)]
+ 		\item  
+ 		Then the sum morphism $C^{(m_1)}\times \dots \times C^{(m_r)} \to C^{(n)}$ is étale at the point $(m_1 P_1, \dots, m_r P_r)$.
+ 		\item The symmetric power $C^{(n)}$ of a non-singular curve is regular of dimension $n$ for any $n>0$. 
+ 	\end{enumerate}
+ In particular, $\pi: C^n \to C^{(n)}$ is finite and flat of degree $n!$. 
+ 	\end{prop}
+ 	\begin{proof}We won't give a proof of part (i) here, a proof can be found in \cite[Lem. 14.7]{van2007abelian}.
+ 		
+ 		For the proof of part (ii) we may assume that $k$ is algebraically closed. It suffices to check that for all $k$-valued points $Q$ of $C^{(n)}$ the stalks at $Q$ is regular. By part (i) we only have to check this on points of the form $Q:=n p$ for given $p\in C(k)$.  Let us denote $P:=(p,\dots, p)\in C^n(k)$. Note that the formation of the fixed ring under the action of $S_n$ is a finite categorical limit. Finite limits commute with filtered colimits, e.g. localization, as well as, all categorical limits. In particular, $\Om_{C^{(n)},Q}=(\Om_{C^n, P})^{S_n}$. The ideal $\m$ cutting out the closed point $P$ in $\Om_{C^n, P}$ is invariant under the action of $S_n$ and equals the ideal cutting out the closed point $Q$ in $\Om_{C^{(n)}, P}$. Therefore \begin{align*}(\widehat{\Om_{C^n, P}})^{S_n}&=(\lim_m \Om_{C^n, P}/\m^m)^{S_n} = \lim_m \left(\Om_{C^n, P}/\m^m \right)^{S_n}=\lim_m (\Om_{C^n, P})^{S_n}/\m^m\\&=\lim_m \Om_{C^{(n)}, Q}/\m^m=\widehat{\Om_{C^{(n)}, Q}}.
+ 		\end{align*}
+ 	Since $C^n$ is regular, $\widehat{\Om_{C^n, P}}\cong k[[x_1,\dots, x_n]]$, where $S_n$ acts on $\widehat{\Om_{C^n, P}}$ by permuting the variables. By the fundamental theorem on symmetric polynomials $k[[x_1, \dots, x_n]]\to k[[x_1, \dots, x_n]]^{S_n}, x_i \to \sigma_i$, for $\sigma_i$ being the $i$-th symmetric polynomial in $n$ variables, is an isomorphism. Since a local Noetherian ring is regular if and only if its completion is regular, we have proven that $C^{(n)}$ is regular at $Q$. 
+ 	
+ 	For the last assertion note that a quasi-finite morphism of regular varieties is flat by \cite[26.2.11.]{vakil2017rising}. As in the proof of theorem \ref{thm isogenies}, we can compute the degree of $\pi$ as the dimension of the $k$-vector space of global sections of any fiber. Choosing a fiber containing a point $(P_1, \dots, P_n)$ with $P_i \neq P_j$ for all $i\neq j$, we see by (i) that the fiber is étale over $k$. So, $\deg \pi$ equals the number of closed points of this fiber, which is the cardinality of the $S_n$ orbit of $(P_1, \dots, P_n)$ in $C^{n}$. Hence, $\deg \pi = n!$. 
+ 	\end{proof}
+ 	Recall that for $C \to T$ a morphism of $k$-schemes a \textit{relative effective Cartier divisor} $D$ on $C_T:=C\times T$ over $T$ is a closed subscheme $D\subseteq C_T$, which is flat over $T$ and such that the ideal sheaf $I_D\subseteq \Om_{C_T}$ is an invertible $\Om_{C_T}$ module. 
+	
+	When we tensor the inclusion $\mathcal{I}_D\hookrightarrow \Om_{C_T}$ with $\Li(D)$ we obtain an inclusion $\Om_{C_T}\hookrightarrow \Li(D)$ and hence a canonical global section $s_D$ of $\Li(D)$. The map $D \mapsto (\Li(D), s_D)$ defines a bijection between relative effective divisors on $C_T$ over $T$ and isomorphism classes of pairs $(\Li, s)$ where $\Li$ is an invertible sheaf on $C_T$ and $s \in \Gamma(C_T, \Li)$ is such that 
+	\[ \Li/s \Om_{C_T} :=\text{Coker}( \Om_{C_T}\xrightarrow{s}\Li)\]
+	is flat over $T$. Here two pairs $(\Li, s)$ and $(\Li', s')$ are considered to be isomorphic if there is an isomorphism of $\Om_{C_T}$-modules $h: \Li \to \Li'$ with $h(s)=s'$. The inverse of the above bijection associates to $(\Li, s)$ the zero scheme $D=Z(s)\subseteq C_T$ of the section $s$. 
+	
+	Relative effective Cartier divisors on $C_T$ over $T$ can be added. If $D$ corresponds to the pair $(\Li, s)$ and $D'$ to the pair $(\Li', s')$ then $D+D'$ is cut out by $I_D\cdot I_{D'}$ and corresponds to $(\Li \otimes \Li', s \otimes s')$. To see that $D+D'$ is again flat over $D$ consult \cite[\href{https://stacks.math.columbia.edu/tag/0B8U}{Tag 0B8U}]{stacks-project}. 
+	
+	
+	While the pullback of an effective Cartier divisor might not be effective, the charm of relative effective Cartier divisors is that they behave nicely with respect to base-changes: 
+	
+	If $D\subseteq C_T$ is an relative effective Cartier divisor over $T$ and $h: T' \to T$ is a morphism of $k$-schemes then we can pull $D$ back to an relative effective Cartier divisor $D_{T'}=h^*D\subseteq C_{T'}$ on $C_{T'}$ over $T'$. A proof of this property can be found at \cite[\href{https://stacks.math.columbia.edu/tag/056Q}{Tag 056Q}]{stacks-project}. 
+	
+	Consider an relative effective Cartier divisor $D$ on $C_T$ over $T$. Then for any $t \in T$ the pullback $D_t$ of $D$ along $t \to T$ is a Cartier Divisor on the curve $C_{k(t)}$ and therefore finite. We conclude that $D \to T$ is quasi-finite. As $C$ is proper over $k$, $D$ is proper over $T$ too, and quasi-finite $+$ proper implies finite. So, $D$ is finite and flat over $T$ and hence $\Om_D$ is finite locally free as an $\Om_T$ module. The rank of $\Om_D$ as an $\Om_T$ module (which is a locally constant function on $T$) is called the degree of $D$ and denoted $\deg D$. It is straightforward to check that, if $D$ has constant degree $n$ over $T$ then the same holds for $D_{T'}$ over $T'$ for any $h: T' \to T$. It is proven in \cite[Lem. 1.2.6]{katz2016arithmetic} that for two relative effective Cartier divisors $D_1, D_2$ on $C_T$ over $T$ their sum $D_1+D_2$ has degree $\deg(D_1)+\deg(D_2)$ over $T$. 
+	
+   We obtain a contravariant functor $\Div: \Sch_{/k} \to \text{Sets}$ with
+	\begin{align}
+		 \Div(T)=\{\text{relative effective Cartier divisors }D\subseteq C_T \text{ of constant degree } n \text{ over } T\}.
+	\end{align}
+	
+	If $P\in C(T)$ is a $T$-valued point of $C$ then this gives a section $T\to C_T$ of the structural morphism, whose image is a relative effective Cartier divisor $P\subseteq C_T$ of constant degree $1$ over $T$ by \cite[Lem. 1.2.2]{katz2016arithmetic}.
+	More generally, for $P_1, \dots, P_n \in C(T)$ we get an relative effective Cartier divisor $P_1+\dots+ P_n$ on $C_T$ of constant degree $n$ over $T$. In this way we obtain a morphism $C^n \to \Div$.  Since this morphism is $S_n$ invariant, it factors through a morphism $h: C^{(n)}\to \Div$. Checking on closed points motivates that $h$ defines an isomorphism. This is proven in \cite[Thm. 3.13]{milne1986abelian}.
+	\begin{rmk}
+		We will henceforth identify $C^{(n)}$ with $\Div$ via the above isomorphism $h$. 
+	\end{rmk}
+	Let $f^n$  be the map $C^n \to J$ sending $(P_1, \dots, P_n)$ to $f(P_1)+\dots+ f(P_n)$. Here $f$ is the canonical closed immersion from theorem \ref{thm closed immer}. On $k$-valued points $f^n$ is given by $(P_1, \dots, P_n)\mapsto \Li(P_1)\otimes \dots \otimes \Li(P_n)\otimes \Li(P)^{-n}$. Since $f^n$ is symmetric, it induces a map $f^{(n)}: C^{(n)}\to J$.
+	
+	Given a $k$-scheme $T$. We can pull back $P\to C$ along $C_T \to C$ to obtain a relative effective divisor on $C_T$ of degree $1$ over $T$. 
+	
+	We claim that, in terms of Cartier divisors $f^{(n)}$ sends a relative effective Cartier divisor $D$ on $C_T$ of degree $n$ over $T$ to the class in $J(T)$ represented by $\Om_{C_T}(D)\otimes \Om_{C_T}(P_T)^{-n}$, in short
+	\begin{align}
+		f^{(n)}(D)=\Om_{C_T}(D)\otimes \Om_{C_T}(P_T)^{-n} \quad \text{ for all } D \in C^{(n)}(T). \label{eq on points 18}
+	\end{align}
+	To see this, note that (\ref{eq on points 18}) defines a natural transformation between the functors represented by $C^{(n)}$ and $\Pic_{C/k}$. Thus, there exists a morphism $\widetilde{f^{(n)}}:C^{(n)}\to \Pic_{C/k}$ that on $T$-valued points is given by (\ref{eq on points 18}). Since $C^{(n)}$ is connected and $\widetilde{f^{(n)}}$ sends $nP\in C^{(n)}(k)$ to zero, we can consider $\widetilde{f^{n}}$ as a map to $J=\Pic^0_{C/k}$. It remains to be proven that $\widetilde{f^{(n)}}=f^{(n)}$ We know by proposition \ref{prop power smooth} that $C^{(n)}$ is reduced, so looking at the locus where $\widetilde{f^{n}}$ and $f^{(n)}$ agree, as in \cite[10.2. A]{vakil2017rising}, it suffices to proof that they induce the same map on $\overline{k}$ valued points. But this readily follows from equation (\ref{eq f on points}). 
+	
+	
+	Via the description of $f^{(n)}$ in \ref{eq on points 18} in the case that $T=k$, we see that the $k$-valued points of the fibre of $f^{(n)}$ containing $D\in C^{(n)}(k)$ will correspond to the complete linear system $\abs{D}$. The set $\abs{D}$ is in natural bijection with $(\Gamma(X, \Om(D))\setminus \{0\})/k^\times$ via $D+(f)\mapsto \{\lambda f \mid \lambda \in k^\times\}$. This observation on $k$-valued points has a scheme-theoretic reformulation.
+	
+ 	\begin{thm}[Abel's theorem]\label{thm Abels theorem}
+ 		Let $\Li$ be a line bundle of degree $n$ on $C$. Then the scheme-theoretic fibre of $f^{(n)}: C^{(n)}\to J$ over the point  $p\in J(k)$ represented by $\Li\otimes \Li(P)^{-n}\in \Pic^0(C)$  is \[{f^{(n)}}^{-1}(p)=\mathbb{P}(H^0(C, \Li)):=\text{Proj}(\text{Sym}(H^0(C, \Li)))\cong \mathbb{P}_k^m,\] for $m=h^0(C, \Li)-1$. 
+ 	\end{thm}
+ 	\begin{proof}
+ 		Write $\Phi\subseteq C^{(n)}$ for the scheme-theoretic fibre of $f^{(n)}$ over $p$ and let $\mathbb{P}:= \mathbb{P}(H^0(C, \Li))$. Let $g: T \to \Spec(k)$ be a $k$-scheme and consider the cartesian diagram 
+ 		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJDX1QiXSxbMSwwLCJDIl0sWzEsMSwiXFx0ZXh0e1NwZWN9KGspIl0sWzAsMSwiVCJdLFszLDIsImciXSxbMSwyLCJoIl0sWzAsMywiXFx0ZXh0e3ByfV9oIl0sWzAsMSwiXFx0ZXh0e3ByfV9DIiwyXV0=
+ 		\[\begin{tikzcd}
+ 			{C_T} & C \\
+ 			T & {\text{Spec}(k)}
+ 			\arrow["g", from=2-1, to=2-2]
+ 			\arrow["h", from=1-2, to=2-2]
+ 			\arrow["{\text{pr}_T}", from=1-1, to=2-1]
+ 			\arrow["{\text{pr}_C}"', from=1-1, to=1-2]
+ 		\end{tikzcd}.\]
+ 	Considering the functors represented by $J$ and $C^{(n)}$ we get natural isomorphisms   \begin{align}
+ 		\Phi(T)&\cong \{D\subseteq C_T \text{ rel. eff. divisor of degree } n \text{ over } T \text{ with } \Om_{C_T}(D)\cong \pr_{C}^*\Li \mod pr_T^* \Pic(T) \} \nonumber \\
+ 		&\cong\left\{\begin{array}{@{\hskip2pt}c@{\hskip2pt}}
+ 			\text{isomorphism classes } (\Li', s) \text{ with } s\in H^0(C_T, \Li') \text{ such that }\\ \Li'/s\Om_{C_T} \text{ is flat over } \Om_T
+ 			\text{ and } \exists M \in \Pic(T) \text{ with } \Li'=\pr_C^*\Li \otimes \pr_T^*M
+ 		\end{array}\right\} \label{eq nat fibre}
+ 	\end{align}
+ 		
+ 	By definition, $\mathbb{P}=\text{Proj}(\text{Sym}((h_*\Li))$, which is isomorphic to $\mathbb{P}_k^m$. $T$-valued points of such a projective space can be described as follows: 
+ 	
+ 	A map $T\to \mathbb{P}$ is given by a line bundle $M$ on $T$ together with a surjective homomorphism of $\Om_{T}$ modules $t: g^*((h_* \Li))\to M$, where two such pairs $(M, t)$ and $(M, t')$ are considered equivalent if there exists an isomorphism $\alpha: M \xrightarrow{\sim}M'$ with $\alpha \circ t=t'$. 
+ 	
+ 	Such a map $t$ determines and is determined by an element $t\in H^0(T, (g^*h_* \Li)\otimes M)$ such that $t(x)\neq 0$ for all $x \in T$:
+ 	
+ 	$g^*(h_*\Li)$ is non-canonically isomorphic to $\Om_{T}^{\oplus (m+1)}$, therefore $(g^*h_*\Li)\otimes M$ is isomorphic to $M^{\oplus(m+1)}$. Since $M$ is a line bundle, a homomorphism $\Om_T^{\oplus(m+1)}$ is determined by $(m+1)$ sections in $M$ and the map being surjective translates to the non-vanishing condition via Nakayama's Lemma. 
+ 	
+ 	By flat base change along $g$ we have a canoncial isomorphism $g^*h_* \Li\cong {\pr_T}_* {\pr_C}^* \Li$.
+ 	
+ 	By the projection formula the canonical map ${\pr_T}_*(pr_C^*\Li \otimes \pr_T^* M) \to    ({\pr_T}_* {\pr_C}^* \Li) \otimes M$ is an isomorphism. 
+ 	
+ 	We get the following isomorphism that is natural in $T$:
+ 	\begin{align}
+ 		H^0(T, (g^*h_* \Li)\otimes M)&\cong H^0(T, ({\pr_T}_* {\pr_C}^* \Li) \otimes M)\cong H^0(T, {\pr_T}_*(pr_C^*\Li \otimes \pr_T^* M))\nonumber \\&=H^0(C_T, \pr_C^*\Li \otimes \pr_T^* M) \label{eq nat iso 20}
+ 	\end{align}
+ 	And we conclude 
+ 	\begin{align}
+ 		\mathbb{P}(T)\cong\left\{\begin{array}{@{\hskip2pt}c@{\hskip2pt}}\text{isomorphism classes } (M, \pr_{T,*}s) \text{ with } s\in H^0(C_T, \pr_C^*\Li \otimes \pr_T^*M) \\ \text{ and } (\pr_{T,*}s)(x)\neq 0 \text{ for all } x \in T
+ 		\end{array}\right\} \label{eq nat proj}
+ 	\end{align}
+It can be checked that the isomorphism in (\ref{eq nat iso 20}) lets the notion of isomorphism classes of pairs in (\ref{eq nat fibre}) and (\ref{eq nat proj}) coincide, if one identifies the appearing sets $\mathbb{P}(T)$ and $\Phi(T)$ in the canonical way. We omit the proof that the notion of flatness in (\ref{eq nat fibre}) matches up with the notion of non vanishing in (\ref{eq nat proj}). 
+
+We have proved that $\Phi(T)$ and $\mathbb{P}(T)$ are isomorphic, naturally in $T$, and conclude $\Phi \cong \mathbb{P}$ by the Yoneda-Lemma.
+ 	\end{proof}
+ 
+ 
+ \begin{thm}[Jacobi's inversion theorem]\label{thm Jacobi's inversion theorem} For $0\le n \le g$ the morphism $f^{(n)}: C^{(n)}\to J$ is birational onto its scheme-theoretic image, denoted $W^n$, which is irreducible. For $n\ge g$ the morphism $f^{(n)}$ is surjective. In particular, $f^{(g)}: C^{(g)}\to J$ is a birational equivalence. 
+ \end{thm}
+\begin{proof} 
+		Note that since $f^{(n)}$ is proper the scheme theoretic image agrees with the set-theoretic image on the level of sets, so the assertion for the case $n=g$ follows from the other two statements. Further, $W^n$ is irreducible as image of the irreducible topological space $C^{(n)}$ under the continuous map $f^{(n)}$. 
+		
+	Whether a morphism is surjective or birational can be detected after quasi-compact, faithfully flat base change, see \cite[B.2]{grothendieck1959technique}. $(C^{(n)})_{\overline{k}}$ represents the functor $\text{Div}_{C_{\overline{k}}/\overline{k}}^{\text{eff},n}$ 
+	and $J_{\overline{k}}$ represents the functor $\Pic^0_{C_{\overline{k}}/{ \overline{k}}}$ and moreover the formation of $f^{(n)}$ commutes with base change to $\overline{k}$. This is can be seen by checking the given definitions of these functors. Hence, we may assume that $k$ is algebraically closed. 
+	
+	For proving surjectivity, it suffices to show that the map is surjective on $k$ valued points. Let $n\ge g$. For any $\Li \in \Pic^0(C)=J(k)$ the Riemann-Roch theorem implies that $\Li\otimes \Li(P)^n$ is effective, and therefore $\Li$ is in the image of $f^{(n)}$.
+	
+	Now assume $0\le n \le g$. We try to find a non-empty open set $U\subseteq C^{(n)}$ where the fibers of $f^{(n)}$ are zero-dimensional. Since the dimension of the fibers change in an upper-semicontinous manner on the domain, it suffices by Abel's theorem \ref{thm Abels theorem} to find an effective divisor $D$ of degree $n$ on $C$ such that $h^0(C, \Om_C(D))=1$. We proceed by induction on $n\le g$. For $n=1$ the assertion follows, because $h^0(C, \Li(P))=1$ using that $g>0$ and a meromorphic function with exactly one zero would define an isomorphism $C \to \mathbb{P}^1_k$. Suppose then that $2\le n \le g$ and that we have an effective divisor $E$ of degree $n-1$ with $h^0(E)=1$. Let $K=\Omega_C^1$ be the canonical divisor on $C$. By Serre duality $h^1(K-E)=1$ and so by the Riemann-Roch theorem
+	 \begin{align}
+		h^0(K-E)-1=1-g+\deg(K-E)=1-g+(2g-2)-(n-1)=g-n\ge 0. \label{eq comput h}
+	\end{align} Thus $[K-E]$ is effective. Choose a point $Q\in C(k)$ which is not a base point of the linear system $\abs{K-E}$. Then $h^0(K-E-Q)=h^0(K-E)-1\overset{\ref{eq comput h}}{=}g-n $, where the first equality follows from $[K-E]$ being effective because there is no meromorphic function $f\in K(C)$, whose only pole is $Q$, since else $f$ would define an isomorphism $C\to \mathbb{P}^1$. 
+	
+Thus, by the Riemann-Roch theorem and then Serre duality \[h^0(E+Q)=1-g+n+h^1( E+Q)=1-g+n+h^0( K-E-Q)=1.\]
+
+This proves there exists $\emptyset \neq U \subseteq C^{(n)}$ such that $f^{(n)}\vert_U: U \to J$ has only zero-dimensional fibers. 
+By Abel's theorem \ref{thm Abels theorem} the non-empty fibers of $f^{(n)}\vert_U$ over $k$-valued points  are isomorphic to $\mathbb{P}_k^0\cong \Spec(k)$. 
+
+By \cite[10.1.P]{vakil2017rising} a morphism of finite type schemes over an algebraically closed field $k$ is universally injective if and only if the induced map on $k$ valued points is injective. We conclude from the above paragraph that that $f\vert_U': U'\to W^n$  is indeed universally injective. In particular, the field extension $k(C^{(n)})/k(W^n)=k(U)/k(W^n)$ is purely inseparable, see \cite[\href{https://stacks.math.columbia.edu/tag/01S2}{Tag 01S2}]{stacks-project}. 
+
+The morphism $f^{(n)}: C^{(n)}\to W^n$ is surjective and closed. Hence $\dim C^{(n)} \ge \dim W^n$. But on the other hand, taking $p \in U$ and $q=f^{(n)}(p)$, we see that $\dim C^{(n)}\le \dim W^{(n)} + \dim (f^{(n)})^{-1}(Q)=\dim W^{(n)}$. 
+
+
+So, $\dim W^n=\dim C^{(n)}$, and the residue field extension $k(C^{(n)})/k(W^n)$ is algebraic. 
+
+Since $W^n$ is reduced and $K$ algebraically closed, the field extension $k(W^n)/k$ is separable. Similarly, the field extension $k(C^{(n)})/k$ is separable. But then $k(C^{(n)})/k(W^n)$ must be separable, too:
+
+To see this take $K$ a purely transcendental extension $K/k$ such that $K\subseteq k(W^n)$ and $k(W^n)/K$ is separable algebraic. Then also $ k(C^{(n)})/K$ is separable, since $ k(C^{(n)})/k$ is. Hence
+\begin{align*} [k(C^{(n)}):k(W^n)]_s[k(W^n):K]_s&=[k(C^{(n)}): K]_s=[k(C^{(n)}): K]=[k(C^{(n)}):k(W^n)][k(W^n):K]\\&=[k(C^{(n)}):k(W^n)][k(W^n):K]_s,
+\end{align*}
+therefore $k(C^{(n)})/k(W^n)$ is separable and algebraic. We have already proven that this field extension is purely inseparable and the only way to not obtain a contradiction is $[k(C^{(n)}):k(W^n)]=1$, i.e. $f^{(n)}:C^{(n)}\to W^n$ is birational. 
+	
+
+\end{proof}
+We define the theta divisor by  $\Theta:=W^{g-1}\subseteq J$. By theorem \ref{thm Jacobi's inversion theorem} $\Theta$ is indeed a divisor on $J$. 
+
+\subsection{The Jacobian as Albanese variety}
+Throughout this section $C$ will again be a proper nonsigular curve of genus $g>0$ over a field $k$, $J$ will be its Jacobian variety and $P\in C(k)$ will be a $k$-rational point. We will continue with all notations from the previous section. In particular, the definition of $f$ from (\ref{sec canonical map}). 
+\begin{prop}[Universal property of the canonical map $f: C\to J$]\label{prop univ property }
+ For any map $g: C\to X$ from $C$ into an abelian variety $X$ sending $P$ to $0$, there is a unique homomorphism $h: J\to X$ such that $g=h\circ f$. 
+\end{prop}
+\begin{proof}
+	Consider the map $g^g:C^g\to X$ that on points is given by $(P_1, \dots, P_g)\mapsto \sum_{i=1}^n g(P_i)$. Since this is symmetric, it factors as $g^{(g)}\circ \pi = g^g$ for $g^{(g)}: C^{(g)}\to X$ and $\pi: C^g\to C^{(g)}$ the canonical morphism. Now by Jacobi's Inversion theorem \ref{thm Jacobi's inversion theorem} we obtain a rational map $h: J \to X$ such that $h\circ f^{(g)}=g^{(g)}$, where this expression is defined. But a rational map from a smooth variety $J$ to an abelian variety $X$ is defined on the whole of $J$, by \cite[Thm. 3.1]{milne1986abelian}. Let $\varphi: C\to C^{(g)}$ on closed points be given by $Q\mapsto \pi(Q, P, \dots, P)$. Then $f=f^{(g)}\circ \varphi$ and therefore $h\circ f=h\circ f^{(g)}\circ \varphi=g^{(g)}\circ \varphi = g$. In particular, $h$ sends $0$ to $0$, and  corollary \ref{cor morphism between abelian varieties factor as homomorphism} shows it is a homomorphism. 
+	
+	If $h'$ is another such homomorphism, then $h'\circ f^g=h\circ f^g$. Since $X$ is separated, $J$ is reduced and $f^g$ is surjective by theorem \ref{thm Jacobi's inversion theorem}, we must have $h=h'$. (This is because the "coincidence scheme" of $h$ and $h'$, as in \cite[7.4 ex. 3]{bosch2013algebraic}, equals $J$.)
+\end{proof}
+\begin{cor}\label{cor morphi between jacobians}
+	Let $C_1$ and $C_2$ be nonsingular, proper curves over $k$, $P_1\in C_1(k)$ and $P_2\in C_2(k)$ be their Jacobians. Let $f^{P_i}: C_i\to J_i$ be the canonical maps from section \ref{sec canonical map}. The map 
+	\[\Hom_k(J_1, J_2)\to \{\Li \in \Pic(C_2 \times C_1): \Li\vert_{C_2\times \{P_1\}} \text{ and } \Li\vert_{\{P_2\}\times C_1} \text{ are trivial}\}, \; h\mapsto (1_{C_2}\times (h\circ f^{P_1}))^*\M^{P_2}\] 
+	is an isomorphism. 
+\end{cor}
+\begin{proof}
+	The map is well-defined because $\M^{P_2}\vert_{\{P_2\}\times C_2}$ and $\M^{P_2}\vert_{C_2 \times \{0\}}$ is trivial by definition of $\M^{P_2}$ in section \ref{sec canonical map}, (also  see proposition \ref{prop poincare}). 
+	
+	Now given $\Li \in \Pic(C_2\times C_1)$ such that both $\Li\vert_{C_2\times \{P_1\}} \text{ and } \Li\vert_{\{P_2\}\times C_1}$ are trivial. Since $\M^{P_2}$ is the universal bundle on $C_2 \times J_2$ from proposition \ref{prop poincare}, there is a unique map $g: C_1 \to J_2$ such that $(1_{C_2} \times g)^* \M^{P_2}\cong \Li$. It follows from diagram \ref{diagram} that $g(P_1)$ is represented by $\Li\vert_{C_2 \times P_1}$ which is trivial. Hence $g$ sends $P_1$ to $0$ and by proposition \ref{prop univ property } there exists a unique homomorphism $h: J_1 \to J_2$ such that $g=h\circ f^{P_1}$. 
+\end{proof}
+\subsection{Autoduality}
+Let $\Po$ denote the Poincaré bundle on $J\times J^\vee$.
+
+Consider the Mumford line bundle $\Lambda(\Li(\Theta))=m^*\Li(\Theta) \otimes \pr_1^*\Li(\Theta)^{-1}\otimes \pr_2^*\Li(\Theta)^{-1}$ on $J\times J$ from section \ref{sec dual abelian}. We obtain a polarization $\varphi_{\Li(\Theta)}: J \to J^\vee$ with $(1\times \varphi_{\Li(\Theta)})^*\Po \cong \Lambda(\Li(\Theta))$.
+
+Write $\Theta^{-}$ for the pullback of $\Theta$ along $(-1)_J: J\to J$ and $\Theta_a$ for $t_{-a}^*\Theta=\Theta + a $, $a\in J(k)$. 
+
+\begin{rmk}\label{rmmk alter varphi by translation}
+	It is shown in \cite[14.22 and 14.28 (ii)]{van2007abelian}  that $\Theta$, $\Theta^-$ and $\Theta_a$ are numerically equivalent and this implies that $\varphi_{\Li(\Theta)}=\varphi_{\Li(\Theta^-)}=\varphi_{\Li(\Theta_a)}$ for all $a\in J(k)$ by \cite[??]{van2007abelian}.
+\end{rmk}
+
+We abbreviate $(\Theta^-)_a$ as $\Theta^{-}_a$. 
+
+Consider the invertible sheaf $(f \times 1)^*\Po$ on $C \times J^\vee$. Its restriction to $\{P\}\times J^\vee$ is trivial because $f(P)=0$ and $\Po$ restricted to $\{0\}\times J^\vee$ is trivial. Applying proposition \ref{prop poincare} to the universal bundle $\mathcal{M}^P$ on $C\times J$ we obtain a unique morphism $f^\vee: J^\vee \to J$ such that $ (f \times 1)^*\Po \cong (1\times f^\vee)^*\mathcal{M}^P$.
+\begin{thm}\label{thm inverses}
+The maps $-f^\vee: J^\vee \to J$ and $\varphi_{\Li(\Theta)}: J \to J^\vee$ are inverses. 
+ \end{thm}
+\begin{proof}
+	$(J^\vee)_{\overline{k}}$ represents $(J_{\overline{k}})^\vee$ and $J_{\overline{k}}$ represents $\Pic^0_{C_{\overline{k}}/\overline{k}}$, moreover the formation of $f$ and therefore also the formation of $\Theta,  \varphi_{\Li(\Theta)}$ and $f^\vee$ commutes with base change to $\overline{k}$. Whether a morphism is an isomorphism can be detected after faithfully flat, quasi-compact base change by \cite[B.2]{grothendieck1959technique}.
+	
+	Therefore we may assume that $k$ is algebraically closed. 
+	
+	Let $U$ be the largest open subset of $J$ such that:
+	\begin{enumerate}[(i)]
+		\item the fiber of $f^{(g)}: C^{(g)}\to J$ at any point of $U$ has dimension zero; and 
+		\item if $a\in U(K)$ and $D(a)$ is the, by Abel's theorem necessarily unique, element of $C^{(g)}(k)$ mapping to $a$; then $D(a)$ is a sum of $g$ distinct points of $C(k)$. 
+	\end{enumerate}
+Note that $U$ can be obtained in two steps: First, by removing the subset over which the fibers have dimension $>0$, which is closed because the fiber dimension changes upper-semi-continuously on the target. (Note that $f^{(g)}$ is proper and see \cite[11.4.2]{vakil2017rising}). Secondly, by removing images of certain closed sets of the form $\Delta_C\times C^{g-2}$ under the proper map $f^g$. The first step yields a nonempty open set by (the proof of) Jacobi's inversion theorem \ref{thm Jacobi's inversion theorem}. In the second step a proper closed subset of $J$ gets removed, so, by irreducibility of $J$ the set $U$ is a nonempty open dense subset of $J$. 
+\begin{align}
+	\text{\textbf{Claim: }} f^{-1}(\Theta_a^-)=D(a) \text{ for all } a \in U(k) \label{claim 1}
+\end{align}
+Let $a\in U(k)$ and let $D(a)=\sum_{i=1}^g P_i$ with $P_i \neq P_j$ for all $i\neq j$. A point $Q_1$ maps to $\Theta_a^{-}$ if and only if there exists a divisor $\sum_{i=2}^g Q_i$ on $C$ such that $f(Q_1)= -\sum_{i=2}^g Q_i +a$. This equality implies $\sum_{i=1}^g Q_i \sim D$, and the fact that $\abs{D}$ has dimension $0$ by Abel's theorem \ref{thm Abels theorem} implies that $\sum_{i=1}^g Q_i = D$. It follows that the support of $f^{-1}(\Theta_a^-)$ is $\{P_1, \dots, P_g\}$, and it remains to show that $f^{-1}(\Theta_a^{-})$ has degree $\le g$ for all $a\in U(k)$.
+
+Consider the map $\Psi: C\times \Theta \to J$ sending $(Q,b)$ to $f(Q)+b$. By Jacobi's inversion theorem \ref{thm Jacobi's inversion theorem} and proposition \ref{prop power smooth}, the maps $f^{g-1}: C^{g-1}\to \Theta$ and $f^g: C^g \to J$ have degree $(g-1)!$ and $g!$ respectively. As, $\Psi$ composed with $1\times f^{g-1}: C \times C^{g-1}\to C \times \Theta$ is $f^g$, we conclude that $\Psi$ has degree $g$. Also, $\Psi$ is proper as $C\times \Theta$ is a proper variety and therefore $\Psi':=\Psi\vert_{\Psi^{-1}(V)}$  is proper and quasi-finite, hence finite. Moreover, $\Psi'$ is flat by \cite[26.2.11]{vakil2017rising} using that $C\times \Theta$ and $J$ are regular of dimension $g$. It follows as in the proof of theorem \ref{thm isogenies} that all fibers of $\Psi'$ have global sections a $g$ dimensional $k$ vector space. In particular, all fibers have less then $g$ points. But for $a\in U$ the $k$ valued points of $\Psi^{-1}(a)$ are exactly the $k$ valued points of $f^{-1}(\Theta_a^{-})$ and the claim follows.
+
+\begin{align}
+	\text{\textbf{Claim:}}\quad  &(i)\; \text{ Let } a\in J(k), \text{ and let } f^{(g)}(D)=a; \text{ then } f^*\Li(\Theta^{-}_a) \cong \Li(D). \label{claim 2}\\
+	&(ii) \text{ The sheaves } (f\times (-1)_J)^*\Lambda(\Li(\Theta^{-})) \text{ and } \mathcal{M}^P \text{ on } C\times J \text{ are isomorphic.} \label{claim 3}
+\end{align} 
+ Note that the map 
+\begin{align*}
+	C\xrightarrow{Q\mapsto (Q, a)} C\times \{a\} \xrightarrow{f\times (-1)} J\times J \xrightarrow{m}J
+\end{align*}
+equals $t_{-a}\circ f$, where $t_{-a}$ is the translation on $J$ by $a$. Therefore 
+\begin{align*}
+	(f\times(-1))^* m^* \Li(\Theta^-)\vert_{C\times \{a\}} \cong (t_{-a}\circ f)^* \Li(\Theta^{-1})\cong f^* \Li(\Theta_a^-)
+\end{align*}
+
+On the other hand, $\mathcal{M}^P$ is an invertible sheaf on $C\times J$ such that 
+\begin{enumerate}[a)]
+	\item $\mathcal{M}^P\vert_{C\times \{a\}} \cong \Li(D-gP)$ if $D$ is an effective divisor of degree $g$ on $C$ such that $f^{(g)}(D)=a$ (see the definition of $f$).
+	\item $\mathcal{M}^P\vert_{\{P\}\times J}$ is trivial (see the definition of $\mathcal{M}^P)$. 
+\end{enumerate}
+Hence, $M^P \otimes \pr_1^* \Li(gP)\vert_{C\times \{a\}}$ is isomorphic to $\Li(D)$, whenever $f^{(g)}(D)=a$ for $D\in C^{(g)}(k)$ an effective divisor of degree $g$ on $C$. Hence (i) is equivalent to $(f\times(-1))^* m^* \Li(\Theta^-)\vert_{C\times \{a\}}$ being isomorphic to $M^P \otimes \pr_1^* \Li(gP)\vert_{C\times \{a\}}$ for all $a\in J(k)$. By claim \ref{claim 1} we know that (i) holds on a nonempty dense open and therefore 
+\begin{align*}
+	\mathcal{N}:=\left((f\times(-1))^* m^* \Li(\Theta^-)\right)\otimes \left(M^P \otimes \pr_1^* \Li(gP)\right)^{-1}
+\end{align*}
+is trivial, when restricted to sets of the form $C\times \{a\}$ for all $a$ in a dense open subset of $J$. 
+
+The set of all $a\in J$ such that $\mathcal{N}$ restricted to $C\times \{a\}$ is trivial is closed in $J$, by \cite[5.3]{milne1986abelian}. (This is because on the proper variety $C$ an invertible sheaf is trivial if and only if $\mathcal{N}$ and its dual $\mathcal{N}^{-1}$ have nonzero global sections; but the dimensions of global sections of $\mathcal{N}\vert_{C\times \{a\}}$ and $\mathcal{N}^{-1}\vert_{C\times \{a\}}$ vary in an upper-semicontinuous manner on $J$ by \cite[28.1.1]{vakil2017rising}.) Because a closed set in $J$ that contains a dense set is equal to $J$, we obtain that claim (i) holds. 
+
+Taking $a=0$ we obtain $f^*\Li(\Theta^-)\cong \Li(gP)$ and therefore \[(f\times (-1))^*\pr_1^* \Li(\Theta^{-})\cong (f\circ \pr_1)^*\Li(\Theta^{-})\cong \pr_1^* \Li(gP).\] 
+Now for all $a \in J(k)$ the sheaves \[(f\times(-1))^*\left(m^* \Li(\Theta^{-}) \otimes \left(\pr_1^* \Li(\Theta^{-})\right)^{-1}\right)\vert_{C\times\{a\}} \]
+and $\mathcal{M}^P\vert_{C\times \{a\}}$ are isomorphic on $C$. Now by the so-called Seesaw principle \cite[5.1]{milne1986abelian}, which is a theorem on proper varieties, there exists an invertible sheaf $\mathcal{F}$ on $J$ such that 
+\[(f\times(-1))^*\left( m^* \Li(\Theta^{-}) \otimes \left(\pr_1^* \Li(\Theta^{-})\right)^{-1}\right)\cong \mathcal{M}^P \otimes \pr_2^* \mathcal{F} \]
+On computing the restriction to $\{P\}\times J$ of the above equation, we obtain 
+\begin{align*}
+	\mathcal{F}\cong (f\times(-1))^* \left(m^* \Li(\Theta^{-}) \otimes \left(\pr_1^* \Li(\Theta^{-})\right)^{-1}\right)\vert_{ \{P\}\times J}\cong (-1)^* \Li(\Theta^{-}).
+\end{align*}
+and therefore 
+\begin{align*}
+	\mathcal{M}^P \cong (f\times(-1))^*\left(m^* \Li(\Theta^{-}) \otimes \pr_1^* \Li(\Theta^{-})^{-1}\right) \otimes \pr_2^*(-1)^*\Li(\Theta^-)^{-1}
+\end{align*}
+But $(f\times (-1))^*\pr_2^*\Li(\Theta^-)^{-1}\cong \pr_2^*(-1)^*\Li(\Theta^{-})^{-1}$ and therefore claim (ii) in equation \ref{claim 3} follows from the definition of $\Lambda(\Theta^{-})$
+
+Now we are ready to proof the theorem: We have $\varphi_{\Li(\Theta)}=\varphi_{\Li(\Theta^-)}$and
+\begin{align*}
+	(1\times -\varphi_\Li(\Theta))^*(1\times f^\vee)^*\mathcal{M}^P&\cong (1\times -\varphi_\Li(\Theta))^*(f\times 1)^* \mathcal{P} \cong (f\times (-1))^*(1\times \varphi_{\Li(\Theta^-)})^*\Po \\&\cong (f\times (-1)^*)\Lambda(\Li(\Theta^-))
+\end{align*}
+and therefore by the claim in (\ref{claim 3}) we have $(1\times (-\varphi_{\Li(\Theta)}\circ f^\vee))^*\mathcal{M}^P\cong \mathcal{M}^P$.
+
+Hence $-\varphi_{\Li(\Theta)}\circ f^\vee=\id_{J^\vee}$ by definition of  $\mathcal{M}^P$ as the universal line bundle on $C\times J$ and the uniqueness assertion in proposition \ref{prop poincare}. By theorem \ref{thm isogenies} both $\varphi_{\Li(\Theta)}$ and $f^\vee$ are isogenies. Now their degree must be equal to one and the theorem follows from proposition \ref{prop division}.
+\end{proof}
+\begin{cor}\label{cor properties of principal polarization of jacobian}\begin{enumerate}[a)]
+	\item $(f\times (-1)_J)^*\Lambda(\Li(\Theta)) \cong (f\times 1_J)^*\Lambda(\Li(\Theta)^{-1}) \cong \M^P$ on $C\times J$.
+	\item For $\Li^P$ the sheaf on $C\times C$ from equation (\ref{eq lp}) we have an isomorphism $\Li^P\cong (f\times f)^* \Lambda(\Li(\Theta)^{-1})$. 
+	\item The divisor $\Theta$ on $J$ is ample and has self-intersection number $(\Theta)^g=g!$. Moreover, $H^0(J,\Li(\Theta)) =k$ and $H^i(J, \Li(\Theta))=0$ for $i\ge 1$.
+\end{enumerate} 
+\end{cor}
+\begin{proof}
+	We have
+	\begin{align*}
+		(f\times (-1)_J)^*\Lambda(\Li(\Theta))&\cong (f\times (-1)_J)^* (1_J\times \varphi_{\Li(\Theta)})^*\Po\cong (1_J\times -\varphi_{\Li(\Theta)})^*(f\times 1_J)^* \Po \\& \cong (1_J \times -\varphi_{\Li(\Theta)})^* (1\times f^\vee)^* \mathcal{M}^P\cong (1_J \times (f^\vee \circ (-\varphi_{\Li(\Theta)}))^* \M^P \overset{\ref{thm inverses}}{=}\M^P
+	\end{align*}
+	Since $\Li \to \varphi_\Li$, as in equation (\ref{eq varphi}), is a homomorphism, we have  $\varphi_{\Li(\Theta)^{-1}}=-\varphi_{\Li(\Theta)}$ and so
+	\begin{align*}
+		\mathcal{M}^P\cong (f\times 1_J)^*(1_J \times -\varphi_{\Li(\Theta)})\Po=(f\times 1_J)^*(1_J \times \varphi_{\Li(\Theta)^{-1}})^*\Po \cong (f\times 1_J)^*\Lambda(\Li(\Theta)^{-1}).
+	\end{align*}
+Now b) follows from a) because $(f\times f)^*\Lambda(\Li(\Theta)^{-1})\cong (1_C \times f)^*\M^P \cong \Li^P$ by definition of $f$. 
+
+$\Theta$ is ample by lemma \ref{the kernel of polar}. By the vanishing theorem for line bundles on abelian varieties from \cite[prop. 9.14]{van2007abelian} we have $H^i(J, \Theta)\neq 0$ only for $i=0$. By the Riemann-Roch theorem for abelian varieties as in \cite[thm. 9.11]{van2007abelian} $\chi(\Li(\Theta))^2=\deg(\varphi_{\Li(\Theta)})=1$ and $(\Theta)^g=g! \cdot \chi(\Li(\Theta))=g!$, so c) follows. 
+\end{proof}
+\subsection{The Rosati involution}
+
+\begin{defn}The \text{ Rosati involution} corresponding to $\varphi_{\Li(\Theta)}$ is defined as the involution on $\End^0(J)$ given by 
+	\[h\mapsto h^\dagger:= \varphi_{\Li(\Theta)}^{-1}\circ h^\vee \circ \varphi_{\Li(\Theta)}=f^\vee \circ h^\vee \circ \varphi_{\Li(\Theta)^{-1}}.\]
+\end{defn}
+Let $g,h\in \End^0(J)$. 
+It is clear form the definition that $(h g)^\dagger=g^\dagger h^\dagger $ and because $(h+g)^\vee =h^\vee +g^\vee$ also $(h+g)^\dagger=h^\dagger + g^\dagger$. Moreover, $g^\dagger =g$ if $g\in \mathbb{Q}$. 
+
+Let $\sigma:C\times C \to C\times C$ be the $k$ morphism that switches the above factors. Then $\sigma$ acts on 
+\[F:=\{\Li\in \Pic(C\times C): \Li\vert_{C\times \{P\}} \text{ and } \Li\vert_{C\times \{P\}} \text {is trivial }\}\]
+by pullback. By corollary \ref{cor morphi between jacobians} this corresponds to an action on $\End(J)$. 
+\begin{lem}\label{lem rosati involution}
+	The action on $F$ by $\sigma$ agrees with the Rosati involution when $F$ is identified with $\End(J)$ via the isomorphism in corollary \ref{cor morphi between jacobians}.
+\end{lem}
+\begin{proof}
+	Let $h\in \End(J)$.  Since
+	\begin{align*}
+		(1_C\times (h^\dagger \circ f))^*\M^P&=(1_C\times (f^\vee \circ h^\vee \circ \varphi_{\Li(\Theta)^{-1}} \circ f))^*\M^P\cong  (1\times h^\vee \circ \varphi_{\Li(\Theta)^{-1}}\circ f)^*(1\times f^\vee)^*\M^P\\&\cong (1\times h^\vee \circ \varphi_{\Li(\Theta)^{-1}}\circ f)^*(f\times 1)^*\Po \cong (f\times 1)^*(1\times \varphi_{\Li(\Theta)^{-1}}\circ f)^*(1\times h^\vee)^*\Po\\&\cong (f\times 1)^*(1\times \varphi_{\Li(\Theta)^{-1}}\circ f)^*(h\times 1)^*\Po\\&\cong ((h\circ f)\times 1)^*(1\times f)^*(1\times \varphi_{\Li(\Theta)^{-1}})^*\Po\cong ((h\circ f)\times 1)^*(1\times f)^*\Lambda(\Li(\Theta)^{-1}) \\&\overset{\ref{cor properties of principal polarization of jacobian}}{\cong } ((h\circ f)\times 1)^*\M^P \cong \sigma^*(1_C\times (h \circ f))^*\M^P,
+	\end{align*}
+the assertions follows from corollary \ref{cor morphi between jacobians}. 
+\end{proof}
+Since $\sigma^2=\id$ we conclude from the previous lemma \ref{lem rosati involution} that $(h^\dagger)^\dagger =h$ for all $h \in \End(J)$. Since $g^\dagger =g$ for all $g\in \mathbb{Q}$, this result extends to $\End^0(J)$. 
+
+\subsection{The Lefschetz trace formula and positivity of the Rosati involution}
+We invoke intersection theory on the surface $C\times C$. Notation will be as in Hartshorne chapter V.1. 
+%
+%Let $X$ be a divisor on $C\times C$. Let $Q$ be a point of $C$. The intersection number $X.(C\times \{Q\})$ doesn't depend on $Q$, because $(C\times \{Q\})$ and $(C\times \{Q'\})$ are numerically equivalent. This is due to $C\ni Q \mapsto E.(C\times \{Q\})$ being continuous for any curve $E$ on $C\times C$ and since $C$ is connected the function must be constant. 
+%
+%We denote $X.(\{Q\}\times C)$ by $d(X)$ and $X.(C\times \{Q\})$ by $d'(X)$. Note that $d'(X)=d(\sigma^* X)$. 
+
+
+\begin{thm}[Lefschetz trace formula]\label{thm Lefschetz trace formula}
+	Let $h\in \End(J)$ and let $X$ be a divisor on $C\times C$ such that $\Li(X)\cong (1_C\times(h\circ f))^*\M^P$. Then the negative intersection number of the diagonal divisor $\Delta_C\subseteq C\times C$ with $X$ equals $\tr(h)$, i.e. $-\Delta_C.X=\tr(h)$.
+\end{thm}
+Before we can proof the theorem we need the following relation between trace and intersection theory.
+\begin{lem}\label{lem trace from intersection}Let $h\in \End(J)$. Let 
+	$D_\Theta(h):=(h+1)^*\Theta-h^*\Theta -\Theta$. Then 
+	\[\tr(h)=\frac{g}{(\Theta^{g})}(\Theta^{g-1}\cdot D_\Theta(h))=\frac{1}{(g-1)!}(\Theta^{g-1}\cdot D_\Theta(h))=(f(C)\cdot D_\Theta(h))=\deg f^* \Li (D_\Theta(h)).\]
+\end{lem}
+\begin{proof}[Sketch of a proof]
+	In the last paragraph of theorem \ref{thm polynomial mapping} we computed, that for  all $n\in \mathbb{N}$ we have $\deg(h+n)=\frac{(D_n)^g}{(D)^g}$, where we can choose
+	\[D=\Theta, \quad D'=2^*D-2D, \quad D_n=(n+h)^*D=\frac{n(n-1)}{2}D'+n(h+1)^*D-(n-1)h^*D.\]
+	
+	
+	It is a consequence of theorem \ref{thm of the cube and the square} that $2^*D$ is linearly equivalent to $3D+(-1)^*D$, see \cite[cor. 2.12]{van2007abelian} or convince yourself by proceeding as in the proof of proposition \ref{torsion points of abelian varieties}. By remark \ref{rmmk alter varphi by translation} $D=\Theta$ and $(-1)^*D=\Theta^{-}$ are numerically equivalent. Therefore, $D'$ is numerically equivalent to $2D$ and, so, $D_n$ is numerically equivalent to $n^2D +n D_\Theta(h)+h^*D$. 
+	
+	Since by definition $P_h(-n)=\deg(h+n)=\frac{(D_n)^g}{(D)}$ for all $n\in \mathbb{N}$ we have that $\tr(h)$ is the coefficient in front of $n^{2g-1}$ in the expression $\frac{(D_n)^g}{(D)}$, which we can identify with $\frac{g}{(D)^g}(D^{g-1}\cdot D_\Theta(h))$ by using the linearity of the intersection number. 
+	
+	We have proven the first equality of the assertion and the second follows from corollary \ref{cor properties of principal polarization of jacobian}.
+	
+	To show that $(\Theta^{g-1}\cdot D_\Theta(h))=(g-1)!(f(C)\cdot D_\Theta(h))$ one proceeds as in \cite[IV §3 Thm 5]{lang2019abelian} to relate intersection numbers with taking sums of divisors via the addition of $J$. For this one considers the so-called Pontrjagin product $*$ on the Chow ring of $J$; its definition can be found in \cite[p. 8]{lang2019abelian}. It is shown in \cite[II §3 prop. 4]{lang2019abelian} that for the $r$-fold Pontrjagin product of $f(C)$ one has $f(C)^{*r}=r!W^r$. 
+	
+	Further one shows that taking images (in the sense of intersection theory) under endomorphisms $h: J\to J$ induces a endomorphism of the group of cycles of $J$ with the Pontrjagin product. Whereas taking inverses images under $h$ induces an endomorphism of the chow ring with the intersection product. These two operations are adjoint to each other: $(h(\xi) \cdot \nu )=(\xi \cdot h^{-1}(\nu))$. (This is \cite[IV §3 Thm 5]{lang2019abelian}). 
+	
+	Using the above two properties is can be computed that $(\Theta^{g-1}\cdot D_\Theta(h))=(g-1)! (W^1 \cdot D_\Theta(h))$. This is done here \cite[p.112]{lang2019abelian}. 
+	
+	Now it only remains to justify $(f(C)\cdot D_\Theta(h))=\deg f^*\Li(D_\Theta(h))$. The proof of this is similar to \cite[V 1. Lem. 1.3]{hartshorne2013algebraic}, see \cite[Exmp. 7.1.17]{fulton2013intersection}.
+\end{proof}
+\begin{proof}[Proof of theorem \ref{thm Lefschetz trace formula}] By Corollary \ref{cor properties of principal polarization of jacobian} we have that
+\begin{align*}
+	\Delta_C^*\Li(X)&\cong \Delta_C^*(1_C\times (h\circ f)^*)\M^P\cong \Delta^*(1_C\times (h\circ f))^*(f\times 1_J)^*\Lambda(\Li(\Theta)^{-1})\\&\cong ((1_J \times h)\circ (f\times f)\circ  \Delta_C)^* \Lambda(\Li(\Theta)^{-1})\cong f^*(1_J, h)^*\Lambda(\Li(\Theta)^{-1})\\&=f^*(1_J, h)^*(m^*\Li(\Theta)^{-1} \otimes  \pr_1^* \Li(\Theta) \circ\pr_2^*\Li(\Theta))=f^*D_\Theta(h)^{-1}.
+\end{align*}
+So, by the previous lemma \ref{lem trace from intersection} we conclude  $\tr(h)=\deg f^*D_\Theta(h) =\deg \Delta_C^*\Li(X)^{-1}$. By \cite[V.1 Lem. 1.3]{hartshorne2013algebraic} $\deg \Delta_C^*\Li(X)^{-1}=\Delta.(-X)$ and the theorem follows from additivity of the intersection pairing. 
+\end{proof}
+
+Let $h\in \End(J)$ it can be read of the proof of lemma \ref{lem rosati involution} that $(1\times h^\dagger)^*\M^P\cong ((h\circ f)\times 1)^*\Lambda(\Li(\Theta)^{-1})$ 
+\subsection{The map induced on the Jacobian by an endomorphism of $C$}
+Throughout this section $C$ will again be a proper non-singular curve of genus $g>0$ over a field $k$, $J$ will be its Jacobian variety and $P\in C(k)$ will be a $k$-rational point.  
+$f$ will be defined as in section \ref{sec canonical map}. 
+
+Let $\alpha: C\to C$ be a non-constant $k$-morphism. Note that $\alpha$ will necessarily be finite and flat. 
+
+There are two approaches to obtain a homomorphism $J\to J$ induced by $\alpha$. 
+\begin{enumerate}
+\item Let 
+$t_{-f(\alpha(P))}$ be the translation on $J$ by $-f(\alpha(P))$. 
+Then $t_{-f(\alpha(P))}\circ f \circ \alpha: C\to J$ maps $P$ to $0$ 
+and by proposition \ref{prop univ property } there is a unique homomorphism 
+$\alpha': J\to J$ such that \[t_{-f(\alpha(P))}\circ f \circ \alpha=\alpha'\circ f.\] 
+
+\item 
+For a given $k$-scheme $T$ and  $\Li \in \Pic(C\times T)$ the map $\Li \mapsto (\alpha\times 1_T)^*\Li$ is natural in $T$ and therefore defines a map  $\Pic_{C/k}\to \Pic_{C/k}$. Since the trivial line bundle in $\Pic_{C/k}(k)$ is send to itself, this defines a homomorphism $\alpha^*: J\to J$.  
+
+Using that for $\Li\in \Pic(C\times T)$ the degree function $T\ni t \mapsto \deg(\Li\vert_{C\times \{t\}})$ is locally constant, it can be shown that $J(k)$ can be identified with $\Pic^0(C)$, the degree $0$ line bundles on $C$, see \cite[14.1]{van2007abelian}. So, $\alpha^*$ is on $k$-valued points literally given by the pullback of degree $0$ line bundles along $\alpha$. 
+\end{enumerate}
+The following lemma says that the Rosati involution translates one approach into the other. In particular, $\alpha'$ is independent of the choice of $P$.
+\begin{lem}
+	We have $(\alpha')^\dagger=\alpha^*$ as $k$-morphisms $J\to J$ and 
+	\[(1\times (\alpha'\circ f))^*\M^P\cong \sigma^* \Li(\Gamma_{\alpha}-C\times \{\alpha(P)\}-\alpha^{-1}(P)\times C),\]
+	for $\sigma:C\times C \to C\times C$ the morphism that switches the factors.
+\end{lem}
+\begin{proof}
+	The sheaf $\mathcal{C}=\Li(\Gamma_{\alpha}-C\times \{\alpha(P)\}-\alpha^{-1}(P)\times C)$ on $C\times C$ is trivial, when restricted to $C\times \{P\}$, as well as, when restricted to $\{P\}\times C$. 
+	
+	By proposition \ref{prop poincare} applied to $\M^P$ we obtain a unique $k$-morphism $g:C\to J$ such that $(1_C\times g)^*\M^P\cong \mathcal{C}$. Let $K$ be a field extension of $k$. By diagram \ref{diagram} for $K$-valued point $R$ of $C$ with inclusion $R\xrightarrow{x}C$ we have $g(R)$ is represented by $(1\times x)^*\mathcal{C}\cong \Li_{C_K}(\alpha^{-1}(R))\otimes \Li_{C_K}(\alpha^{-1}(P))^{-1}\cong\alpha^*\Li_{C_k}(R-P)$. Since $g(P)=0$ there is a homomorphism $h: J\to J$ such that $g=h\circ f$. Now $f(R)$ is represented by $\Li_{C_K}(R-P)^{-1}$ by equation (\ref{eq f on points}). We conclude that $h\circ f^g$ and $\alpha^*\circ f^g$ agree on $K$ valued points. It follows as in the last paragraph of the proof of proposition \ref{prop univ property } that $h=\alpha^*$. By corollary \ref{cor morphi between jacobians} it therefore suffices to proof that $(1_C\times (\alpha'\circ f))^*\M^P\cong \sigma^*\mathcal{C}$, we win by direct computation:
+	\begin{align*}
+		(1_C\times (\alpha'\circ f))^*\M^P&=(1_C\times (t_{-f(\alpha(P))}\circ f \circ \alpha)^*\M^P\cong (1_C\times \alpha)^*(1\times (t_{-f(\alpha(P))}\circ f))^*\M^P\\ &\cong(1_C\times \alpha)^*\Li(\Delta -\{\alpha(P)\}\times C-C\times \{P\})\\&\cong \Li(\sigma^{-1}\Gamma_\alpha - \{\alpha(P)\}\times C -C\times \alpha^{-1}(P))\\&\cong \sigma^* \Li(\Gamma_{\alpha}-C\times \{\alpha(P)\}-\alpha^{-1}(P)\times C),
+	\end{align*}
+	where $(t_{-f(\alpha(P))}\circ f))^*\M^P \cong \Li(\Delta -\{\alpha(P)\}\times C-C\times \{P\})$ because the unique map $\varphi:C\to J$ such that $(1\times \varphi)^*\M^P\cong \Li(\Delta -\{\alpha(P)\}\times C-C\times \{P\})$ agrees with $t_{-f(\alpha(P))}\circ f$. Note that this can be checked on $\overline{K}$-valued points and $\varphi$ can be computed on these points via diagram \ref{diagram}. 
+\end{proof}
+By theorem \ref{thm charak poly} $\alpha'$ and $\alpha^*$ must have the same characteristic polynomial. We know try to relate $\tr(\alpha')=\tr(\alpha*)$ with the fixed points of $\alpha$. 
+
+\begin{thm}[Lefschetz fixed point formula]
+	We have $(\Gamma_\alpha \cdot \Delta)=1-\tr(\alpha^*)+\deg(\alpha)$.
+\end{thm}
+\begin{proof}
+	content...
+\end{proof}
+\bibliographystyle{ieeetr}
+	\bibliography{references}
+	
+\end{document}
