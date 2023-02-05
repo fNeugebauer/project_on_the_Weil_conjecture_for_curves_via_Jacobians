@@ -190,21 +190,40 @@
 		\begin{prop}[Torsion Points of Abelian Varieties]\label{torsion points of abelian varieties}
 			For $n\neq 0$ the morphism $n_X$ is an isogeny of degree $\deg n_X = n^{2g}$. If $\text{char}(k)\nmid n$ then $n_X$ is étale and $X[n](k_s)=X[n](\overline{k})\cong (\mathbb{Z}/n\mathbb{Z})^{2g}$.
 		\end{prop}
+		To prove the proposition we need the following lemma.
+		\begin{lem}\label{lem pullbacks along multiplication}
+			For any line bundle $\Li$ on an abelian variety $X$ and $n \in \mathbb{Z}$ 
+			\[n_X^*\Li \cong \Li^{n(n+1)/2}\otimes(-1)^*\Li^{n(n-1)/2}.\]
+			In particular, if $\Li$ is symmetric, i.e. $\Li \cong (-1)^*\Li$, then $n_X^*\Li \cong \Li^{n^2}$. 
+		\end{lem}
 		\begin{proof}
-			 By remark \ref{rmk abelian varieties are projective} there exists a ample line bundle $\mathcal{L}$ on $X$. We can assume $\mathcal{L}$ to be symmetric, i.e. $(-1)^*\mathcal{L}\cong \mathcal{L}$, because when $\mathcal{L}$ is ample then also  $(-1)^*\mathcal{L}\otimes \mathcal{L}$ will be ample by \cite[II Ex. 7.5 (c)]{hartshorne2013algebraic}. Applying (\ref{eq cube}) to the maps $n_X, 1_X, (-1)_X$ we obtain $n_X^*\Li^2\otimes \Li^2 \cong (n+1)_X^* \Li \otimes (n-1)_X^*\mathcal{L} $ and by induction $n_X^*\Li \cong \Li^{n^2}$. In particular, $n_X^*\Li$ is an ample line bundle provided that $n^2>0$. Its pullback along the closed immersion $\iota:X[n]\to X$ will also be an ample line bundle. But $n_X \circ \iota$ factors through the zero map and therefore $\iota^*n_X^* \Li$ is a trivial bundle, which is ample. By \cite[\href{https://stacks.math.columbia.edu/tag/01QE}{Tag 01QE}]{stacks-project} $X[n]$ is quasi-affine. Hence $X[n]\to \Spec(\Om_{X[n]}(X[n]))$ is an open immersion. But $X[n]$ is proper over $k$, so this open immersion is moreover proper and therefore a closed immersion. This proves that $X[n]$ is a proper and affine variety and therefore finite. By theorem \ref{thm isogenies} c) $n_X$ is an isogeny.
+			Apply equation \ref{eq cube} from theorem \ref{thm of the cube and the square} for $f=n, g=1 $ and $h=-1$ to obtain
+			\begin{align*}
+				n^*\Li \cong (n+1)^*\Li \otimes (n-1)^*\Li \otimes n^*\Li^{-1}\otimes (-1)^*\Li^{-1}\otimes \Li^{-1}
+			\end{align*}
+		and therefore 
+		\begin{align*}
+			(n+1)^*\Li \otimes (n-1)^*\Li\cong n^*\Li^2 \otimes  (-1)^* \Li \otimes \Li.
+		\end{align*}
+		The assertion now follows from induction, by first checking the cases $n=-1,0,1$ by hand.
+		\end{proof}
+		\begin{proof}[Proof of proposition \ref{torsion points of abelian varieties}]
+			 By remark \ref{rmk abelian varieties are projective} there exists a ample line bundle $\mathcal{L}$ on $X$. We can assume $\mathcal{L}$ to be symmetric, i.e. $(-1)^*\mathcal{L}\cong \mathcal{L}$, because when $\mathcal{L}$ is ample then also  $(-1)^*\mathcal{L}\otimes \mathcal{L}$ will be ample by \cite[II Ex. 7.5 (c)]{hartshorne2013algebraic}. By lemma \ref{lem pullbacks along multiplication}  $n_X^*\Li\cong \Li^{n^2}$ is an ample line bundle provided that $n^2>0$. Its pullback along the closed immersion $\iota:X[n]\to X$ will also be an ample line bundle. But $n_X \circ \iota$ factors through the zero map and therefore $\iota^*n_X^* \Li$ is a trivial bundle, which is ample. We proceed to prove that a proper variety admitting a trivial ample line bundle is finite: 
+			 
+			 By \cite[\href{https://stacks.math.columbia.edu/tag/01QE}{Tag 01QE}]{stacks-project} $X[n]$ is quasi-affine. Hence the canonical map $X[n]\to \Spec(\Gamma(X[n], \Om_{X[n]}))$ is an open immersion. But $X[n]$ is proper over $k$, so this open immersion is moreover proper and therefore a closed immersion. This proves that $X[n]$ is a proper and affine variety, and therefore finite as asserted. By theorem \ref{thm isogenies} c) $n_X$ is an isogeny.
 			 
 			 Let $D$ be an divisor such that $\Li \cong \Li(D)$, then $n_X^*D$ is linearly equivalent to $n^2D$. We now invoke intersection theory on the smooth projective variety $X$ to conlcude
 			 \[n^{2d}(D)^g=(n^2 D)^g=(n_X^* D)^g=\deg(n_X)\cdot (D)^g,\]
 			 where we used \cite[Lem. 8.3]{milne1986abelian} for the last equality. Since $D$ is ample, its self-intersection number is positive, and we can conclude $n^{2d}= \deg(n_X)$.
 			 
-			 Now assume $\text{char}(k)\nmid n$. To prove that $n_X$ is étale, we may assume that $k=k_s$. The locus $U$ where $n_X$ is étale is open in $X$, so, if we prove that its complement doesn't contain any $k$ valued point, we win. A $k$-valued point is in $P$ provided that the induced map on the tangent space at $P$ is an isomorphism. Since $n_X \circ t_p = t_{nP}\circ n_X$, by the chain rule $d_p n_X \circ d_0 t_p = d_0 t_{np} d_o n_X $. Since the translations give isomorphism on the tangent spaces it suffices to prove that $d_0n_X$ is bijective. 
+			 Now assume $\text{char}(k)\nmid n$. To prove that $n_X$ is étale, we may assume that $k=k_s$. The locus $U$, where $n_X$ is étale, is open in $X$, so, if we prove that its complement doesn't contain any $k$ valued point, we win. A $k$-valued point $P$ is in $U$ provided that the induced map on the tangent space at $P$ is an isomorphism. Since $n_X \circ t_p = t_{nP}\circ n_X$, by the chain rule $d_p n_X \circ d_0 t_p = d_0 t_{np} d_o n_X $. Because translations give isomorphism on the tangent spaces it therefore suffices to prove that $d_0n_X$ is bijective. 
 		 	
 		 	Recall that we can identify $T_{(0, 0)}(X\times X)$ with $T_0 X \oplus T_0(X)$, when we set for $f:Y\to X\times X$ that  $d_{y}f=d_y(\pr_1\circ f) \oplus d_y(\pr_2\circ f)$. We claim that for $x, x'\in T_0(X)$ the equality $d_{(0,0)}m(x,x')=x+x'$ holds. Let $a: X\cong \{0\}\times X \to X \times X$ the canonical map. Then \[d_{(0,0)} m \circ (\id_{T_0 X} \oplus 0 )=d_{(0,0)} m \circ d_0 a=d_0(m\circ a)=\id_{T_0 X} \] yields that $d_{(0,0)}m$ restricted to the first factor is the identity. By symmetry and linearity we obtain our claim. Hence, for $f, g:X\to X$ homomorphisms we have  \[d_0(f+g)=d_0(m\circ(f,g))=d_0(m)\circ (d_0(\pr_1\circ (f,g)) \oplus d_0(\pr_1\circ (f,g)))=d_0 f + d_0 g.\]
-		 	Hence, by induction $d_0 n_X(x)=n x$ for all $x \in T_0 X$, which defines an isomorphism since $n\in k^*$. 
+		 	So, by induction $d_0 n_X(x)=n x$ for all $x \in T_0 X$, which defines an isomorphism since $n\in k^*$. 
 		 	
 		 	By equation (\ref{eq3}) and $n_X$ being unramified it directly follows that $G:=X[n](k_s)=X[n](k)$ is an abelian group of order $n^{2g}$, which is killed by $n$. Further, for every divisor $d$ of $n$ the subgroup of elements that is killed by $d$ is $X[d](k_s)$ and has order $d^{2g}$. An application of the structure theorem of finitely generated abelian groups shows $X[d](k_s)\cong (\mathbb{Z}/n\mathbb{Z})^{2g}$.
 	 			\end{proof}		
- 			Note that since $n_X$ is surjective $X(\overline{k})$ is a divisible group. 
+ 			Note that, since $n_X$ is surjective, $X(\overline{k})$ is a divisible group. 
  			\begin{prop}\label{prop division} If $f:X\to Y$ is an isogeny of degree $d$ then there exists a unique  isogeny  $g: Y \to X$ such that $g\circ f= d_X$ and $f\circ g=d_Y$. 
  			\end{prop}
  			\begin{proof}
@@ -752,7 +771,9 @@ Consider the Mumford line bundle $\Lambda(\Li(\Theta))=m^*\Li(\Theta) \otimes \p
 Write $\Theta^{-}$ for the pullback of $\Theta$ along $(-1)_J: J\to J$ and $\Theta_a$ for $t_{-a}^*\Theta=\Theta + a $, $a\in J(k)$. 
 
 \begin{rmk}\label{rmmk alter varphi by translation}
-	It is shown in \cite[14.22 and 14.28 (ii)]{van2007abelian}  that $\Theta$, $\Theta^-$ and $\Theta_a$ are numerically equivalent and this implies that $\varphi_{\Li(\Theta)}=\varphi_{\Li(\Theta^-)}=\varphi_{\Li(\Theta_a)}$ for all $a\in J(k)$ by \cite[??]{van2007abelian}.
+	It is shown in \cite[14.22 and 14.28 (ii)]{van2007abelian}  that $\Theta$, $\Theta^-$ and $\Theta_a$ are numerically equivalent and this implies that $\varphi_{\Li(\Theta)}=\varphi_{\Li(\Theta^-)}=\varphi_{\Li(\Theta_a)}$ for all $a\in J(k)$ by \cite[7.26]]{van2007abelian}.
+	
+	In particular, by lemma \ref{lem pullbacks along multiplication} the divisors $n^*\Theta $ and $n^2\Theta$ are numerically equivalent for all $n\in \mathbb{Z}$.
 \end{rmk}
 
 We abbreviate $(\Theta^-)_a$ as $\Theta^{-}_a$. 
@@ -870,7 +891,7 @@ the assertions follows from corollary \ref{cor morphi between jacobians}.
 Since $\sigma^2=\id$ we conclude from the previous lemma \ref{lem rosati involution} that $(h^\dagger)^\dagger =h$ for all $h \in \End(J)$. Since $g^\dagger =g$ for all $g\in \mathbb{Q}$, this result extends to $\End^0(J)$. 
 
 \subsection{The Lefschetz trace formula and positivity of the Rosati involution}
-We invoke intersection theory on the surface $C\times C$. Notation will be as in Hartshorne chapter V.1. 
+We invoke intersection theory on the surface $C\times C$. Notation will be as in Hartshorne \cite{hartshorne2013algebraic} chapter V.1 but we won't assume that $k$ is necessarily algebraically closed. For effective divisors $D, C$ on $C\times C$ we define their intersection number $C.D:=\deg_C \Li_{C\times C}(D)\vert_C$ and extend this definition to a symmetric, bilinear map $\text{Div}(C\times C)\times \text{Div}(C\times C)\to \mathbb{Z}$ that only depends on the linear equivalence class of the inputs. To see that there exists a unique such pairing consult \cite[V1, Thm. 1.1 ]{hartshorne2013algebraic}.
 %
 %Let $X$ be a divisor on $C\times C$. Let $Q$ be a point of $C$. The intersection number $X.(C\times \{Q\})$ doesn't depend on $Q$, because $(C\times \{Q\})$ and $(C\times \{Q'\})$ are numerically equivalent. This is due to $C\ni Q \mapsto E.(C\times \{Q\})$ being continuous for any curve $E$ on $C\times C$ and since $C$ is connected the function must be constant. 
 %
@@ -880,7 +901,7 @@ We invoke intersection theory on the surface $C\times C$. Notation will be as in
 \begin{thm}[Lefschetz trace formula]\label{thm Lefschetz trace formula}
 	Let $h\in \End(J)$ and let $X$ be a divisor on $C\times C$ such that $\Li(X)\cong (1_C\times(h\circ f))^*\M^P$. Then the negative intersection number of the diagonal divisor $\Delta_C\subseteq C\times C$ with $X$ equals $\tr(h)$, i.e. $-\Delta_C.X=\tr(h)$.
 \end{thm}
-Before we can proof the theorem we need the following relation between trace and intersection theory.
+Before we can proof the theorem we need the following relation between trace and intersection theory on $J$.
 \begin{lem}\label{lem trace from intersection}Let $h\in \End(J)$. Let 
 	$D_\Theta(h):=(h+1)^*\Theta-h^*\Theta -\Theta$. Then 
 	\[\tr(h)=\frac{g}{(\Theta^{g})}(\Theta^{g-1}\cdot D_\Theta(h))=\frac{1}{(g-1)!}(\Theta^{g-1}\cdot D_\Theta(h))=(f(C)\cdot D_\Theta(h))=\deg f^* \Li (D_\Theta(h)).\]
@@ -890,7 +911,7 @@ Before we can proof the theorem we need the following relation between trace and
 	\[D=\Theta, \quad D'=2^*D-2D, \quad D_n=(n+h)^*D=\frac{n(n-1)}{2}D'+n(h+1)^*D-(n-1)h^*D.\]
 	
 	
-	It is a consequence of theorem \ref{thm of the cube and the square} that $2^*D$ is linearly equivalent to $3D+(-1)^*D$, see \cite[cor. 2.12]{van2007abelian} or convince yourself by proceeding as in the proof of proposition \ref{torsion points of abelian varieties}. By remark \ref{rmmk alter varphi by translation} $D=\Theta$ and $(-1)^*D=\Theta^{-}$ are numerically equivalent. Therefore, $D'$ is numerically equivalent to $2D$ and, so, $D_n$ is numerically equivalent to $n^2D +n D_\Theta(h)+h^*D$. 
+	By remark \ref{rmmk alter varphi by translation} $D'$ is numerically equivalent to $2D$ and, so, $D_n$ is numerically equivalent to $n^2D +n D_\Theta(h)+h^*D$. 
 	
 	Since by definition $P_h(-n)=\deg(h+n)=\frac{(D_n)^g}{(D)}$ for all $n\in \mathbb{N}$ we have that $\tr(h)$ is the coefficient in front of $n^{2g-1}$ in the expression $\frac{(D_n)^g}{(D)}$, which we can identify with $\frac{g}{(D)^g}(D^{g-1}\cdot D_\Theta(h))$ by using the linearity of the intersection number. 
 	
@@ -902,16 +923,38 @@ Before we can proof the theorem we need the following relation between trace and
 	
 	Using the above two properties is can be computed that $(\Theta^{g-1}\cdot D_\Theta(h))=(g-1)! (W^1 \cdot D_\Theta(h))$. This is done here \cite[p.112]{lang2019abelian}. 
 	
-	Now it only remains to justify $(f(C)\cdot D_\Theta(h))=\deg f^*\Li(D_\Theta(h))$. The proof of this is similar to \cite[V 1. Lem. 1.3]{hartshorne2013algebraic}, see \cite[Exmp. 7.1.17]{fulton2013intersection}.
+	Now it only remains to justify $(f(C)\cdot D_\Theta(h))=\deg f^*\Li(D_\Theta(h))$. This is \cite[Exmp. 7.1.17]{fulton2013intersection}.
 \end{proof}
 \begin{proof}[Proof of theorem \ref{thm Lefschetz trace formula}] By Corollary \ref{cor properties of principal polarization of jacobian} we have that
 \begin{align*}
-	\Delta_C^*\Li(X)&\cong \Delta_C^*(1_C\times (h\circ f)^*)\M^P\cong \Delta^*(1_C\times (h\circ f))^*(f\times 1_J)^*\Lambda(\Li(\Theta)^{-1})\\&\cong ((1_J \times h)\circ (f\times f)\circ  \Delta_C)^* \Lambda(\Li(\Theta)^{-1})\cong f^*(1_J, h)^*\Lambda(\Li(\Theta)^{-1})\\&=f^*(1_J, h)^*(m^*\Li(\Theta)^{-1} \otimes  \pr_1^* \Li(\Theta) \circ\pr_2^*\Li(\Theta))=f^*D_\Theta(h)^{-1}.
+	\Delta_C^*\Li(X)&\cong \Delta_C^*(1_C\times (h\circ f)^*)\M^P\cong \Delta^*(1_C\times (h\circ f))^*(f\times 1_J)^*\Lambda(\Li(\Theta)^{-1})\\&\cong ((1_J \times h)\circ (f\times f)\circ  \Delta_C)^* \Lambda(\Li(\Theta)^{-1})\cong f^*(1_J, h)^*\Lambda(\Li(\Theta)^{-1})\\&=f^*(1_J, h)^*(m^*\Li(\Theta)^{-1} \otimes  \pr_1^* \Li(\Theta) \circ\pr_2^*\Li(\Theta))=f^*D_\Theta(h)^{-1}
 \end{align*}
-So, by the previous lemma \ref{lem trace from intersection} we conclude  $\tr(h)=\deg f^*D_\Theta(h) =\deg \Delta_C^*\Li(X)^{-1}$. By \cite[V.1 Lem. 1.3]{hartshorne2013algebraic} $\deg \Delta_C^*\Li(X)^{-1}=\Delta.(-X)$ and the theorem follows from additivity of the intersection pairing. 
+So, by the previous lemma \ref{lem trace from intersection},  $\tr(h)=\deg f^*D_\Theta(h) =\deg \Delta_C^*\Li(X)^{-1}=\Delta_C.(-X)=-\Delta_C.X$.
 \end{proof}
-
-Let $h\in \End(J)$ it can be read of the proof of lemma \ref{lem rosati involution} that $(1\times h^\dagger)^*\M^P\cong ((h\circ f)\times 1)^*\Lambda(\Li(\Theta)^{-1})$ 
+\begin{cor}[Positivity of the Rosati involution]
+	Let $h, g\in \End(J)$ then 
+	\[\tr(h^\dagger \circ g)=\deg((h\circ f,g\circ f)^*\Lambda(\Li(\Theta)))\text{ and } \tr(h^\dagger\circ h)=2\deg((h\circ f)^*\Li(\Theta))=2(f(C)\cdot h^*(\Theta)).\]
+	The \textit{trace form} 
+	\[\End^0(J)\times \End^0(J) \to \mathbb{Q}, \;(g,h)\mapsto \tr(g\circ h^\dagger) \]
+	is bilinear, symmetric and positive definite.
+\end{cor}
+\begin{proof}
+	It can be read of the proof of lemma \ref{lem adjoint of map} that $(1_C\times h^\dagger)^*\M^p\cong ((h\circ f)\times 1)^* \Lambda(\Li(\Theta)^{-1})$. So, by the Lefschetz trace formula \ref{thm Lefschetz trace formula}, 
+	\begin{align*}
+		\tr(h^\dagger \circ g)&=-\deg \Delta_C^*(1_C \times (h^\dagger\circ g \circ f)) =-\deg \Delta_C^*((h\circ f) \times (g\circ f))^* \Lambda(\Li(\Theta)^{-1})\\&=\deg((h\circ f,g\circ f)^*\Lambda(\Li(\Theta))).
+	\end{align*}
+	In particular, $\tr(h^\dagger, h)=\deg((h\circ f, h\circ f)^*\Lambda(\Li(\Theta)))$. We compute 
+	\begin{align*}(h\circ f, h\circ f)^*\Lambda(\Li(\Theta))&=(h\circ f, h\circ f)^*(m^*\Li(\Theta)\otimes \pr_1^*\Li(\Theta)^{-1}\otimes \pr_2^* \Li(\Theta)^{-1})\\&\cong (h\circ f)^*(2_J)^*\Li(\Theta)-(h\circ f)^*\Li(\Theta)^2
+	\end{align*}
+	and, since after taking degree only the numerical equivalence class of $\Theta$ matters, we obtain \[\deg((h\circ f, h\circ f)^*\Lambda(\Li(\Theta))))=2^2\deg((h\circ f)^*\Li(\Theta))-2\deg((h\circ f)^*\Li(\Theta))\]
+	by remark \ref{rmmk alter varphi by translation}.
+	 So, $\tr(h^\dagger \circ  h)=2\deg((h\circ f)^*\Li(\Theta))=2\deg(f^*h^*\Theta))=2(f(C)\cdot h^*\Theta)$, where the last equality is by \cite[Exmp. 7.1.17]{fulton2013intersection}. 
+	 
+	 By lemma \ref{lem rosati involution} and theorem \ref{thm Lefschetz trace formula} $\tr(h^\dagger)=-\Delta_C.\sigma^* X = -\Delta_C.X=\tr(h)$. In particular, the trace form is symmetric. Bilinearity follows from linearity of the Rosati involution and the trace. 
+	 
+	 If $h\neq 0$, then $h\circ f: C\to h(J)$ is finite, where $h(J)$ denotes the scheme-theoretic image of $h$ considered as abelian variety. (This is theorem \ref{thm isogenies} and \ref{thm closed immer}). The restriction of $\Theta$ to $h(J)$ is ample by \cite[\href{https://stacks.math.columbia.edu/tag/0892}{Tag 0892}]{stacks-project} and corollary \ref{cor properties of principal polarization of jacobian}. The pullback of an ample line bundle along a finite morphism is again ample by the same reference. So, $(h\circ f)^*\Li(\Theta)$ is ample and in particular has positive degree and therefore $\tr(h\circ h^\dagger)=\tr(h^\dagger \circ h)=2\deg((h\circ f)^* \Li(\Theta))>0$. 
+	 This proves that the trace form is positive definite. 
+\end{proof}
 \subsection{The map induced on the Jacobian by an endomorphism of $C$}
 Throughout this section $C$ will again be a proper non-singular curve of genus $g>0$ over a field $k$, $J$ will be its Jacobian variety and $P\in C(k)$ will be a $k$-rational point.  
 $f$ will be defined as in section \ref{sec canonical map}. 
@@ -932,7 +975,7 @@ For a given $k$-scheme $T$ and  $\Li \in \Pic(C\times T)$ the map $\Li \mapsto (
 Using that for $\Li\in \Pic(C\times T)$ the degree function $T\ni t \mapsto \deg(\Li\vert_{C\times \{t\}})$ is locally constant, it can be shown that $J(k)$ can be identified with $\Pic^0(C)$, the degree $0$ line bundles on $C$, see \cite[14.1]{van2007abelian}. So, $\alpha^*$ is on $k$-valued points literally given by the pullback of degree $0$ line bundles along $\alpha$. 
 \end{enumerate}
 The following lemma says that the Rosati involution translates one approach into the other. In particular, $\alpha'$ is independent of the choice of $P$.
-\begin{lem}
+\begin{lem}\label{lem adjoint of map}
 	We have $(\alpha')^\dagger=\alpha^*$ as $k$-morphisms $J\to J$ and 
 	\[(1\times (\alpha'\circ f))^*\M^P\cong \sigma^* \Li(\Gamma_{\alpha}-C\times \{\alpha(P)\}-\alpha^{-1}(P)\times C),\]
 	for $\sigma:C\times C \to C\times C$ the morphism that switches the factors.
@@ -949,11 +992,14 @@ The following lemma says that the Rosati involution translates one approach into
 By theorem \ref{thm charak poly} $\alpha'$ and $\alpha^*$ must have the same characteristic polynomial. We know try to relate $\tr(\alpha')=\tr(\alpha*)$ with the fixed points of $\alpha$. 
 
 \begin{thm}[Lefschetz fixed point formula]
-	We have $(\Gamma_\alpha \cdot \Delta)=1-\tr(\alpha^*)+\deg(\alpha)$.
+	We have $\Delta_C. \Gamma_{\alpha}=1-\tr(\alpha^*)+\deg(\alpha)$.
 \end{thm}
 \begin{proof}
-	
-	
+	By lemma \ref{lem adjoint of map} we have $(1\times (\alpha^*\circ f))^*\M^P \cong \Li(\Gamma_{\alpha}-C\times \{\alpha(P)\}-\alpha^{-1}(P)\times C)$ and so by the Lefschetz trace formula \ref{thm Lefschetz trace formula} 
+	\begin{align*}
+		\tr(\alpha^*)=-\Delta_C.(\Gamma_{\alpha}-C\times \{\alpha(P)\}-\alpha^{-1}(P)\times C)=-\Delta_C.\Gamma_{\alpha} +1+\Delta_C.(C\times \alpha^{-1}(P)).
+	\end{align*}
+	Since $\Delta_C$ and $C\times \alpha^{-1}(P)$ have no components in common and have scheme-theoretic intersection $\alpha^{-1}(P)$ we conclude $\Delta_C.(C\times \alpha^{-1}(P))=h^0(\alpha^{-1}(P), \Om_{\alpha^{-1}(P)} )$. Because $\alpha$ is flat and finite, $\deg \alpha=h^0(\alpha^{-1}(P), \Om_{\alpha^{-1}(P) })$ by exactly the same proof as  in theorem \ref{thm isogenies}. 
 \end{proof}
 \bibliographystyle{ieeetr}
 	\bibliography{references}
