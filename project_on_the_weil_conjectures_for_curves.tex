@@ -63,30 +63,7 @@
 \begin{document}
 	\maketitle
 	\tableofcontents
-	\section{Statement of the Weil Conjectures for Curves}
-	Let $C$ be a proper non-singular curve of genus $g$ over a finite field $\mathbb{F}_q$ with $q$ elements.  Let $k$ be an algebraic closure of $\mathbb{F}_q$ and denote $\overline{C}:=C\times_{\mathbb{F}_q} k$. Let $F: C\to C$ be the absolute Frobenius morphism of $C$, which is the identity on the underlying topological space and acts as the $q$-th power map on $\mathcal{O}_C$. Let $\overline{F}:= F \times_{\mathbb{F}_q} 1_k$ be the $k$ linear Frobenius morphism of $\overline{C}$. 
 	
-	Let $l\neq \text{char}(p)$ be a prime number. 
-	Then $\overline{F}$ induces an endomorphism $V_l(\overline{F})$ of the $\mathbb{Q}$ vector space $V_l J_k:=T_l J_k \otimes_{\mathbb{Z}} \mathbb{Q}$. Here $J_k$ denotes the Jacobian variety of $\overline{C}$ and $T_l J_k$ its Tate module.
-	
-	\begin{thm}[Weil Conjectures for Curves]
-		$V_l J_k$ is $2g$-dimensional. Let $P$ be the characteristic polynomial of $V_l(\overline{F})$ and $\alpha_1, \dots, \alpha_{2g} \in \mathbb{C}$ its roots. The Weil conjectures for curves state:
-		\begin{enumerate}
-			\item (\textit{Rationality of the zeta function}) \[\exp\left( \sum_{n=1}^\infty \# C(\mathbb{F}_{q_n}) \frac{x^n}{n}\right) =\frac{P(x)}{(1-x)(1-qx)}\]
-			and $P$ is an integer polynomial, i.e. $P \in \mathbb{Z}[x]$. 
-			\item (\textit{Riemann Hypothesis}) $\abs{\alpha_i}=q^{\frac{1}{2}}$ for all $i=1,\dots, 2g$.
-			\item (\textit{Hesse-Weil Bound}) 
-			\[\# C(\mathbb{F}_{q^n})=1-\sum_{i=1}^{2g}\alpha_i^n + q^n\]
-			and in particular $\abs{\#C(\mathbb{F}_{q^n})-(q^{n}+1)}\le 2 g q^{\frac{n}{2}}$.
-		\end{enumerate} 
-		Moreover, for $\Pic^0(C)$ the group of isomorphism classes of degree zero line bundles on $C$
-		\begin{align} \#\Pic^0(C\times_{\mathbb{F}_q} \mathbb{F}_{q^n})\le \prod_{i=1}^{2g}(1-\alpha_i^n) \label{eq1}
-		\end{align}
-		and equality holds whenever $C$ has an $\mathbb{F}_{q^n}$ valued point. 
-	\end{thm}
-	\begin{exm}[Elliptic Curves]
-		Suppose the genus of $C$ is equal to one. Then the Hesse-Weil bound gives us that $\# C(\mathbb{F}_q)=1-(\alpha_1+\alpha_2)+q$ and by the Riemann-Hypothesis $\abs{\alpha_1+\alpha_2}\le 2 \sqrt{q}$. Therefore, $\# C(\mathbb{F}_q)\ge 1-2\sqrt{q}+q=(\sqrt{q}-1)^2$. Hence $C$ will admit an $\mathbb{F}_q$ valued point, i.e. $C$ is an elliptic curve.
-	\end{exm}
 	\section{Abelian varieties}
 	For this section $k$ will be a field, $\overline{k}$ an algebraic closure of $k$ and $k_s$ the separable algebraic closure of $k$ in $\overline{k}$.
 	
@@ -579,10 +556,10 @@ A regular local ring is reduced and therefore $\Pic^0_{C/k}$ is geometrically re
   			Whether a morphism is a closed immersion, can be checked after faithfully flat base change, so we may assume $k=\overline{k}$. Since $f$ is a morphism of smooth, projective $k$-varieties, it is a closed immersion if it separates points and tangent vectors. (The proof is the same as the “if” part of \cite[II 7.3]{hartshorne2013algebraic}). To see that $f$ separates points, assume that $Q_1, Q_2 \in C(k)$ have the same image under $f$. Then $\Li(Q_1)\otimes  \Li(Q_2)^{-1}$ is trivial, i.e. $Q_1-Q_2$ is the divisor of a function $f$. But then $f$ defines an isomorphism $C\to \mathbb{P}^1_C$, contradicting our assumption $g>0$.  
   			
   			We will only sketch the proof of $f$ separating tangent vectors. To see that $(df_Q): T_Q C \to T_{fQ} J$ is injective, we may assume that $Q=P$. It can be shown that the dual map of $df_P$ is $\Gamma(J, \Omega_J^1)\xrightarrow{f^*}\Gamma(C, \Omega^1_C)\xrightarrow{\text{can}} (T_p C)^\vee$. We have seen in Proposition \ref{prop canonical map on tangent spaces} that the first of these maps is an isomorphism. Therefore it suffices to proof that $\Gamma(C, \Omega^1_C)\xrightarrow{\text{can}} (T_p C)^\vee$ is surjective. The kernel of this map can be identified with $\{\omega \in\Gamma(C, \Omega^1_C) \mid \omega(P)=0 \}$ and by Serre duality the letter is dual to $H^1(C, \Li(P))$. Since $T_p C$ is one-dimensional, we now only have to proof that $\dim H^1(C, \Li(P))<\dim \Gamma(C, \Omega_C^1)$. Moreover, we know that $\dim  \Gamma(C, \Omega_C^1)=g$ by Serre  duality and $h^1(C, \Li(P))=h^0(C, \Li(P))+g-2$ by the Riemann-Roch theorem. Because we assumed $g>0$, there exist no meromorphic functions on $C$ that only have one simple pole and are regular elsewhere, as such define an isomorphism $C \to \mathbb{P}_k^1$. We conclude that $H^0(C, \Li(P))=H^0(C, \Om_C)\cong k$ and hence $h^1(C, \Li(P))=g-1<g=\dim \Gamma(C, \Omega_C^1)$. In summary, we have shown that $f$ also separates tangent vectors and hence must be a closed immersion.
-  			
-  			In the case $g=1$ both varieties $J,C$ are proper,  smooth curves and hence $f$ must be an isomorphism. 
+  			  			
+  			In the case $g=1$ both  $J$ and $C$ are proper, regular curves and hence $f$ must be an isomorphism. 
   		\end{proof}
-  	\begin{rmk}[\textit{Elliptic Curves}]
+  	\begin{rmk}\label{rmk elliptic curves}[\textit{Elliptic Curves}]
   		Due to theorem \ref{thm dual abelian} abelian varieties of dimension one have genus one. By the last theorem \ref{thm closed immer}, a nonsingular, proper curves of genus one, which admits a $k$-valued point, is isomorphic to its own Jacobian variety. We conclude that these notions coincide and refer to abelian varieties of dimension one as \textit{elliptic curves}. Let $C$ be an elliptic curve and $Q_1, Q_2 \in C(\overline{k})$. Then we can read from $f$'s action on closed points, that there exists a unique $Q_3 \in C(\overline{k})$ such that $\Li(Q_1 + Q_2-2 P)\cong \Li(Q_3- P)$. Further, $(Q_1, Q_2)\mapsto Q_3$ defines the unique group law on $C$ such that $f$ is a homomorphism of abelian varieties. 
   	\end{rmk}
  	\subsection{Symmetric powers of a curve}
@@ -931,9 +908,9 @@ Before we can proof the theorem we need the following relation between trace and
 \end{align*}
 So, by the previous lemma \ref{lem trace from intersection},  $\tr(h)=\deg f^*D_\Theta(h) =\deg \Delta_C^*\Li(X)^{-1}=\Delta_C.(-X)=-\Delta_C.X$.
 \end{proof}
-\begin{cor}[Positivity of the Rosati involution]
+\begin{cor}[Positivity of the Rosati involution]\label{cor Positiviy of the Rosati involutionn}
 	Let $h, g\in \End(J)$ then 
-	\[\tr(h^\dagger \circ g)=\deg((h\circ f,g\circ f)^*\Lambda(\Li(\Theta)))\text{ and } \tr(h^\dagger\circ h)=2\deg((h\circ f)^*\Li(\Theta))=2(f(C)\cdot h^*(\Theta)).\]
+	\[\tr(h^\dagger \circ g)=\deg((h\circ f,g\circ f)^*\Lambda(\Li(\Theta)))\text{ and } \tr(h^\dagger\circ h)=2\deg((h\circ f)^*\Li(\Theta))=2((h\circ f)(C)\cdot \Theta).\]
 	The \textit{trace form} 
 	\[\End^0(J)\times \End^0(J) \to \mathbb{Q}, \;(g,h)\mapsto \tr(g\circ h^\dagger) \]
 	is bilinear, symmetric and positive definite.
@@ -948,28 +925,27 @@ So, by the previous lemma \ref{lem trace from intersection},  $\tr(h)=\deg f^*D_
 	\end{align*}
 	and, since after taking degree only the numerical equivalence class of $\Theta$ matters, we obtain \[\deg((h\circ f, h\circ f)^*\Lambda(\Li(\Theta))))=2^2\deg((h\circ f)^*\Li(\Theta))-2\deg((h\circ f)^*\Li(\Theta))\]
 	by remark \ref{rmmk alter varphi by translation}.
-	 So, $\tr(h^\dagger \circ  h)=2\deg((h\circ f)^*\Li(\Theta))=2\deg(f^*h^*\Theta))=2(f(C)\cdot h^*\Theta)$, where the last equality is by \cite[Exmp. 7.1.17]{fulton2013intersection}. 
+	 So, $\tr(h^\dagger \circ  h)=2\deg((h\circ f)^*\Li(\Theta))=2((h\circ f)(C)\cdot \Theta)$, where the last equality is by \cite[Exmp. 7.1.17]{fulton2013intersection}. 
 	 
-	 By lemma \ref{lem rosati involution} and theorem \ref{thm Lefschetz trace formula} $\tr(h^\dagger)=-\Delta_C.\sigma^* X = -\Delta_C.X=\tr(h)$. In particular, the trace form is symmetric. Bilinearity follows from linearity of the Rosati involution and the trace. 
-	 
-	 If $h\neq 0$, then $h\circ f: C\to h(J)$ is finite, where $h(J)$ denotes the scheme-theoretic image of $h$ considered as abelian variety. (This is theorem \ref{thm isogenies} and \ref{thm closed immer}). The restriction of $\Theta$ to $h(J)$ is ample by \cite[\href{https://stacks.math.columbia.edu/tag/0892}{Tag 0892}]{stacks-project} and corollary \ref{cor properties of principal polarization of jacobian}. The pullback of an ample line bundle along a finite morphism is again ample by the same reference. So, $(h\circ f)^*\Li(\Theta)$ is ample and in particular has positive degree and therefore $\tr(h\circ h^\dagger)=\tr(h^\dagger \circ h)=2\deg((h\circ f)^* \Li(\Theta))>0$. 
-	 This proves that the trace form is positive definite. 
+	 By lemma \ref{lem rosati involution} and theorem \ref{thm Lefschetz trace formula} $\tr(h^\dagger)=-\Delta_C.\sigma^* X = -\Delta_C.X=\tr(h)$. In particular, the trace form is symmetric. Bilinearity follows from linearity of the Rosati involution and the properties of the trace. 
+	 	 
+	 If $h\neq 0$, then $Y:=(h\circ f)(C)$ is a nontrivial integral closed subscheme of dimension $1$ on $J$. By the Nakai-Moishezon criterion for ampleness, the intersection number $(Y\cdot \Theta)$ is positive. In other words, $\tr(h^\dagger\circ h)>0$. 
 \end{proof}
-\subsection{The map induced on the Jacobian by an endomorphism of $C$}
+\subsection{The map induced on the Jacobian by an endomorphism of $C$}\label{sec induced map}
 Throughout this section $C$ will again be a proper non-singular curve of genus $g>0$ over a field $k$, $J$ will be its Jacobian variety and $P\in C(k)$ will be a $k$-rational point.  
 $f$ will be defined as in section \ref{sec canonical map}. 
 
 Let $\alpha: C\to C$ be a non-constant $k$-morphism. Note that $\alpha$ will necessarily be finite and flat. 
 
 There are two approaches to obtain a homomorphism $J\to J$ induced by $\alpha$. 
-\begin{enumerate}
+\begin{enumerate}[a)]
 \item Let 
 $t_{-f(\alpha(P))}$ be the translation on $J$ by $-f(\alpha(P))$. 
 Then $t_{-f(\alpha(P))}\circ f \circ \alpha: C\to J$ maps $P$ to $0$ 
 and by proposition \ref{prop univ property } there is a unique homomorphism 
 $\alpha': J\to J$ such that \[t_{-f(\alpha(P))}\circ f \circ \alpha=\alpha'\circ f.\] 
 
-\item 
+\item \label{induced map}
 For a given $k$-scheme $T$ and  $\Li \in \Pic(C\times T)$ the map $\Li \mapsto (\alpha\times 1_T)^*\Li$ is natural in $T$ and therefore defines a map  $\Pic_{C/k}\to \Pic_{C/k}$. Since the trivial line bundle in $\Pic_{C/k}(k)$ is send to itself, this defines a homomorphism $\alpha^*: J\to J$.  
 
 Using that for $\Li\in \Pic(C\times T)$ the degree function $T\ni t \mapsto \deg(\Li\vert_{C\times \{t\}})$ is locally constant, it can be shown that $J(k)$ can be identified with $\Pic^0(C)$, the degree $0$ line bundles on $C$, see \cite[14.1]{van2007abelian}. So, $\alpha^*$ is on $k$-valued points literally given by the pullback of degree $0$ line bundles along $\alpha$. 
@@ -989,9 +965,9 @@ The following lemma says that the Rosati involution translates one approach into
 	\end{align*}
 	where $(t_{-f(\alpha(P))}\circ f))^*\M^P \cong \Li(\Delta -\{\alpha(P)\}\times C-C\times \{P\})$ because the unique map $\varphi:C\to J$ such that $(1\times \varphi)^*\M^P\cong \Li(\Delta -\{\alpha(P)\}\times C-C\times \{P\})$ agrees with $t_{-f(\alpha(P))}\circ f$. Note that this can be checked on $\overline{K}$-valued points and $\varphi$ can be computed on these points via diagram \ref{diagram}. 
 \end{proof}
-By theorem \ref{thm charak poly} $\alpha'$ and $\alpha^*$ must have the same characteristic polynomial. We know try to relate $\tr(\alpha')=\tr(\alpha*)$ with the fixed points of $\alpha$. 
+ We know try to relate $\tr(\alpha')=\tr(\alpha*)$ with the fixed points of $\alpha$. 
 
-\begin{thm}[Lefschetz fixed point formula]
+\begin{thm}[Lefschetz fixed point formula]\label{thm Lefschetz fixed point formula}
 	We have $\Delta_C. \Gamma_{\alpha}=1-\tr(\alpha^*)+\deg(\alpha)$.
 \end{thm}
 \begin{proof}
@@ -1001,6 +977,57 @@ By theorem \ref{thm charak poly} $\alpha'$ and $\alpha^*$ must have the same cha
 	\end{align*}
 	Since $\Delta_C$ and $C\times \alpha^{-1}(P)$ have no components in common and have scheme-theoretic intersection $\alpha^{-1}(P)$ we conclude $\Delta_C.(C\times \alpha^{-1}(P))=h^0(\alpha^{-1}(P), \Om_{\alpha^{-1}(P)} )$. Because $\alpha$ is flat and finite, $\deg \alpha=h^0(\alpha^{-1}(P), \Om_{\alpha^{-1}(P) })$ by exactly the same proof as  in theorem \ref{thm isogenies}. 
 \end{proof}
+\begin{exm}
+	Applying the Lefschetz fixed point formula to $\id_C$ yields $\Delta_C^2=1-2g-1$.
+\end{exm}
+\section{The Weil conjectures for curves}
+Let $C$ be a proper non-singular curve of genus $g$ over a finite field $\mathbb{F}_q$ with $q$ elements.  Let $k$ be an algebraic closure of $\mathbb{F}_q$ and denote $C_k:=C\times_{\mathbb{F}_q} k$. Let $F_C: C\to C$ be the absolute Frobenius morphism of $C$, which is the identity on the underlying topological space and acts as the $q$-th power map on $\mathcal{O}_C$. Let $F_{C,k}:= F_C \times_{\mathbb{F}_q} 1_k$ be the $k$ linear Frobenius morphism of $C_k$. 
+
+Let $J$ be the Jacobian variety of $C$ over $\mathbb{F}_q$. Then the base change of $J$ to $k$, denoted by $J_k$, is the Jacobian variety of $C_k$. Further, the induces map on $J_k$ by $F_{C,k}$ as in section \ref{sec induced map} a) is $\text{Fr}:=F_J\times 1_k$, where $F_J$ is the absolute Frobenius of $J$. This follows from the naturality of the absolute Frobenius. 
+
+\begin{thm}[Weil conjectures for curves]\label{thm Weil conjectures for curves} ~\\
+	Let $P$ be the characteristic polynomial of $\text{Fr}\in \End(J_k)$ and $\alpha_1, \dots, \alpha_{2g} \in \mathbb{C}$ its roots. The Weil conjectures for curves state:
+	\begin{enumerate}
+		\item (\textit{Rationality of the zeta function}) \[\exp\left( \sum_{n=1}^\infty \# C(\mathbb{F}_{q_n}) \frac{x^n}{n}\right) =\frac{P(x)}{(1-x)(1-qx)}\]
+		and $P$ is an integer polynomial, i.e. $P \in \mathbb{Z}[x]$. 
+		\item (\textit{Riemann hypothesis}) $\abs{\alpha_i}=q^{\frac{1}{2}}$ for all $i=1,\dots, 2g$.
+		\item (\textit{Hesse-Weil bound}) 
+		\[\# C(\mathbb{F}_{q^n})=1-\sum_{i=1}^{2g}\alpha_i^n + q^n\]
+		and in particular $\abs{\#C(\mathbb{F}_{q^n})-(q^{n}+1)}\le 2 g q^{\frac{n}{2}}$.
+	\end{enumerate} 
+	Moreover, for $\Pic^0(C)$ the group of isomorphism classes of degree zero line bundles on $C$
+	\begin{align} \#\Pic^0(C\times_{\mathbb{F}_q} \mathbb{F}_{q^n})= \prod_{i=1}^{2g}(1-\alpha_i^n) \label{eq1}
+	\end{align}
+whenever $C$ has an $\mathbb{F}_{q^n}$ valued point. 
+\end{thm}
+\begin{proof} Let $F_k: \Spec(k)\to\Spec(k)$ denote the absolute Frobenius of $k$. 
+	
+	The Lefschetz fixed point formula \ref{thm Lefschetz fixed point formula} applied to $F_{C,k}^n$ yields \[\Delta_C.\Gamma_{F_{C,k}^n}=1-\tr(\text{Fr}^n)+\deg(F_{C,k}^n).\] 
+	Using theorem \ref{thm charak poly} we have $\tr(\text{Fr}^n)=\sum_{i=1}^{2g} \alpha_i^n$. Further, $\deg(F_{C,k}^n)=\deg(F_{C,k})^n$.
+	
+	\textbf{Claim 1:} $\deg(F_{C,k})=q$.
+	By \cite[8.5 Prop. 13]{bosch2013algebraic} there is a nonempty open neighborhood $U\subseteq C_k$ and an étale $k$- morphism $g:U\to \mathbb{A}^1_k$.  It suffices to prove that $F_{C,k}\vert_U: U\to U$ has degree $q$. Now $g\circ F_{C,k}=(F_{\mathbb{A}^1_{\mathbb{F}_q}}\times 1_k) \circ g$. By the multiplicativity of the degree it is enough to prove that $\deg(F_{\mathbb{A}^1_{\mathbb{F}_q}}\times 1_k)=q$ (Note that $g$ induces a finite residue field extension). To see this, observe that $F_{\mathbb{A}^1_{\mathbb{F}_q}}$ fixes coefficients and maps coordinates to their $q$-th power. The induced residue field extension is $\mathbb{F}_q(x)\hookrightarrow \mathbb{F}_q(x)[t]/(t^q-x)$, which has degree $q$. 
+	
+	So, we obtain
+	\[\Delta_C.\Gamma_{F_{C,k}^n}=1-\sum_{i=1}^{2g}\alpha_i^{n}+q^n.\]
+	$\# C(\mathbb{F}_{q^n})=\Delta_C.\Gamma_{F_{C,k}^n}$. For the $k$-variety $C_k$ we have a bijection between the $k$-valued points of $C_k$ and the $k$-valued points of the $\mathbb{F}_q$ variety $C$ given by
+	\[C_k(k)\to C(k),\; (x: k \to C_k)\mapsto (k\xrightarrow{x}C_k \xrightarrow{\pr_C}. C) \]
+	\begin{enumerate}[a)]
+	\item $C(k)$ has an action given by pre-composition with $F_k$. 
+	
+	\item $C_k(k)$ has an action given by post-composition with $F_{C,k}$. 
+\end{enumerate}
+	The bijection above identifies both actions: Let $x\in C_k(k)$. Then $\pr_C\circ F_{C,k} \circ x=F_C \circ \pr_C \circ x=F_S\circ \pr_C \circ x$, where we used the naturality of the absolute Frobenius in the last equation.
+	
+	Let $C(k)^{F_k^n}$ denote the elements of $C(k)$ fixed by pre-composition with $F_k^n$. \\
+	\textbf{Claim: } $C(\mathbb{F}_{q^n})\to C(k)^{F_k^n}, (x: \Spec(\mathbb{F}_{q^n})\to C)\mapsto (\Spec(k)\to \Spec(\mathbb{F}_{q^n})\xrightarrow{x}C )$ is a bijection.
+	Well-defined, injective. 
+	Next we show surjectivity. Say, $y\in C(k)^{F_k^n}$. Take any $\Spec(R)=U\subseteq C$ open affine such that $y$ factors as $k\to U\hookrightarrow C$. Then $k\to U$ corresponds to a $\mathbb{F}_q$ algebra homomorphism $\varphi: R\to k$ such that $\mathfrak{f}\circ \varphi=\varphi$, for $\mathfrak{f}(r)=r^{q^n}$. This implies that $\varphi$ factors through $\mathbb{F}^{q^n}\hookrightarrow k$. Hence, $y$ factors as $\Spec(k)\to \mathbb{F}_{q^n}\to U\hookrightarrow C$. 
+\end{proof}
+\begin{exm}[Elliptic Curves]
+	Suppose the genus of $C$ is equal to one. Then the Hesse-Weil bound gives us that $\# C(\mathbb{F}_q)=1-(\alpha_1+\alpha_2)+q$ and by the Riemann-Hypothesis $\abs{\alpha_1+\alpha_2}\le 2 \sqrt{q}$. Therefore, $\# C(\mathbb{F}_q)\ge 1-2\sqrt{q}+q=(\sqrt{q}-1)^2$. Hence $C$ will admit an $\mathbb{F}_q$ valued point, i.e. $C$ is an elliptic curve, see remark \ref{rmk elliptic curves}.
+\end{exm}
+
 \bibliographystyle{ieeetr}
 	\bibliography{references}
 	

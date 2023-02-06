@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.14)  5 FEB 2023 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.14)  6 FEB 2023 14:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -880,8 +880,8 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
  [1
 
 {C:/Users/fabio/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] 
-[5] [6]
-Overfull \hbox (11.09703pt too wide) in paragraph at lines 297--298
+[5]
+Overfull \hbox (11.09703pt too wide) in paragraph at lines 274--275
 []\OT1/cmr/m/n/10 Conversely, as-sum-ing $[] [][] = [] \OML/cmm/m/it/10 H[]\OT1
 /cmr/m/n/10 (\OML/cmm/m/it/10 X; \OMS/cmsy/m/n/10 O[]\OT1/cmr/m/n/10 )$ we con-
 clude that $[] [][] = [] \OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 ([][])$.
@@ -889,27 +889,27 @@ clude that $[] [][] = [] \OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 ([][])$.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 299.
+(hyperref)                removing `math shift' on input line 276.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\not' on input line 299.
+(hyperref)                removing `\not' on input line 276.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\emptyset' on input line 299.
+(hyperref)                removing `\emptyset' on input line 276.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 299.
+(hyperref)                removing `math shift' on input line 276.
 
-
-Overfull \hbox (36.24814pt too wide) detected at line 369
+[6]
+Overfull \hbox (36.24814pt too wide) detected at line 346
 [][][]
  []
 
-[7] [8] [9] [10] [11]
-Overfull \hbox (17.45859pt too wide) in paragraph at lines 525--528
+[7] [8] [9] [10]
+Overfull \hbox (17.45859pt too wide) in paragraph at lines 502--505
 \OT1/cmr/m/n/10 The map $([][])[]\OMS/cmsy/m/n/10 O[] ! \OT1/cmr/m/n/10 ([][])[
 ]\OMS/cmsy/m/n/10 O[]$ \OT1/cmr/m/n/10 is a sur-jec-tive map of sheaves on $\OM
 L/cmm/m/it/10 Z$ \OT1/cmr/m/n/10 and there-fore $\OML/cmm/m/it/10 R[]\OT1/cmr/m
@@ -919,31 +919,30 @@ L/cmm/m/it/10 Z$ \OT1/cmr/m/n/10 and there-fore $\OML/cmm/m/it/10 R[]\OT1/cmr/m
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 538.
+(hyperref)                removing `math shift' on input line 515.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 538.
+(hyperref)                removing `math shift' on input line 515.
 
-
-Overfull \hbox (2.84512pt too wide) in paragraph at lines 564--566
-[][]\OT1/cmr/bx/n/10 Proposition 3.2. []\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 ^
+[11]
+Overfull \hbox (2.84512pt too wide) in paragraph at lines 541--543
+[][]\OT1/cmr/bx/n/10 Proposition 2.2. []\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 ^
 ^W \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C; \
 OMS/cmsy/m/n/10 O[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 T[]J$ 
-\OT1/cmr/m/n/10 the iso-mor-phism from the-o-rem []2.11[] and $\OML/cmm/m/it/10
+\OT1/cmr/m/n/10 the iso-mor-phism from the-o-rem []1.11[] and $\OML/cmm/m/it/10
  f[] \OT1/cmr/m/n/10 : ^^@(\OML/cmm/m/it/10 J; \OT1/cmr/m/n/10 
 []) \OMS/cmsy/m/n/10 !
  []
 
-[12] [13]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 615
+[12]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 592
 .
-
-(C:\Users\fabio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.fd
+ (C:\Users\fabio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-[14] [15] [16] [17]
-Overfull \hbox (5.3427pt too wide) detected at line 758
+[13] [14] [15] [16]
+Overfull \hbox (5.3427pt too wide) detected at line 735
 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 J[]; J[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/1
 0 ! fL 2 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/
 m/it/10 C[]\OT1/cmr/m/n/10 ) : \OMS/cmsy/m/n/10 Lj[][]Lj[][]g\OML/cmm/m/it/10 ;
@@ -953,36 +952,36 @@ m/it/10 C[]\OT1/cmr/m/n/10 ) : \OMS/cmsy/m/n/10 Lj[][]Lj[][]g\OML/cmm/m/it/10 ;
  []
 
 
-LaTeX Warning: Citation `]' on page 18 undefined on input line 774.
+LaTeX Warning: Citation `]' on page 17 undefined on input line 751.
 
-[18] [19] [20] [21]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 958.
-
+[17] [18] [19] [20] [21]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 958.
+(hyperref)                removing `math shift' on input line 934.
 
-[22] [23] (project_on_the_weil_conjectures_for_curves.bbl) [24]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 934.
+
+[22] [23] (project_on_the_weil_conjectures_for_curves.bbl [24]) [25]
 (project_on_the_weil_conjectures_for_curves.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `project_on_the_weil_conjectures_for_curves.o
 ut' has not changed.
-(rerunfilecheck)             Checksum: 5CE611732B37E6048F42F1748D42282E;3174.
+(rerunfilecheck)             Checksum: FFF4CE749CC5A76A9F7A0612840FCA62;3103.
  ) 
 Here is how much of TeX's memory you used:
- 24475 strings out of 478351
- 470723 string characters out of 2837052
- 763990 words of memory out of 3000000
- 42289 multiletter control sequences out of 15000+600000
+ 24485 strings out of 478351
+ 470912 string characters out of 2837052
+ 764340 words of memory out of 3000000
+ 42295 multiletter control sequences out of 15000+600000
  480995 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,19n,103p,1440b,1102s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
-pdfTeX warning (dest): name{thm.3.13} has been referenced but does not exist, r
+pdfTeX warning (dest): name{thm.2.13} has been referenced but does not exist, r
 eplaced by a fixed one
 
  <C:\Users\fabio\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm10
@@ -1009,12 +1008,13 @@ fabio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eufm10.pf
 b><C:/Users/fabio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sym
 bols/msam10.pfb><C:/Users/fabio/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb><C:/Users/fabio/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/fabio/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on project_on_the_weil_conjectures_for_curves.pdf (24 pages, 493
-867 bytes).
+ts/type1/public/amsfonts/symbols/msbm5.pfb><C:/Users/fabio/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/fabio/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on project_on_the_weil_conjectures_for_curves.pdf (25 pages, 502
+328 bytes).
 PDF statistics:
- 657 PDF objects out of 1000 (max. 8388607)
- 149 named destinations out of 1000 (max. 500000)
+ 670 PDF objects out of 1000 (max. 8388607)
+ 153 named destinations out of 1000 (max. 500000)
  125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
