@@ -980,6 +980,23 @@ The following lemma says that the Rosati involution translates one approach into
 \begin{exm}
 	Applying the Lefschetz fixed point formula to $\id_C$ yields $\Delta_C^2=1-2g-1$.
 \end{exm}
+The interpretation of theorem \ref{thm Lefschetz fixed point formula} as fixed point formula is justified by the following proposition. 
+\begin{prop}\label{prop fixed points and intersection}
+	Assume $k$ to be algebraically closed.
+	Let $\alpha:C\to C$ be non-constant such that \begin{enumerate}[a)]
+		\item $\alpha(x)=x$ for only finitely many $x\in C(k)$ and
+		\item $\dd_x \alpha \neq \id_{T_x C}$ for all $x\in C(k)$ with $\alpha(x)=x$, 
+	\end{enumerate}
+	then $\Gamma_\alpha. \Delta_C =\#\{x\in C(k): \alpha(x)=x\}$. 
+\end{prop}
+\begin{proof}
+	Condition a) implies $(\Delta_C \times_{C\times C}\Gamma_{\alpha})(k)=\{x\in C(k) : \alpha(x)=x\}<\infty$.\\ So, $\Gamma_\alpha \cap \Delta_C:=\Gamma_\alpha\times_{C\times C} \Delta_C $ is finite and $\Gamma_\alpha$ and $\Delta_C$ have no components in common. Hence $\Gamma_{\alpha}.\Delta_C =\dim_k \Gamma(\Gamma_\alpha \cap \Delta_C, \Om_{\Gamma_\alpha \cap \Delta_C})$. 
+	
+	Let $i: \Delta_C \to C$ and $j: \Gamma_\alpha \to C$ be the inclusion. Then for $P \in (\Gamma_\alpha \cap \Delta_C)(k)$ we have $\text{im} (\dd i)_P =\text{span}(\pi,\pi)$ and $\text{im} (\dd j)_P =\text{span}(\pi,\dd \alpha_P(\pi))$, where $\pi$ is a generator of $T_p(C)$ and we identify $T_P(C\times C)$ as $T_P(C)\oplus T_P(C)$. Hence by assumption b) $T_P(C\times C)=\text{im}(\dd i)_P + \text{im}(\dd j)_P$. 
+	
+	Let $f$ be the local equation for $\Delta_C$ in $C\times C$ at $P$ and $g$ the local equation for $\Gamma_{\alpha}$ in $C\times C$ at $P$. Then $T_P(C\times C)=\text{im}(\dd i)_P + \text{im}(\dd j)_P$ shows that $f$ and $g$ generate $m_P$ at $\Om_{C\times C, P}$. Hence $\Om_{\Gamma_{\alpha}\cap \Delta_C, P}=\Om_{C\times C, P}/(f,g)=k$ and therefore 
+	\[ \Gamma_{\alpha}.\Delta_C=\dim_k \Gamma(\Gamma_\alpha \cap \Delta_C, \Om_{\Gamma_\alpha \cap \Delta_C})=\#(\Gamma_\alpha \cap \Delta_C)(k)=\{x\in C(k): \alpha(x)=x\}.\]	
+\end{proof}
 \section{The Weil conjectures for curves}
 Let $C$ be a proper non-singular curve of genus $g$ over a finite field $\mathbb{F}_q$ with $q$ elements.  Let $k$ be an algebraic closure of $\mathbb{F}_q$ and denote $C_k:=C\times_{\mathbb{F}_q} k$. Let $F_C: C\to C$ be the absolute Frobenius morphism of $C$, which is the identity on the underlying topological space and acts as the $q$-th power map on $\mathcal{O}_C$. Let $F_{C,k}:= F_C \times_{\mathbb{F}_q} 1_k$ be the $k$ linear Frobenius morphism of $C_k$. 
 
@@ -1009,7 +1026,8 @@ whenever $C$ has an $\mathbb{F}_{q^n}$ valued point.
 	By \cite[8.5 Prop. 13]{bosch2013algebraic} there is a nonempty open neighborhood $U\subseteq C_k$ and an étale $k$- morphism $g:U\to \mathbb{A}^1_k$.  It suffices to prove that $F_{C,k}\vert_U: U\to U$ has degree $q$. Now $g\circ F_{C,k}=(F_{\mathbb{A}^1_{\mathbb{F}_q}}\times 1_k) \circ g$. By the multiplicativity of the degree it is enough to prove that $\deg(F_{\mathbb{A}^1_{\mathbb{F}_q}}\times 1_k)=q$ (Note that $g$ induces a finite residue field extension). To see this, observe that $F_{\mathbb{A}^1_{\mathbb{F}_q}}$ fixes coefficients and maps coordinates to their $q$-th power. The induced residue field extension is $\mathbb{F}_q(x)\hookrightarrow \mathbb{F}_q(x)[t]/(t^q-x)$, which has degree $q$. 
 	
 	So, we obtain
-	\[\Delta_C.\Gamma_{F_{C,k}^n}=1-\sum_{i=1}^{2g}\alpha_i^{n}+q^n.\]
+	\begin{align}\Delta_C.\Gamma_{F_{C,k}^n}=1-\sum_{i=1}^{2g}\alpha_i^{n}+q^n. \label{eq intersection frobenius diagonal}
+	\end{align}
 	$\# C(\mathbb{F}_{q^n})=\Delta_C.\Gamma_{F_{C,k}^n}$. For the $k$-variety $C_k$ we have a bijection between the $k$-valued points of $C_k$ and the $k$-valued points of the $\mathbb{F}_q$ variety $C$ given by
 	\[C_k(k)\to C(k),\; (x: k \to C_k)\mapsto (k\xrightarrow{x}C_k \xrightarrow{\pr_C}. C) \]
 	\begin{enumerate}[a)]
@@ -1017,12 +1035,24 @@ whenever $C$ has an $\mathbb{F}_{q^n}$ valued point.
 	
 	\item $C_k(k)$ has an action given by post-composition with $F_{C,k}$. 
 \end{enumerate}
-	The bijection above identifies both actions: Let $x\in C_k(k)$. Then $\pr_C\circ F_{C,k} \circ x=F_C \circ \pr_C \circ x=F_S\circ \pr_C \circ x$, where we used the naturality of the absolute Frobenius in the last equation.
+\textbf{Claim 2}:	The bijection above identifies both actions: Let $x\in C_k(k)$. Then $\pr_C\circ F_{C,k} \circ x=F_C \circ \pr_C \circ x=F_S\circ \pr_C \circ x$, where we used the naturality of the absolute Frobenius in the last equation.
 	
 	Let $C(k)^{F_k^n}$ denote the elements of $C(k)$ fixed by pre-composition with $F_k^n$. \\
-	\textbf{Claim: } $C(\mathbb{F}_{q^n})\to C(k)^{F_k^n}, (x: \Spec(\mathbb{F}_{q^n})\to C)\mapsto (\Spec(k)\to \Spec(\mathbb{F}_{q^n})\xrightarrow{x}C )$ is a bijection.
-	Well-defined, injective. 
+	\textbf{Claim 3: } $C(\mathbb{F}_{q^n})\to C(k)^{F_k^n}, (x: \Spec(\mathbb{F}_{q^n})\to C)\mapsto (\Spec(k)\to \Spec(\mathbb{F}_{q^n})\xrightarrow{x}C )$ is a bijection.
+	
+	The map is injective, because $\Spec(k)\to \Spec(\mathbb{F}_{q_n})$ is faithfully flat and therefore an epimorphism.
 	Next we show surjectivity. Say, $y\in C(k)^{F_k^n}$. Take any $\Spec(R)=U\subseteq C$ open affine such that $y$ factors as $k\to U\hookrightarrow C$. Then $k\to U$ corresponds to a $\mathbb{F}_q$ algebra homomorphism $\varphi: R\to k$ such that $\mathfrak{f}\circ \varphi=\varphi$, for $\mathfrak{f}(r)=r^{q^n}$. This implies that $\varphi$ factors through $\mathbb{F}^{q^n}\hookrightarrow k$. Hence, $y$ factors as $\Spec(k)\to \mathbb{F}_{q^n}\to U\hookrightarrow C$. 
+	
+	If we denote elements of $C_k(k)$ fixed by post-composition with $F_{C,k}^n$ with $C_k(k)^{F_{C,k}^n}$, then applying claim 3 and then claim 2 shows that \begin{align}\#C(\mathbb{F}_{q^n})=\# C(k)^{F_k^n}=\#C_k(k)^{F_{C,k}^n}=\# \{x\in C_k(k): F_{C,k}^n(x)=x\}.\label{eq fixed points froben}
+	\end{align}
+	We want to apply proposition \ref{prop fixed points and intersection} to $F^n_{C,k}: C_k \to C_k$. 
+	
+	For a) note that $\#C(\mathbb{F}_{q^n})<\infty$ because $C$ admits a closed immersion into $\mathbb{P}^m_k$ for $m$ big enough and $\mathbb{P}^m_k(\mathbb{F}_{q^n})=((q^n)^{m+1}-1)/(q^n-1)<\infty$. So, by equation \ref{eq fixed points froben} $F_{C,k}^n(x)=x$ for only finitely many $x\in C_k(x)$. 
+	
+	For b) observe that for $x\in C_k(k)$ we have $(\dd F_{C,k})_x =0$, because $q^n=0$ in $k$. This can be proven very explicitly by using an étale morphisms as in the proof of claim 1. Then  $(\dd F_{C,k})_x =0$ follows because the endomorphism of $\mathbb{A}_{F_q}$ that fixes the coefficients and raises the coordinates to their $q^n$ power induces the zero map on tangent spaces. 
+	
+	All in all, we can apply proposition \ref{prop fixed points and intersection} to obtain
+	\[\#C(\mathbb{F}_{q^n})\overset{(\ref{eq fixed points froben})}{=}\#\{x \in C_k(k): F_{C,k}^n(x)=x\}=\Delta_C.\Gamma_{F_{C,k}^n}\overset{(\ref{eq intersection frobenius diagonal})}{=}1-\sum_{i=1}^{2g}\alpha_i^n + q^n.\]  
 \end{proof}
 \begin{exm}[Elliptic Curves]
 	Suppose the genus of $C$ is equal to one. Then the Hesse-Weil bound gives us that $\# C(\mathbb{F}_q)=1-(\alpha_1+\alpha_2)+q$ and by the Riemann-Hypothesis $\abs{\alpha_1+\alpha_2}\le 2 \sqrt{q}$. Therefore, $\# C(\mathbb{F}_q)\ge 1-2\sqrt{q}+q=(\sqrt{q}-1)^2$. Hence $C$ will admit an $\mathbb{F}_q$ valued point, i.e. $C$ is an elliptic curve, see remark \ref{rmk elliptic curves}.
