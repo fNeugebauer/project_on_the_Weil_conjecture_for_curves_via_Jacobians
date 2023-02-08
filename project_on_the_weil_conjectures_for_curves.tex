@@ -58,6 +58,7 @@
 \newcommand{\Om}{\mathcal{O}}
 \newcommand{\Sch}{\text{Sch}}
 \newcommand{\Ab}{\text{Ab}}
+\newcommand{\Fr}{\text{Fr}}
 \usepackage{cite}
 \usepackage{physics}
 \begin{document}
@@ -394,6 +395,10 @@
 	\end{align} 
 	Note that $f \mapsto f^\vee$ is a contravariant functor.	
 	Moreover, it can be shown that $(f+g)^\vee  =f^\vee+g^\vee$ for $f,g: X\to Y$ homomorphisms, see \cite[Chap. 7]{van2007abelian}. In particular, $n_{X}^\vee=n_{x^\vee}$ and proposition (\ref{prop division}) shows that the dual of an isogeny of degree $d$ is again an isogeny of degree $d$. The existence of such dual homomorphisms justifies the name \textit{dual abelian variety}.
+	
+	For  $x\in Y^\vee(T)$ represented by $\Li \in \Pic(Y_T)$ we obtain from proposition \ref{prop poincare} that $f^\vee(x)$ is represented by 
+	\begin{align}(1\times f^\vee \circ x)^*\Po_X=(1\times x)^*(f\times 1)^*\Po_Y =(f\times 1)^*(1\times x)^*\Po_Y=(f\times 1)^*\Li. \label{eq dual map on points}
+	\end{align} 
 	\subsection{Endomorphisms of abelian varieties}
 	In this chapter $X$ and $Y$ will be abelian varieties over the field $k$, $X$ will have dimension $g$ and $l$ will be ap prime number not equal to $\text{char}(k)$. We give a proof of the Poincaré Splitting Theorem (\ref{thm poincare splitting}). 
 	
@@ -414,15 +419,16 @@
 		This follows form the Poincare Splitting Theorem (\ref{thm poincare splitting}) and the fact that any homomorphism of simple abelian varieties is constant or an isogeny. 
 	\end{proof}
 	\begin{defn}[The Tate module] We define the \textit{Tate module} of $X$ by 
-	\begin{align}
-		T_l X:= \lim \left( \{0\} \xleftarrow{\cdot l} X[l](k_s) \xleftarrow{\cdot l} X[l^2](k_s) \xleftarrow{\cdot l}\dots \right).
-	\end{align}
+	\begin{align*}
+		T_l X:= \lim \left( \{0\} \xleftarrow{\cdot l} X[l](k_s) \xleftarrow{\cdot l} X[l^2](k_s) \xleftarrow{\cdot l}\dots \right). 
+	\end{align*}
 	\end{defn}
-	It follows from theorem (\ref{thm isogenies}) that $T_l X$ is (non-canonically) isomorphic to $\mathbb{Z}_l^{2g}$ and we introduce the $2g$ dimensional $\mathbb{Q}_l$ vector space $V_l X := T_l A \otimes_{\mathbb{Z}_l} \mathbb{Q}_l$. 
+	It follows from theorem (\ref{thm isogenies}) that $T_l X$ is (non-canonically) isomorphic to $\mathbb{Z}_l^{2g}$ and we introduce the $2g$ dimensional $\mathbb{Q}_l$ vector space $V_l(X) := T_l(X)\otimes_{\mathbb{Z}_l} \mathbb{Q}_l =T_l (X)\otimes_{\mathbb{Z}_l} (\mathbb{Z}_l\otimes_{\mathbb{Z}} \mathbb{Q})= T_l(X)\otimes_{\mathbb{Z}} \mathbb{Q}  $. 
 	
-	A homomorphism of abelian varieties $f: X \to Y$ induces a homomorphism $T_l f : T_X \to T_l Y$. It sends a point $(0, x_1, x_2, \dots )\in T_l X$ to $(0, f(x_1), f(x_2), \dots)\in T_l Y$. 
+	A homomorphism of abelian varieties $f: X \to Y$ induces a homomorphism $T_l f : T_l X \to T_l Y$. It sends a point $(0, x_1, x_2, \dots )\in T_l X$ to $(0, f(x_1), f(x_2), \dots)\in T_l Y$. It follows from the definition that this is functorial. In particular, $\End_k(X)\to \End_{\mathbb{Z}_l}(T_l X), fm \mapsto T_l f$, as well as, \begin{align}V_l: \End_k(X)\otimes_{\Z} \mathbb{Q} \to \End_{\mathbb{Q}_l}(V_l X), f\otimes c\mapsto c\cdot(T_l(f)\otimes_{\Z_l}\id_{\Q_l})\label{eq vl is algebra homo} 
+	\end{align} are algebra homomorphisms. 
 	\begin{rmk}\label{rmk tate as hom}
-	$\mathbb{Q}_l/\mathbb{Z}_l$ is the union of its subgroups $l^{-n}\mathbb{Z}_l/\mathbb{Z}_l$, which we identify with $\mathbb{Z}/l^n \mathbb{Z}$. Therefore $\mathbb{Q}_l/\mathbb{Z}_l =\colim \mathbb{Z}/l^n \mathbb{Z}$, where the colimit is taken over the homomorphisms $\mathbb{Z}/l^n \mathbb{Z} \hookrightarrow \mathbb{Z}/l^{n+1}\mathbb{Z}$ given by $(1 \mod l^n) \mapsto (l \mod l^{n+1})$ and we see that $T_l X = \Hom(\mathbb{Q}_l/\mathbb{Z}_l, X(k_s))$. Using this characterization of the Tate module and the long exact sequence of $\text{Ext}_\mathbb{Z}(\mathbb{Q}_l/\mathbb{Z}_l, \cdot )$ modules it can be shown that for any isogeny $f: X \to Y$ the induced map $T_l f: T_l X \to T_l Y$ is injective with cokernel the $l$-Sylow group of $\ker f(k_s)$ and that $V_l f: V_l X \to V_l Y$ is an isomorphism, see \cite[Cor. 10.7]{van2007abelian}.  
+	$\mathbb{Q}_l/\mathbb{Z}_l$ is the union of its subgroups $l^{-n}\mathbb{Z}_l/\mathbb{Z}_l$, which we identify with $\mathbb{Z}/l^n \mathbb{Z}$. Therefore as rings $\mathbb{Q}_l/\mathbb{Z}_l =\colim \mathbb{Z}/l^n \mathbb{Z}$, where the colimit is taken over the homomorphisms $\mathbb{Z}/l^n \mathbb{Z} \hookrightarrow \mathbb{Z}/l^{n+1}\mathbb{Z}$ given by $(1 \mod l^n) \mapsto (l \mod l^{n+1})$ and we see that $T_l X = \Hom(\mathbb{Q}_l/\mathbb{Z}_l, X(k_s))$. Using this characterization of the Tate module and the long exact sequence of $\text{Ext}_\mathbb{Z}(\mathbb{Q}_l/\mathbb{Z}_l, \cdot )$ modules it can be shown that for any isogeny $f: X \to Y$ the induced map $T_l f: T_l X \to T_l Y$ is injective with cokernel isomorphic to the $l$-Sylow group of $(\ker f)(k_s)$ and further that $V_l f: V_l X \to V_l Y$ is an isomorphism, see \cite[Cor. 10.7]{van2007abelian}.  
 	\end{rmk}
 	\begin{lem}\label{lem divisble}Let $f:X\to Y$ be a homomorphism. If $T_lf \in \Hom_{\Z_l}(T_lX,T_lY)$ is divisible by $l^n$ then $f$ is divible by $l^n$ in $\Hom(X,Y)$.
 	\end{lem}
@@ -455,25 +461,26 @@
  		
  		Since the integers are dense in the l-adic integers, for any $m\in \mathbb{N}$ there exists $n_1(m),\dots, n_r(m) \in \Z$ such that for all $i=1, \dots, r$ we have $n_i(m)-a_i$ is divisible through $l^m$. Then also 
  		\[ T_l \left(\sum_{i=1}^r n_i(K) e_i \right)=\sum_{i=1}^r n_i(K) T_l(e_i)=\sum_{i=1}^r(n_i-a_i)T_l(e_i) \]
- 		is divisible trough $l^m$ and by Lemma \ref{lem divisble} $\sum_{i=1}^r n_i(m) e_i \in \End(X)$ is divisible by $l^m$ in $\End(X)$ and therefore in $\Q M \cap \End(X)$ by definition of $\Q M$. On the other hand, since $\abs{n_i(m)-a_i}_l \le l^{-m}$ there exist $M_i,K_i \in \Z$ such that $v_l(n_i(m))=K_i$ for all $m \ge M_i$. Let $M=\max M_i$ and $K=\max K_i$. Then $\sum_{i=1}^r n_i(m)e_i$ is not divisible by a power of $l$ higher than $K$ for all $m\ge M$ in $\Q M \cap \End(X)$ since the $e_1, \dots, e_r$ form a free generating system. This contradicts the earlier statement. 
+ 		is divisible trough $l^m$ and by lemma \ref{lem divisble} $\sum_{i=1}^r n_i(m) e_i \in \End(X)$ is divisible by $l^m$ in $\End(X)$ and therefore in $\Q M \cap \End(X)$ by definition of $\Q M$. On the other hand, since $\abs{n_i(m)-a_i}_l \le l^{-m}$ there exist $M_i,K_i \in \Z$ such that $v_l(n_i(m))=K_i$ for all $m \ge M_i$. Let $M=\max M_i$ and $K=\max K_i$. Then $\sum_{i=1}^r n_i(m)e_i$ is not divisible by a power of $l$ higher than $K$ for all $m\ge M$ in $\Q M \cap \End(X)$ since the $e_1, \dots, e_r$ form a free generating system. This contradicts the earlier statement. 
  		
  		Now we prove the general case. Note that since `limits commute' $T_l(X\times Y)=T_l(X)\times T_l(Y)$. 
  		
  	There exists isogenies $X\to \prod_{i=1}^r X_i$ and $Y\to  \prod_{j=1}^n Y_j$, where the $X_i, Y_j$ are simple abelian varieties. Proposition \ref{prop division} lets us map $\Hom(X,Y)$ into $\Hom(\prod_{i=1}^r X_i^{m_i}, \prod_{i=1}^r Y_i^{n_i})$ and since $n_X$ is an epimorphism for all $n \in \Z$ this is injective. Since every nonzero homomorphisms of simple abelian varieties is an isogeny, $\Hom(\prod_{i=1}^r X_i^{m_i}, \prod_{i=1}^r Y_i^{n_i})=\prod_{i,j}\Hom(X_i, Y_j)$ and if $X_i$ and $Y_i$ are isogenous then $\Hom(X_i , Y_i) $ embeds into $\End(X_i)$, else $\Hom(X_i , Y_i) =0$. So, the theorem follows from the special case proven above.
   	\end{proof}
-% 	\begin{cor}
-% 		$\Hom^0(X,Y):=\Hom(X,Y)\otimes \Q$ has $\Q$ dimension $\le 4 \dim X \dim Y$. 
-% 	\end{cor}
-% 	\begin{proof}
-% 	For an abelian variety $X$ the $\Z_l$-module $T_l X$ is free of rank $2\dim X$ and therefore $\Hom_{\Z_l}(T_X, T_l Y)$ is free of rank $4\dim X \dim Y$. Since $\Z_l$ is a principal ideal domain we can conclude from theorem \ref{thm injec} that $\Z_l \otimes \Hom(X,Y)$ is a free $\Z_l$ module of rank $\le 4 \dim X \dim Y$.  This bounds the rank of the torsion free abelian group $\Hom(X,Y)$.
-% 	\end{proof}
+ 	\begin{cor}\label{cor bound dimension homo}	
+ 		$\Hom^0(X,Y):=\Hom_k(X,Y)\otimes \Q$ has $\Q$ dimension $\le 4 \dim X \dim Y$. 
+ 	\end{cor}
+ 	\begin{proof}
+ 	For an abelian variety $X$ the $\Z_l$-module $T_l X$ is free of rank $2\dim X$ and therefore $\Hom_{\Z_l}(T_l X, T_l Y)$ is free of rank $4\dim X \dim Y$. Since $\Z_l$ is a principal ideal domain we can conclude from theorem \ref{thm injec} that $\Z_l \otimes \Hom(X,Y)$ is a free $\Z_l$ module of rank $\le 4 \dim X \dim Y$.  This bounds the rank of the torsion free abelian group $\Hom(X,Y)$ by $4\dim X \dim Y$. 
+ 	\end{proof}
 
  	Given $f\in \End^0_k(X)$ there is a necessarily unique polynomial $P_f \in \Q[x]$ of degree $2d$ such that  $P_f(n)=\deg(n_X-f)$ for all $n\in \mathbb{N}$ by theorem \ref{thm polynomial mapping}. The next theorem justifies that we will refer to $P_f$ as the \textit{characteristic polynomial} of $f$. 
- 	\begin{thm}\label{thm charak poly} For $f \in \End^0(X)$ let $P_{f,l}\in \Q_l[x]$ be the characteristic polynomial of $V_l f  \in \End_{\Q}(V_l X)$. Then $P_{f,l}=P_f$ is independent of $l$ and has integer coefficients whenever $f \in \End(X)$. 
+ 	\begin{thm}\label{thm charak poly} For $f \in \End^0(X)$ let $P_{f,l}\in \Q_l[x]$ be the characteristic polynomial of $V_l f  \in \End_{\Q_l}(V_l X)$. Then $P_{f,l}=P_f$ is independent of $l$ and has integer coefficients whenever $f \in \End(X)$. 
  	\end{thm}
  	\begin{proof} We only give a sketch, whereas a detailed proof can be found in \cite[Chapt. 12]{milne1986abelian} or \cite[thm. 12.8]{van2007abelian}. It can be assumed that $f\in \End(X)$ and, further, using corollary \ref{cor decomposition simple} that $X$ is simple. 
  		
- 		We start with the notation of the proof of theorem \ref{thm polynomial mapping}, $g=\id$ and a chosen ample symmetric divisor $D$. A computation as in the proof of theorem \ref{torsion points of abelian varieties} shows that $D'\sim -2 D$ and we conclude from the last equation in the proof of theorem  \ref{thm polynomial mapping} that $P_f$ has integer coefficients and leading coefficient $1$.
+ 		Set $g=\id$.
+ 		We start with the notation of the proof of theorem \ref{thm polynomial mapping} for a chosen ample symmetric divisor $D$ and interchange the roles of $f$ and $g$. Lemma \ref{lem pullbacks along multiplication} shows that $D'\sim -2 D$ and we conclude from the last equation in the proof of theorem  \ref{thm polynomial mapping} that $P_f$ has integer coefficients and leading coefficient $1$.
  		
  		Let $P_f=\prod_{i=1}^{2g}(x-a_i)$ and let $P_{f,l}=\prod_{i=1}^{2g}(x-b_i)$. Let $F \in \mathbb{Z}[t]$. Using the properties of the determinant it can be proven that $ \det V_l(F(f))=\pm \prod_{i=1}^{2g}F(b_i)$ and similarly using the multiplicativety of the degree it can be shown that $\deg(F(f))=\pm \prod_{i=1}^{2g}F(a_i)$.
  		
@@ -559,7 +566,7 @@ A regular local ring is reduced and therefore $\Pic^0_{C/k}$ is geometrically re
   			  			
   			In the case $g=1$ both  $J$ and $C$ are proper, regular curves and hence $f$ must be an isomorphism. 
   		\end{proof}
-  	\begin{rmk}\label{rmk elliptic curves}[\textit{Elliptic Curves}]
+  	\begin{rmk}[\textit{Elliptic Curves}]\label{rmk elliptic curves}
   		Due to theorem \ref{thm dual abelian} abelian varieties of dimension one have genus one. By the last theorem \ref{thm closed immer}, a nonsingular, proper curves of genus one, which admits a $k$-valued point, is isomorphic to its own Jacobian variety. We conclude that these notions coincide and refer to abelian varieties of dimension one as \textit{elliptic curves}. Let $C$ be an elliptic curve and $Q_1, Q_2 \in C(\overline{k})$. Then we can read from $f$'s action on closed points, that there exists a unique $Q_3 \in C(\overline{k})$ such that $\Li(Q_1 + Q_2-2 P)\cong \Li(Q_3- P)$. Further, $(Q_1, Q_2)\mapsto Q_3$ defines the unique group law on $C$ such that $f$ is a homomorphism of abelian varieties. 
   	\end{rmk}
  	\subsection{Symmetric powers of a curve}
@@ -748,7 +755,7 @@ Consider the Mumford line bundle $\Lambda(\Li(\Theta))=m^*\Li(\Theta) \otimes \p
 Write $\Theta^{-}$ for the pullback of $\Theta$ along $(-1)_J: J\to J$ and $\Theta_a$ for $t_{-a}^*\Theta=\Theta + a $, $a\in J(k)$. 
 
 \begin{rmk}\label{rmmk alter varphi by translation}
-	It is shown in \cite[14.22 and 14.28 (ii)]{van2007abelian}  that $\Theta$, $\Theta^-$ and $\Theta_a$ are numerically equivalent and this implies that $\varphi_{\Li(\Theta)}=\varphi_{\Li(\Theta^-)}=\varphi_{\Li(\Theta_a)}$ for all $a\in J(k)$ by \cite[7.26]]{van2007abelian}.
+	It is shown in \cite[14.22 and 14.28 (ii)]{van2007abelian}  that $\Theta$, $\Theta^-$ and $\Theta_a$ are numerically equivalent and this implies that $\varphi_{\Li(\Theta)}=\varphi_{\Li(\Theta^-)}=\varphi_{\Li(\Theta_a)}$ for all $a\in J(k)$ by \cite[7.26]{van2007abelian}.
 	
 	In particular, by lemma \ref{lem pullbacks along multiplication} the divisors $n^*\Theta $ and $n^2\Theta$ are numerically equivalent for all $n\in \mathbb{Z}$.
 \end{rmk}
@@ -844,7 +851,7 @@ Now b) follows from a) because $(f\times f)^*\Lambda(\Li(\Theta)^{-1})\cong (1_C
 
 $\Theta$ is ample by lemma \ref{the kernel of polar}. By the vanishing theorem for line bundles on abelian varieties from \cite[prop. 9.14]{van2007abelian} we have $H^i(J, \Theta)\neq 0$ only for $i=0$. By the Riemann-Roch theorem for abelian varieties as in \cite[thm. 9.11]{van2007abelian} $\chi(\Li(\Theta))^2=\deg(\varphi_{\Li(\Theta)})=1$ and $(\Theta)^g=g! \cdot \chi(\Li(\Theta))=g!$, so c) follows. 
 \end{proof}
-\subsection{The Rosati involution}
+\subsection{The Rosati involution}\label{sec rosati}
 
 \begin{defn}The \text{ Rosati involution} corresponding to $\varphi_{\Li(\Theta)}$ is defined as the involution on $\End^0(J)$ given by 
 	\[h\mapsto h^\dagger:= \varphi_{\Li(\Theta)}^{-1}\circ h^\vee \circ \varphi_{\Li(\Theta)}=f^\vee \circ h^\vee \circ \varphi_{\Li(\Theta)^{-1}}.\]
@@ -1005,17 +1012,17 @@ Let $J$ be the Jacobian variety of $C$ over $\mathbb{F}_q$. Then the base change
 \begin{thm}[Weil conjectures for curves]\label{thm Weil conjectures for curves} ~\\
 	Let $P$ be the characteristic polynomial of $\text{Fr}\in \End(J_k)$ and $\alpha_1, \dots, \alpha_{2g} \in \mathbb{C}$ its roots. The Weil conjectures for curves state:
 	\begin{enumerate}
-		\item (\textit{Rationality of the zeta function}) \[\exp\left( \sum_{n=1}^\infty \# C(\mathbb{F}_{q_n}) \frac{x^n}{n}\right) =\frac{P(x)}{(1-x)(1-qx)}\]
-		and $P$ is an integer polynomial, i.e. $P \in \mathbb{Z}[x]$. 
+		\item (\textit{Rationality of the zeta function}) \[\exp\left( \sum_{n=1}^\infty \# C(\mathbb{F}_{q_n}) \frac{x^n}{n}\right) =\frac{\prod_{i=1}^{2g}(1-\alpha_ix)}{(1-x)(1-qx)}\]
+		and $\prod_{i=1}^{2g}(1-\alpha_i x)=x^{2g}P(\frac{1}{x})\in \mathbb{Z}[x]$. 
 		\item (\textit{Riemann hypothesis}) $\abs{\alpha_i}=q^{\frac{1}{2}}$ for all $i=1,\dots, 2g$.
 		\item (\textit{Hesse-Weil bound}) 
 		\[\# C(\mathbb{F}_{q^n})=1-\sum_{i=1}^{2g}\alpha_i^n + q^n\]
 		and in particular $\abs{\#C(\mathbb{F}_{q^n})-(q^{n}+1)}\le 2 g q^{\frac{n}{2}}$.
 	\end{enumerate} 
-	Moreover, for $\Pic^0(C)$ the group of isomorphism classes of degree zero line bundles on $C$
-	\begin{align} \#\Pic^0(C\times_{\mathbb{F}_q} \mathbb{F}_{q^n})= \prod_{i=1}^{2g}(1-\alpha_i^n) \label{eq1}
+	Moreover, whenever $C$ has an $\mathbb{F}_{q^n}$ valued point
+	\begin{align} \#\Pic^0(C_{\mathbb{F}_{q^n}})= \prod_{i=1}^{2g}(1-\alpha_i^n), \label{eq1}
 	\end{align}
-whenever $C$ has an $\mathbb{F}_{q^n}$ valued point. 
+where $\Pic^0(C_{\mathbb{F}_{q^n}})$ denotes the group of isomorphism classes of degree zero line bundles on the curve  $C_{\mathbb{F}_{q^n}}:=C\times_{\mathbb{F}_q} \mathbb{F}_{q^n}$ over $\mathbb{F}_{q^n}$.
 \end{thm}
 \begin{proof} Let $F_k: \Spec(k)\to\Spec(k)$ denote the absolute Frobenius of $k$. 
 	
@@ -1029,13 +1036,13 @@ whenever $C$ has an $\mathbb{F}_{q^n}$ valued point.
 	\begin{align}\Delta_C.\Gamma_{F_{C,k}^n}=1-\sum_{i=1}^{2g}\alpha_i^{n}+q^n. \label{eq intersection frobenius diagonal}
 	\end{align}
 	$\# C(\mathbb{F}_{q^n})=\Delta_C.\Gamma_{F_{C,k}^n}$. For the $k$-variety $C_k$ we have a bijection between the $k$-valued points of $C_k$ and the $k$-valued points of the $\mathbb{F}_q$ variety $C$ given by
-	\[C_k(k)\to C(k),\; (x: k \to C_k)\mapsto (k\xrightarrow{x}C_k \xrightarrow{\pr_C}. C) \]
+	\begin{align}C_k(k)\to C(k),\; (x: k \to C_k)\mapsto (k\xrightarrow{x}C_k \xrightarrow{\pr_C}. C) \label{eq bijection}\end{align}
 	\begin{enumerate}[a)]
 	\item $C(k)$ has an action given by pre-composition with $F_k$. 
 	
 	\item $C_k(k)$ has an action given by post-composition with $F_{C,k}$. 
 \end{enumerate}
-\textbf{Claim 2}:	The bijection above identifies both actions: Let $x\in C_k(k)$. Then $\pr_C\circ F_{C,k} \circ x=F_C \circ \pr_C \circ x=F_S\circ \pr_C \circ x$, where we used the naturality of the absolute Frobenius in the last equation.
+\textbf{Claim 2}:	The bijection in (\ref{eq bijection}) identifies both actions a) and b):\\ Let $x\in C_k(k)$. Then $\pr_C\circ F_{C,k} \circ x=F_C \circ \pr_C \circ x=F_S\circ \pr_C \circ x$, where we used the naturality of the absolute Frobenius in the last equation.
 	
 	Let $C(k)^{F_k^n}$ denote the elements of $C(k)$ fixed by pre-composition with $F_k^n$. \\
 	\textbf{Claim 3: } $C(\mathbb{F}_{q^n})\to C(k)^{F_k^n}, (x: \Spec(\mathbb{F}_{q^n})\to C)\mapsto (\Spec(k)\to \Spec(\mathbb{F}_{q^n})\xrightarrow{x}C )$ is a bijection.
@@ -1052,7 +1059,88 @@ whenever $C$ has an $\mathbb{F}_{q^n}$ valued point.
 	For b) observe that for $x\in C_k(k)$ we have $(\dd F_{C,k})_x =0$, because $q^n=0$ in $k$. This can be proven very explicitly by using an étale morphisms as in the proof of claim 1. Then  $(\dd F_{C,k})_x =0$ follows because the endomorphism of $\mathbb{A}_{F_q}$ that fixes the coefficients and raises the coordinates to their $q^n$ power induces the zero map on tangent spaces. 
 	
 	All in all, we can apply proposition \ref{prop fixed points and intersection} to obtain
-	\[\#C(\mathbb{F}_{q^n})\overset{(\ref{eq fixed points froben})}{=}\#\{x \in C_k(k): F_{C,k}^n(x)=x\}=\Delta_C.\Gamma_{F_{C,k}^n}\overset{(\ref{eq intersection frobenius diagonal})}{=}1-\sum_{i=1}^{2g}\alpha_i^n + q^n.\]  
+	\begin{align}\#C(\mathbb{F}_{q^n})\overset{(\ref{eq fixed points froben})}{=}\#\{x \in C_k(k): F_{C,k}^n(x)=x\}=\Delta_C.\Gamma_{F_{C,k}^n}\overset{(\ref{eq intersection frobenius diagonal})}{=}1-\sum_{i=1}^{2g}\alpha_i^n + q^n. \label{eq points of C in proof}
+	\end{align}  
+	For showing the Riemann hypothesis for the curve $C$ we proceed to  proof the following statement.\\
+	\textbf{Claim 4:} $\text{Fr}^\dagger \circ \text{Fr}=q_J$, or in other words $  \text{Fr}^\vee \circ \varphi_{\Li(\Theta)}\circ \text{Fr} =q_J\cdot \varphi_{\Li(\Theta)}$. 
+	
+	Given $P\in J$ and let $g$ be a local equation cutting out  $\Theta$ on the neighborhood $U$ of $P$. Note that, since $\Theta$ can be defined over $\mathbb{F}_q$, we have $\text{Fr}_U^\#(g)= g^{q}$ and this is a local equation cutting out $\text{Fr}^*\Li(\Theta)$ at $P$. But $\text{div}(g^q)=q\cdot \text{div}(g)$ and thus $\text{Fr}^*\Li(\Theta)\cong \Li(q\Theta)\cong \Li(\Theta)^{q}$. 
+	
+	Now given a $k$-valued point $x\in J_k(k)$ we can compute via equation (\ref{eq dual map on points}) and (\ref{eq square}) that $\text{Fr}^\vee \circ \varphi_{\Li(\Theta)}\circ \text{Fr}(x)$ is represented by the line bundle 
+	\begin{align*}
+		\text{Fr}^*(t_{\text{Fr}(x)}^*\Li(\Theta)\otimes \Li^{-1}(\Theta))\cong t^*_x \text{Fr}^*\Li(\Theta)\otimes (\text{Fr}^*\Li(\Theta))^{-1}\cong t_x^*\Li(\Theta)^q\otimes (\Li(\Theta)^q)^{-1}=\varphi_{\Li(\Theta)^{q}}(x)
+	\end{align*}
+But $\varphi_{\Li(\Theta)^{q}}=q\varphi_{\Li(\Theta)}$ because $\Li'\mapsto \varphi_{\Li'}$ is a homomorphism, see equation (\ref{eq varphi}). So, $  \text{Fr}^\vee \circ \varphi_{\Li(\Theta)}\circ \text{Fr} $ and $q_J\cdot \varphi_{\Li(\Theta)}$ agree on $k$-valued points. Since $k$ is algebraically closed, claim 4 follows.\\
+\textbf{Claim 5:} Every complex root $\alpha$ of $P$ has absolute value $\abs{\alpha}=\sqrt{q}$.
+
+Note that $\mathbb{Q}[\text{Fr}]\subseteq \End^0(J_k)$ is a commutative ring. 
+Further $\End^0(J_k)$ is finite dimensional as $\mathbb{Q}$-vector space by corollary \ref{cor bound dimension homo} and therefore $\mathbb{Q}[\text{Fr}]$ is a finite commutative $\mathbb{Q}$-algebra. 
+ 
+By the relation $\text{Fr}^{-1}=\text{Fr}^\dagger/q$ from claim 4 we see that $\text{Fr}$ is not a zero divisor in $\End(J_k)^0$. Hence the $\mathbb{Q}$ linear endomorphism of $\mathbb{Q}[\text{Fr}]$ given by multiplication by $\text{Fr}$ is injective. Because $\mathbb{Q}[\text{Fr}]$ is finite dimensional the endomorphism is also surjective and therefore $\Fr^{-1}\in \mathbb{Q}[\text{Fr}]$. Again by the relation in claim 4 we obtain $\text{Fr}^\dagger\in \mathbb{Q}[\Fr]$. So, by the properties of the Rosati involution from section \ref{sec rosati} $(\cdot )^\dagger: \mathbb{Q}[\text{Fr}]\to \End^0(J_k)$ maps into $\mathbb{Q}[\text{Fr}]$. 
+
+Let $0\neq a \in \Q[\Fr]$. Then $b:=a^\dagger \cdot a$. By the positivity of the Rosati involution \ref{cor Positiviy of the Rosati involutionn} $\tr(b)=\tr(a^\dagger \cdot a)>0$. So, $b\neq 0$. As $b^\dagger = b$ also $\tr(b^2)=\tr(b^\dagger b)>0$ by the positivity of the Rosati involution \ref{cor Positiviy of the Rosati involutionn} and hence $b^2\neq 0$. Similarly, $b^4\neq 0$ and by induction $b^{2n}\neq 0 $. Hence $b$ is not nilpotent. Because $\Q[\Fr]$ is commutative, if $a$ was nilpotent, then also $b$ would be nilpotent. We conclude that $\Q[\Fr]$ is reduced. 
+
+Since $\Q[\Fr]$ is a finite commutative  $\mathbb{Q}$-algebra, i.e. Artinian, it has a finite number of prime ideals $\m_1, \dots, \m_j$ each of which is maximal. Since $\mathbb{Q}[\Fr]$ is reduced, we see that $\bigcap_{i=1}^{j}\m_i=0$. So, by the chinese reminder theorem $\mathbb{Q}[\Fr]\cong \prod_{i=1}^j K_i$ for $K_i:= \mathbb{Q}[\Fr]/\m_i$ a field. Any automorphism $\tau$ of $\Q[\Fr]$ maps a maximal ideal to a maximal ideal, i.e. there is a permutation $\sigma \in S_j$, for $S_j$ the symmetric group in $j$-letters, and  isomorphisms $\tau_i: K_i \to K_{\sigma(i)}$ such that $\tau(a_1,\dots, a_j)=(b_1, \dots, b_j)$ for $b_{\sigma(i)}=\tau_i(a_i)$ and $a_i, b_i \in K_i$. The Rosati involution is an automorphism of $\mathbb{Q}[\Fr]$ as we have seen that it restricts to a map  $\mathbb{Q}[\Fr]\to \mathbb{Q}[\Fr]$ is linear and its own inverse. Further, $(\cdot)^\dagger$ is multiplicative because $\mathbb{Q}[\Fr]$ is commutative. For $\tau=\dagger$ the permutation $\sigma$ from above must be trivial: Else, for $\sigma(i)\neq i$ and $a:=(0,\dots, 0,1,0 \dots 0)\in \mathbb{Q}[\Fr]$, $1$ in the $i$-th spot, $\tr(\alpha^\dagger \cdot \alpha)=0$, which contradicts corollary \ref{cor Positiviy of the Rosati involutionn}. 
+
+Hence $\dagger$ preserves the factors of $\mathbb{Q}[\Fr]$ and is a positive-definite involution on each
+of them. The involution extends by linearity (equivalently by continuity) to a positive-definite involution of $\mathbb{Q}[\Fr]\otimes \mathbb{R}$, i.e. $(\cdot )^\dagger: \mathbb{Q}[\Fr]\otimes \mathbb{R} \to \mathbb{Q}[\Fr]\otimes \mathbb{R}$ is an $\mathbb{R}$-automorphism that is its own inverse and there exists $\tr: \mathbb{Q}[\Fr]\otimes \mathbb{R}\to \mathbb{R}$, which is $\mathbb{R}$-linear such that $\tr(a^\dagger \circ a)>0$ for all $a\in \mathbb{Q}[\Fr]\otimes \mathbb{R}$.
+
+The above remarks also apply to $\mathbb{Q}[\Fr]\otimes \mathbb{R}$: it is a finite $\mathbb{R}$ algebra and a product of
+fields, where $\dagger: \mathbb{Q}[\Fr]\otimes \mathbb{R} \to \mathbb{Q}[\Fr]\otimes \mathbb{R} $ is a positive-definite involution that preserves each factor of $\mathbb{Q}[\Fr]\otimes \mathbb{R}$.
+
+Since any finite field extension of $\mathbb{R}$ is either $\mathbb{R}$ itself or isomorphic to $\mathbb{C}$, each factor of $\mathbb{Q}[\Fr]\otimes \mathbb{R}$ is either $\mathbb{R}$ or $\mathbb{C}$.
+
+The field $\mathbb{R}$ has no nontrivial automorphisms at
+all, and so $(\cdot)^\dagger$ must act on a real factor of $\mathbb{Q}[\Fr]\otimes \mathbb{R}$ as the identity map. 
+
+The field $\mathbb{C}$ has only
+two automorphisms of finite order: the identity map and complex conjugation.
+The identity on $\mathbb{C}$ is not positive definite, else $0<\tr( i \cdot i)=\tr(-1)=-1\tr(1)$, which contradicts that $\tr(1)=\tr(1\cdot 1)>0$. Hence, $(\cdot)^\dagger$ must act on the complex factors as conjugation. 
+
+Now given any homomorphism of commutative $\mathbb{Q}$-algebras $\rho:\Q[\Fr]\to \mathbb{C}$. \\Then $\rho\otimes 1:\Q[\Fr]\otimes \mathbb{R}\to \mathbb{C}\otimes_\mathbb{Q}\mathbb{R}$ is $\mathbb{R}$ linear, so for any $a\in \Q[\Fr]$
+\begin{align*}
+	\rho(a^\dagger)\otimes 1&=(\rho\otimes 1)(a^\dagger \otimes 1)=(\rho\otimes 1)((a\otimes 1)^\dagger) =(\rho\otimes 1)(\overline{a\otimes 1})\\&=\overline{(\rho\otimes 1)(a\otimes 1)}=\overline{\rho(a)\otimes 1}=\overline{\rho(a)}\otimes 1
+\end{align*}
+where $\overline{a\otimes 1}$ denote complex conjugation in every coordinate of $a\otimes 1=(a_1,\dots, a_j)\in \Q[\Fr]\otimes \mathbb{R}$. \\So , by flatness of the $\mathbb{Q}$ module $\mathbb{Q}[\Fr]$ we have $\rho(a^\dagger)=\overline{\rho(a)}$. 
+
+Let $\mu\in \mathbb{Q}[x]$ be the unique polynomial with leading coefficient $1$ that generators the kernel of $\mathbb{Q}[x]\to \mathbb{Q}[\Fr], x\mapsto \Fr$. Then the map $ \Q[x]/(\mu) \to \mathbb{Q}[\Fr], x+(\mu)\mapsto \Fr$ is an isomorpism.
+
+Let $\alpha\in \mathbb{C}$ be a root of $\mu$. The ring-homomorphism $\psi:\Q[x]\to \mathbb{C}, \;f\mapsto f(\alpha)$  factors as $\mathbb{Q}[x]\to \mathbb{Q}[x]/(\mu) \xrightarrow{x+(\mu)\mapsto \alpha }\mathbb{C}$. So, we obtain a ring-homomorphism $\rho: \mathbb{Q}[\Fr]\to \mathbb{C}$ sending $\Fr$ to $\alpha$. 
+This yields  $\abs{\alpha}^2=\overline{\alpha}\cdot \alpha= 
+\overline{\rho(\Fr)}\rho(\Fr)=
+\rho(\Fr^\dagger)\rho(\Fr)= \rho(\Fr^\dagger \circ \Fr) \overset{\text{ Claim 4}}{=}\rho(q)=q$. 
+
+Now let $l$ be a prime $l\neq \text{char}(k)$. Then the minimal polynomial $\Tilde{\mu}$ of $V_l(\Fr)\in \End_\mathbb{Q}(V_l(J_k))$ divides $\mu$, because $\mu(V_l(\Fr)))\overset{(\ref{eq vl is algebra homo})}{=}V_l(\mu(\Fr)))=V_l(0)=0$. Hence, all roots of $\Tilde{\mu}$ are roots of $\mu$ and therefore have absolute value $\sqrt{q}$. But the characteristic polynomial of $V_l(\Fr)$ has the same roots as $\Tilde{\mu}$, so claim 5 follows by theorem \ref{thm charak poly}.
+
+Equation (\ref{eq points of C in proof}) in conjunction with the Riemann hypothesis give the Hesse-Weil bound:
+\begin{align*}
+	\abs{\#C(\mathbb{F}_{q^n}-(q^n+1))}=\abs{\sum_{i=1}^{2g}\alpha_i^n}\le \sum_{i=1}^{2g}\abs{\alpha_i}^n=2g(\sqrt{q})^n.
+\end{align*}
+
+The identity $\ln(1-t)=-\sum_{n=1}^\infty \frac{t^n}{n}$ implies that 
+\begin{align*}
+	\ln(\frac{\prod_{i=1}^{2g}(1-\alpha_ix)}{(1-x)(1-qx)})&=-\ln(1-x)+\sum_{i=1}^{2g} \ln(1-x\alpha_i)-\ln(1-qx)\\&=\sum_{n=1}^\infty\left( \frac{x^n}{n}\right)-\sum_{i=1}^{2g}\left(\sum_{n=1}^\infty \frac{x^n\alpha_i^n}{n}\right)+\sum_{n=1}^\infty \left( \frac{(qx)^n}{n}\right)\\&=\sum_{n=1}^\infty \left(\left(1-\sum_{i=1}^{2g}\alpha_i^n+q^n\right)\frac{x^n}{n}\right)=\sum_{n=1}^{\infty}\left(\#C(\mathbb{F}_{q^n})\frac{x^n}{n}\right),
+\end{align*}
+where we used equation (\ref{eq points of C in proof}) for the last equality. This proves the rationality of the zeta function. Moreover, $\prod_{i=1}^{2g}(1-\alpha_ix)=x^{2g}\prod_{i=1}^{2g}(\frac{1}{x}-\alpha_i)=x^{2g}P(\frac{1}{x})$ has integer coefficients, because $P\in\mathbb{Z}[x]$  by theorem \ref{thm charak poly}. 
+
+\textbf{Claim 6:} The map $1-\Fr^n:J_k\to J_k$ is an étale morphism. Since $k$ is algebraically closed it suffices to proof that $1-\Fr^n$ induces an isomorphism on tangent spaces for all $k$-valued points. But we have already seen that $\Fr^n$ induces the zero map on tangent spaces, hence $1-\Fr^n$ is the identity on tangent spaces and claim 6 follows. 
+
+In particular, $1-\Fr^n$ is an isogeny by theorem \ref{thm isogenies} and by equation (\ref{eq3})  $h^0(\ker(1-\Fr^n), \Om_{\ker(1-\Fr^n)})=\deg(1- \Fr^n)$. Now by claim 6 the fiber $\ker(1-\Fr^n)$ is reduced and finite over the algebraically closed field $k$, so $\#\ker(1-\Fr^n)(k)=h^0(\ker(1-\Fr^n), \Om_{\ker(1-\Fr^n)})$. All in all, we obtain
+\begin{align*}
+ \#\{x\in J_k(k): \Fr^n(x)=x\}= \#\ker(1-\Fr^n)(k)=h^0(\ker(1-\Fr^n), \Om_{\ker(1-\Fr^n)})=\deg(1- \Fr^n).
+\end{align*}
+Note that claim 2 and claim 3 can be analogously be proven for the absolute Frobenius $F_J:J\to J$ and its base change $\Fr=F_J\times 1_k:J_k=J\times_{\mathbb{F}_q}k\to J_k$.
+So, applying equation (\ref{eq fixed points froben}) to the variety $J_k=J\times_{\mathbb{F}_{q}}k$ shows that $\# J(\mathbb{F}_{q^n})=\#\{x\in J_k(k): \Fr^n(x)=x\}$.
+
+Now $\# J(\mathbb{F}_{q^n})=\# J_{\mathbb{F}_{q^n}}(\mathbb{F}_{q^n})$ and the latter equals $\# \Pic^0(C_{\mathbb{F}_{q^n}})$ whenever $C_{\mathbb{F}_{q^n}}$ has an $\mathbb{F}_{q^n}$-valued point by equation (\ref{eq 9}) and the discussion in section \ref{sec induced map} b) because $J_{\mathbb{F}_{q^n}}=J\times_{\mathbb{F}_q}\mathbb{F}_{q^n}$ is the Jacobian variety of the curve $C_{\mathbb{F}_{q^n}}$ over $\mathbb{F}_{q^n}$. 
+
+Let $P_{\Fr^n}$ be the characteristic polynomial of $\Fr^n$. By theorem \ref{thm charak poly} the roots of $P_{\Fr^n}$ are $\alpha_1^n, \dots, \alpha_{2g}^n$. Further, by definition  of  $P_{\Fr^n}$ we have $P_{\Fr^n}(1)=\deg(1-\Fr^n)$.
+
+All in all, for $n$ big enough, i.e. such that $C(\mathbb{F}_{q^n})\neq \emptyset$, 
+\begin{align*}
+	\# \Pic^0(C_{\mathbb{F}_{q^n}})=\# J_{\mathbb{F}_{q^n}}(\mathbb{F}_{q^n})=\#\{x\in J_k(k): \Fr^n(x)=x\}=\deg(1-\Fr^n)=P_{\Fr^n}(1)=\prod_{i=1}^{2g}(1-\alpha_i^n).
+\end{align*} 
+This prove equation (\ref{eq1}) and therefore completes the proof.
 \end{proof}
 \begin{exm}[Elliptic Curves]
 	Suppose the genus of $C$ is equal to one. Then the Hesse-Weil bound gives us that $\# C(\mathbb{F}_q)=1-(\alpha_1+\alpha_2)+q$ and by the Riemann-Hypothesis $\abs{\alpha_1+\alpha_2}\le 2 \sqrt{q}$. Therefore, $\# C(\mathbb{F}_q)\ge 1-2\sqrt{q}+q=(\sqrt{q}-1)^2$. Hence $C$ will admit an $\mathbb{F}_q$ valued point, i.e. $C$ is an elliptic curve, see remark \ref{rmk elliptic curves}.

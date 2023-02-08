@@ -5,11 +5,11 @@
 \contentsline {subsubsection}{\numberline {1.1.2}The dual abelian variety}{7}{subsubsection.1.1.2}%
 \contentsline {subsection}{\numberline {1.2}Endomorphisms of abelian varieties}{8}{subsection.1.2}%
 \contentsline {section}{\numberline {2}The Jacobian variety}{11}{section.2}%
-\contentsline {subsection}{\numberline {2.1}The canonical map from $C$ to its Jacobian}{11}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}The canonical map from $C$ to its Jacobian}{12}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Symmetric powers of a curve}{13}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}The Jacobian as Albanese variety}{17}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Autoduality}{17}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.4}Autoduality}{18}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}The Rosati involution}{20}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}The Lefschetz trace formula and positivity of the Rosati involution}{20}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.6}The Lefschetz trace formula and positivity of the Rosati involution}{21}{subsection.2.6}%
 \contentsline {subsection}{\numberline {2.7}The map induced on the Jacobian by an endomorphism of $C$}{22}{subsection.2.7}%
-\contentsline {section}{\numberline {3}The Weil conjectures for curves}{23}{section.3}%
+\contentsline {section}{\numberline {3}The Weil conjectures for curves}{24}{section.3}%
