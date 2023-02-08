@@ -15,11 +15,10 @@
 \usepackage{hyperref}
 
 
-\title{The Weil conjecture for curves via the Jacobian variety}
+\title{The Weil conjecture for curves via Jacobian varieties}
 
-\author{Fabio Neugebauer}
+\author{Kai Fabio Neugebauer}
 
-\date{\today}
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
@@ -63,6 +62,16 @@
 \usepackage{physics}
 \begin{document}
 	\maketitle
+	\begin{tabular}{ll}
+		Aufgabensteller: & Prof. Dr. Christian Liedtke\\
+		Betreuer:  & Marius Kjærsgaard \\ 
+		Abgabetermin: & 09.02.2023
+	\end{tabular}
+	\begin{abstract}
+		The most straightforward way to prove the Weil conjectures for a curve $C$ over a finite field $k$ is via intersection theory on the surface $C\times C$ as in \cite[V Exerc. 1.10]{hartshorne2013algebraic}. We present a different approach, which is historically in the spirit of Weil's original proof. The idea is to associate to $C$ an abelian variety $J$, called the Jacobian of $C$. To obtain the Weil conjectures we relate the fixed points of the Frobenius endomorphism of $C$ to the trace of the induced endomorphism of $J$.
+		
+		In the following we will develop the theory of Abelian and Jacobian varieties enabling us in the end to prove the Weil conjectures for curves.  
+	\end{abstract}
 	\tableofcontents
 	
 	\section{Abelian varieties}
@@ -72,10 +81,10 @@
 	
 	Since we assume the variety $X$ to be geometrically integral its smooth locus is nonempty and therefore the set of closed points in $X$ with residue field a separable algebraic field extension of $k$ is dense in $X$ (see details at \cite[\href{https://stacks.math.columbia.edu/tag/04QM}{Tag 04QM}]{stacks-project}).
 	
-	We will use the notations $\Om_X(D)=\Om(D)$ for the sheaf associated to an effective Cartier divisor $D$ on $X$, i.e. $\Om(D)=I_D^{-1}$. $\Li_{X}(D)=\Li(D)$ to will denote the sheaf associated to a Weil-Divisor $D$ on $X$. 
+	We will use the notations $\Om_X(D)=\Om(D)$ for the sheaf associated to an effective Cartier divisor $D$ on $X$, i.e. $\Om(D)=I_D^{-1}$. $\Li_{X}(D)=\Li(D)$ will denote the invertible sheaf associated to a Weil-Divisor $D$ on $X$. 
 	
-	The following Lemma is due to Mumford. 
-	\begin{lem}[Rigidity Lemma]\label{Rigidity Lemma}
+	The following lemma is due to Mumford. 
+	\begin{lem}[Rigidity lemma]\label{Rigidity Lemma}
 		Let $X, Y$ and $Z$ be varieties. Suppose that $X$ is proper. If $f: X \times Y \to Z$ is a morphism with the property that, for some $y \in Y (k)$, the fibre
 		$X \times \{y\}$ is mapped to a point $z \in Z(k)$ then $f$ factors through the projection $\pr_Y : X \times  Y \to Y$.
 	\end{lem}
@@ -85,13 +94,13 @@
 		
 		By the above paragraph we can assume $k=k_s$. Choose a point $x_0 \in X(k)$, and we define $g: Y \to Z$ by $f\circ (x_0, \id_Y)$. The goal is to show $f=g \circ \pr_Y$.  
 		
-		Let $U$ be an affine open neighborhood of $z$. Since $X$ is proper over $k$, the projection $\pr_Y: X\times Y \to Y$ is a closed map,  so that $V:=\pr_Y(f^{-1}(Z\setminus U))$ is closed in $Y$ (set theoretic preimage).  Let $P \notin V$ be a $k$ valued point $Y$. Then $f(X \times \{P\})\subseteq U$ by construction of $V$. 
+		Let $U$ be an affine open neighborhood of $z$. Since $X$ is proper over $k$, the projection $\pr_Y: X\times Y \to Y$ is a closed map,  so that $V:=\pr_Y(f^{-1}(Z\setminus U))$ is closed in $Y$ (set theoretic preimage).  Let $P \notin V$ be a $k$ valued point of $Y$. Then $f(X \times \{P\})\subseteq U$ by construction of $V$. 
 		
 		Every morphism from an irreducible proper variety $X$ to a affine variety is constant: The scheme-theoretic-image of the morphism is a closed subscheme of an affine variety and therefore an affine variety, say $W$. Now $X$ is proper, $X\to W$ is surjective and $W$ is separated of finite type over $k$, hence $W$ is also a proper variety. Using Grothendiecks finiteness result on proper maps the global sections of $W$ form a finite dimensional  $k$-vector space. Hence $W$ is zero-dimensional and by irreducibility $W$ must be a point. 
 		
 		Applying the previous paragraph to $f\vert_{X\times \{P\}}$ (note: $X\cong X\times \{P\}$) we conclude that $f(X\times \{P\})=g(P)$. 		
 		
-		 We have shown that the set of points, where $f=g\circ \pr_Y$ contains $\bigcup_{P\in (X\setminus V)(k)} X\times \{P\}$. Since this set is dense in $X\times Y$ we are done by \cite[Sect. 10.2.A]{vakil2017rising}.
+		 We have shown that the set of points where $f=g\circ \pr_Y$ contains $\bigcup_{P\in (X\setminus V)(k)} X\times \{P\}$. Because $k=k_s$ the latter set is dense in $X\times Y$ and we are done by \cite[Sect. 10.2.A]{vakil2017rising}.
 	\end{proof}
 	Recall that a group variety $(X, m_X, 0=e_X, (-1)_X)$ is called abelian if it is proper. We denote its group operation additive.
 	\begin{cor}\label{cor morphism between abelian varieties factor as homomorphism}
@@ -99,9 +108,9 @@
 		Then $f$ is the composition $f = t_{f(0)}\circ h$ of a homomorphism $h: X \to  Y$ and a translation $t_{f(0)}$
 		by $f(0)$ on $Y$.
 	\end{cor}
-	\begin{proof}Let $y=-f(e_X)$ and let $h=t_y \circ f$. Define $g$ to be the map that one closed  points is given by $g(x,x')=h(x+x')-h(x)-h(x')$. Then 
-		\[g(\{e_X\}\times X)=g(Y\times \{e_X\})=-h(e_X)=\{e_Y\}\]
-	and by the Rigidity Lemma this implies that $g$ factors both through the first and  the
+	\begin{proof}Let $y=-f(e_X)$ and let $h=t_y \circ f$. Define $g: X\times X \to Y$ to be the map that one points is given by $g(x,x')=h(x+x')-h(x)-h(x')$, i.e. $g=m_Y\circ( h\circ m_X, m_Y\circ (((-1)_Y\circ h )\times ((-1)_Y\circ h)))$. Then 
+		\[g(\{e_X\}\times X)=g(X\times \{e_X\})=-h(e_X)=\{e_Y\}\]
+	and by the Rigidity lemma this implies that $g$ factors both through the first and  the
 	second projection $X \times  X \to X$. Hence $g$ equals the constant map with value $e_Y$ and $h$ must be a homomorphism.
 	\end{proof}
 	\begin{rmk}
@@ -127,7 +136,7 @@
 		All nonempty fibers of $f$ have the same dimension:
 		Choose a point $p\in f^{-1}(q)(\overline{k})$. Then $(\ker f)_{\overline{k}} \xrightarrow{t_p \times_{\overline{k}} t_q} f^{-1}(q)_{\overline{k}}$ defines an isomorphism, where $t_p$ is the translation of $X_{\overline{k}}$ by $p$ and $t_q$ is defined by mapping $\{e_y\}_{\overline{k}} \to \{q\}_{\overline{k}}$. 
 		
-		Assume that $f$ is surjective. By \cite[Thm. 11.4.1]{vakil2017rising} there exists a nonempty open subset $U\subseteq Y$ such that that for all $q\in U$ over $q$ has pure dimension $\dim X - \dim Y$. By the above, $\dim \ker f = \dim X - \dim Y$. This proves a)$\implies$ b) $\implies $ c).
+		Assume that $f$ is surjective. By \cite[Thm. 11.4.1]{vakil2017rising} there exists a nonempty open subset $U\subseteq Y$ such that that for all $q\in U$ the fiber over $q$ has pure dimension $\dim X - \dim Y$. By the above, $\dim \ker f = \dim X - \dim Y$. This proves a)$\implies$ b) $\implies $ c).
 		
 		Note this dimension formula always holds if we replace $Y$ by the scheme-theoretic image of $f$. Hence, if $f$ has finite kernel, $\dim X= \dim Y$ implies that the scheme-theoretic image of $f$ equals $Y$. Since $f$ is closed, this proves c)$\implies$ a). 
 		
@@ -137,7 +146,7 @@
 		
 		Now let $f$ be an isogeny. Because finitely generated, flat modules over Noetherian rings are locally free of finite rank, $f_*  \mathcal{O}_X$ is a locally free quasi-coherent $\mathcal{O}_Y$ module of finite rank. Since $Y$ is connected this rank is constant, say $d\in \mathbb{N}$. 
 		
-		For any $q\in Y$ there is an affine open neighborhood $U =\Spec R$ such that $(f_* \Om_X)\vert_U \cong \Om_Y^d \vert_U$. $f$ is finite and therefore affine, so $f^{-1} U = \Spec R'$ for some $R'$. Then $f^\#_U: R \to R'$ makes $R'$ a free $R$ module of rank $d$ and $f^{-1}(q)\cong \Spec(R'\otimes_R k(q))$ proves that \begin{align}
+		For any $q\in Y$ there is an affine open neighborhood $U =\Spec R$ such that $(f_* \Om_X)\vert_U \cong \Om_Y^d \vert_U$. $f$ is finite and therefore affine, so $f^{-1} U = \Spec( R')$ for some ring $R'$. Then $f^\#_U: R \to R'$ makes $R'$ a free $R$ module of rank $d$ and $f^{-1}(q)\cong \Spec(R'\otimes_R k(q))$ proves that \begin{align}
 			\dim_{k(q)} H^0(f^{-1}(q), \mathcal{O}_{f^{-1}(q)})=d. \label{eq4}
 		\end{align}
 		
@@ -158,7 +167,7 @@
 			\end{enumerate}
 		\end{thm}
 		\begin{proof}
-			Both parts of the theorem can be proven as corollaries of the \textit{theorem of the cube}, which is a theorem on proper varieties. References are \cite[Chp. II §1]{van2007abelian} or \cite[Chp. II.6]{Mum74}.
+			Both parts of the theorem can be seen as corollaries of the \textit{theorem of the cube}, which is a theorem on proper varieties. References are \cite[Chp. II §1]{van2007abelian} or \cite[Chp. II.6]{Mum74}.
 		\end{proof}
 		\begin{rmk}\label{rmk abelian varieties are projective}
 			The theorem of the square can be used to prove that all abelian varities are projective. References are for example \cite[thm. 7.1]{milne1986abelian} or \cite[sect. 9.6]{bosch2013algebraic}.
@@ -186,17 +195,19 @@
 		The assertion now follows from induction, by first checking the cases $n=-1,0,1$ by hand.
 		\end{proof}
 		\begin{proof}[Proof of proposition \ref{torsion points of abelian varieties}]
-			 By remark \ref{rmk abelian varieties are projective} there exists a ample line bundle $\mathcal{L}$ on $X$. We can assume $\mathcal{L}$ to be symmetric, i.e. $(-1)^*\mathcal{L}\cong \mathcal{L}$, because when $\mathcal{L}$ is ample then also  $(-1)^*\mathcal{L}\otimes \mathcal{L}$ will be ample by \cite[II Ex. 7.5 (c)]{hartshorne2013algebraic}. By lemma \ref{lem pullbacks along multiplication}  $n_X^*\Li\cong \Li^{n^2}$ is an ample line bundle provided that $n^2>0$. Its pullback along the closed immersion $\iota:X[n]\to X$ will also be an ample line bundle. But $n_X \circ \iota$ factors through the zero map and therefore $\iota^*n_X^* \Li$ is a trivial bundle, which is ample. We proceed to prove that a proper variety admitting a trivial ample line bundle is finite: 
+			 By remark \ref{rmk abelian varieties are projective} there exists a ample line bundle $\mathcal{L}$ on $X$. We can assume $\mathcal{L}$ to be symmetric, i.e. $(-1)^*\mathcal{L}\cong \mathcal{L}$, because when $\mathcal{L}$ is ample then also  $(-1)^*\mathcal{L}\otimes \mathcal{L}$ will be ample by \cite[II Ex. 7.5 (c)]{hartshorne2013algebraic}. By lemma \ref{lem pullbacks along multiplication}  $n_X^*\Li\cong \Li^{n^2}$, so $n_X^*\Li$ is an ample line bundle provided that $n^2>0$. Its pullback $\iota^*\n_X^*\Li$ along the closed immersion $\iota:X[n]\to X$ will also be an ample line bundle. But $n_X \circ \iota$ factors through the zero map and therefore $\iota^*n_X^* \Li$ is trivial.
+			 
+			 We proceed to prove that a proper variety admitting a trivial ample line bundle is finite: 
 			 
 			 By \cite[\href{https://stacks.math.columbia.edu/tag/01QE}{Tag 01QE}]{stacks-project} $X[n]$ is quasi-affine. Hence the canonical map $X[n]\to \Spec(\Gamma(X[n], \Om_{X[n]}))$ is an open immersion. But $X[n]$ is proper over $k$, so this open immersion is moreover proper and therefore a closed immersion. This proves that $X[n]$ is a proper and affine variety, and therefore finite as asserted. By theorem \ref{thm isogenies} c) $n_X$ is an isogeny.
 			 
 			 Let $D$ be an divisor such that $\Li \cong \Li(D)$, then $n_X^*D$ is linearly equivalent to $n^2D$. We now invoke intersection theory on the smooth projective variety $X$ to conlcude
 			 \[n^{2d}(D)^g=(n^2 D)^g=(n_X^* D)^g=\deg(n_X)\cdot (D)^g,\]
-			 where we used \cite[Lem. 8.3]{milne1986abelian} for the last equality. Since $D$ is ample, its self-intersection number is positive, and we can conclude $n^{2d}= \deg(n_X)$.
+			 where we used \cite[Lem. 8.3]{milne1986abelian} for the last equality. Since $D$ is ample, its self-intersection number is positive by the Nakai-Moishezon criterion, and we can conclude $n^{2d}= \deg(n_X)$.
 			 
-			 Now assume $\text{char}(k)\nmid n$. To prove that $n_X$ is étale, we may assume that $k=k_s$. The locus $U$, where $n_X$ is étale, is open in $X$, so, if we prove that its complement doesn't contain any $k$ valued point, we win. A $k$-valued point $P$ is in $U$ provided that the induced map on the tangent space at $P$ is an isomorphism. Since $n_X \circ t_p = t_{nP}\circ n_X$, by the chain rule $d_p n_X \circ d_0 t_p = d_0 t_{np} d_o n_X $. Because translations give isomorphism on the tangent spaces it therefore suffices to prove that $d_0n_X$ is bijective. 
+			 Now assume $\text{char}(k)\nmid n$. To prove that $n_X$ is étale, we may assume that $k=k_s$. The locus $U$, where $n_X$ is étale, is open in $X$, so, if we prove that its complement doesn't contain any $k$ valued point, we win. A $k$-valued point $P$ is in $U$ provided that the induced map on the tangent space at $P$ is an isomorphism. Since $n_X \circ t_p = t_{nP}\circ n_X$, by the chain rule $\dd_p n_X \circ \dd_0 t_p = \dd_0 t_{np}\circ  \dd_0 n_X $. Because translations give isomorphisms on tangent spaces, it  suffices to prove that $\dd_0 n_X$ is bijective to conclude that $n_x$ induces bijections on all tangent spaces, which will then imply that $n_X$ is étale.
 		 	
-		 	Recall that we can identify $T_{(0, 0)}(X\times X)$ with $T_0 X \oplus T_0(X)$, when we set for $f:Y\to X\times X$ that  $d_{y}f=d_y(\pr_1\circ f) \oplus d_y(\pr_2\circ f)$. We claim that for $x, x'\in T_0(X)$ the equality $d_{(0,0)}m(x,x')=x+x'$ holds. Let $a: X\cong \{0\}\times X \to X \times X$ the canonical map. Then \[d_{(0,0)} m \circ (\id_{T_0 X} \oplus 0 )=d_{(0,0)} m \circ d_0 a=d_0(m\circ a)=\id_{T_0 X} \] yields that $d_{(0,0)}m$ restricted to the first factor is the identity. By symmetry and linearity we obtain our claim. Hence, for $f, g:X\to X$ homomorphisms we have  \[d_0(f+g)=d_0(m\circ(f,g))=d_0(m)\circ (d_0(\pr_1\circ (f,g)) \oplus d_0(\pr_1\circ (f,g)))=d_0 f + d_0 g.\]
+		 	Recall that we can identify $T_{(0, 0)}(X\times X)$ with $T_0( X) \oplus T_0(X)$, when we set for $f:Y\to X\times X$ that  $d_{y}f=d_y(\pr_1\circ f) \oplus d_y(\pr_2\circ f)$. We claim that for $x, x'\in T_0(X)$ the equality $d_{(0,0)}m(x,x')=x+x'$ holds. Let $a: X\cong \{0\}\times X \to X \times X$ be the inclusion of the slice $\{0\}\times X$ into $X\times X$. Then \[d_{(0,0)} m \circ (\id_{T_0 X} \oplus 0 )=d_{(0,0)} m \circ d_0 a=d_0(m\circ a)=\id_{T_0 X} \] yields that $d_{(0,0)}m$ restricted to the first factor is the identity. By symmetry and linearity we obtain our claim. Hence, for $f, g:X\to X$ homomorphisms we have  \[d_0(f+g)=d_0(m\circ(f,g))=d_0(m)\circ (d_0(\pr_1\circ (f,g)) \oplus d_0(\pr_1\circ (f,g)))=d_0 f + d_0 g.\]
 		 	So, by induction $d_0 n_X(x)=n x$ for all $x \in T_0 X$, which defines an isomorphism since $n\in k^*$. 
 		 	
 		 	By equation (\ref{eq3}) and $n_X$ being unramified it directly follows that $G:=X[n](k_s)=X[n](k)$ is an abelian group of order $n^{2g}$, which is killed by $n$. Further, for every divisor $d$ of $n$ the subgroup of elements that is killed by $d$ is $X[d](k_s)$ and has order $d^{2g}$. An application of the structure theorem of finitely generated abelian groups shows $X[d](k_s)\cong (\mathbb{Z}/n\mathbb{Z})^{2g}$.
@@ -277,7 +288,7 @@
  		\subsubsection{The case when $X(k)\neq \emptyset$}
  		We assume there is $\varepsilon: k \to X$ a section to $X \to k$. Then for any $k$-scheme $T$ the projection $\pr_T: X\times T \to T$ admits a section $\varepsilon_T: T \cong k\times T \xrightarrow{\varepsilon \times  1} X\times T$. 
  		
- 		Hence $\pr_T^*$ is a section to the pullback along $\varepsilon_T^*: \Pic(X_T)\to \Pic(T)$, 
+ 		Hence $\pr_T^*:\Pic(T)\to \Pic(X_T)$ is a section to the pullback $\varepsilon_T^*: \Pic(X_T)\to \Pic(T)$ along $\varepsilon_T$, 
  		and therefore the maps
  		\begin{align}
  			\ker(\varepsilon_T^*) \hookrightarrow \Pic(X_T) \twoheadrightarrow \Pic(X_T)/\pr_T^*\Pic(T) \label{eq rigidification}
@@ -364,9 +375,9 @@
  			\end{enumerate}
  		\end{lem}
  		\begin{proof} 
- 			Let $T=K(\Li)$ and $x: K(\Li)\to X$ be the inclusion. Then $\Lambda(\Li)\vert_{X \times K(\Li)}=(1\times x)^*\Lambda(\Li)=\varphi_{L}(K(\Li))$, which is trivial by definition of $K(\Li)$. 
+ 			Let $T=K(\Li)$ and $x: K(\Li)\to X$ be the inclusion. Then $\Lambda(\Li)\vert_{X \times K(\Li)}=(1\times x)^*\Lambda(\Li)$ represents $\varphi_\Li\circ x$, which is trivial by definition of $K(\Li)$. 
  			
- 			For (ii) let $\Li$ be an ample line bundle on $X$. Then its pullback $\Li'$ to $K(\Li)$ is ample because $\iota: K(L)\to X$ is a closed immersion. By (i) the bundle $\Lambda(\Li)$ is trivial pulled back to $X\times  K(\Li)$. Pulling this line bundle back to $K(\Li)$ via $(\iota,-1)$ gives that $\Li'^{-1}\times (-1)^* \Li'$ is trivial on $K(\Li)$. This yields a ample and trivial sheaf on the closed subscheme $K(\Li)$ of the proper scheme $X$.
+ 			For (ii) let $\Li$ be an ample line bundle on $X$. Then its pullback $\Li'$ to $K(\Li)$ is ample because $x: K(L)\to X$ is a closed immersion. By (i) the bundle $(1\times x)^*\Lambda(\Li)$ is trivial on $X\times  K(\Li)$. Hence also $(x,(-1))^*(1\times x)^*\Lambda(\Li)\cong \Li'^{-1}\otimes (-1)^* \Li'^{-1}$ is trivial on $K(\Li)$. So, $\Li'\otimes (-1)^*\Li'$ is an ample and trivial sheaf on the closed subscheme $K(\Li)$ of the proper scheme $X$.
  			
  			In the first paragraph of the proof of proposition (\ref{torsion points of abelian varieties}) we showed that if the structure sheaf of a proper scheme over $k$ is ample, then the scheme is finite over $k$.  This proves the first assertion of statement (ii).
  			The converse statement is proposition 2.2 in \cite{van2007abelian}.
@@ -379,7 +390,7 @@
 		
 		It can be shown that for any group variety over a field $\dim H^1(X ,\Om_X) \le \dim X$, see \cite[Cor. 6.15]{van2007abelian} and therefore
 		\[ \dim X \le  \dim \Pic^0_{X/k}\le \dim T_0 ( \Pic^0_{X/k}) \overset{\ref{thm tangent space of Picard Functor}}{=} \dim_k H^1(X, \Om_X)\le \dim X. \]
-		Hence $\Pic_{X/k}$ is an abelian variety by (\ref{thm tangent space of Picard Functor}) and the discussion above (\ref{thm tangent space of Picard Functor}). $\varphi_{\mathcal{L}}$ will be an isogeny by theorem (\ref{thm isogenies}). 
+		Hence $\Pic_{X/k}$ is an abelian variety by (\ref{thm tangent space of Picard Functor}) and the discussion above (\ref{thm tangent space of Picard Functor}). $\varphi_{\mathcal{L}}$ will be an isogeny by theorem (\ref{thm isogenies}) using that its kernel is finite by lemma \ref{the kernel of polar} (ii).
 	\end{proof}
 	Consider two line bundles $\Li, \Li'$ on $X$. If $\Li \cong \Li'$, then $\Lambda(\Li)\cong \Lambda(\Li')$ and therefore $\varphi_{\Li}=\varphi_{\Li'}$. Hence we obtain a morphism 
 	\begin{align} \varphi: \Pic(X)\to \Hom_k(X,X^\vee), \;\Li \mapsto \varphi_{\Li}.\label{eq varphi}
@@ -400,13 +411,13 @@
 	\begin{align}(1\times f^\vee \circ x)^*\Po_X=(1\times x)^*(f\times 1)^*\Po_Y =(f\times 1)^*(1\times x)^*\Po_Y=(f\times 1)^*\Li. \label{eq dual map on points}
 	\end{align} 
 	\subsection{Endomorphisms of abelian varieties}
-	In this chapter $X$ and $Y$ will be abelian varieties over the field $k$, $X$ will have dimension $g$ and $l$ will be ap prime number not equal to $\text{char}(k)$. We give a proof of the Poincaré Splitting Theorem (\ref{thm poincare splitting}). 
+	In this chapter $X$ and $Y$ will be abelian varieties over the field $k$, $X$ will have dimension $g$ and $l$ will be a prime number not equal to $\text{char}(k)$. We give a proof of the Poincaré Splitting Theorem (\ref{thm poincare splitting}). 
 	
 	
 	\begin{proof}
 		Let $\iota: Y \to X$ be the inclusion and $\lambda: X \to X^\vee$ a polarization. 
 		
-		For $K:=\ker( X \xrightarrow{\lambda}X^\vee \xrightarrow{\iota^\vee} Y^\vee)$ define $Z$ to be the connected components of $K$ with its reduced subscheme structure. Then $Z$ is an abelian variety of dimension $ \dim X - \dim Y$. By \cite[Exerc. 11.1]{van2007abelian} $\iota^\vee \circ \lambda \circ \iota$ is a polarization of $Y$. In particular,  $Z\cap Y$ is finite. Now the kernel of the  homomorphism $Y\times Z\to X$ is contained in $(Y \cap Z)\times (Y\cap Z)$ and therefore finite. The proposition follows from theorem (\ref{thm isogenies}) part c).
+		For $K:=\ker( X \xrightarrow{\lambda}X^\vee \xrightarrow{\iota^\vee} Y^\vee)$ define $Z$ to be the connected components of $K$ with its reduced subscheme structure. Then $Z$ is an abelian variety of dimension $ \dim X - \dim Y$. By \cite[Exerc. 11.1]{van2007abelian} $\iota^\vee \circ \lambda \circ \iota$ is a polarization of $Y$. In particular,  $Z\cap Y$ is finite. Now the kernel of the  homomorphism $Y\times Z\to X$ in consideration is contained in $(Y \cap Z)\times (Y\cap Z)$ and therefore finite. The proposition follows from theorem (\ref{thm isogenies}) part c).
 	\end{proof}
 	\begin{cor}\label{cor decomposition simple}There exist  simple abelian varieties $Y_1, \dots, Y_n$, non two of which are $k$-isogenous, and there are positive integers $m_1, \dots, m_n$ such that $X$ is isogenous to $Y_1^{m_1}\times Y_2^{m_2} \times \dots \times Y_n^{m_n}$. 
 	The factors are unique up to $k$-isogeny and permutation. 
@@ -425,10 +436,10 @@
 	\end{defn}
 	It follows from theorem (\ref{thm isogenies}) that $T_l X$ is (non-canonically) isomorphic to $\mathbb{Z}_l^{2g}$ and we introduce the $2g$ dimensional $\mathbb{Q}_l$ vector space $V_l(X) := T_l(X)\otimes_{\mathbb{Z}_l} \mathbb{Q}_l =T_l (X)\otimes_{\mathbb{Z}_l} (\mathbb{Z}_l\otimes_{\mathbb{Z}} \mathbb{Q})= T_l(X)\otimes_{\mathbb{Z}} \mathbb{Q}  $. 
 	
-	A homomorphism of abelian varieties $f: X \to Y$ induces a homomorphism $T_l f : T_l X \to T_l Y$. It sends a point $(0, x_1, x_2, \dots )\in T_l X$ to $(0, f(x_1), f(x_2), \dots)\in T_l Y$. It follows from the definition that this is functorial. In particular, $\End_k(X)\to \End_{\mathbb{Z}_l}(T_l X), fm \mapsto T_l f$, as well as, \begin{align}V_l: \End_k(X)\otimes_{\Z} \mathbb{Q} \to \End_{\mathbb{Q}_l}(V_l X), f\otimes c\mapsto c\cdot(T_l(f)\otimes_{\Z_l}\id_{\Q_l})\label{eq vl is algebra homo} 
+	A homomorphism of abelian varieties $f: X \to Y$ induces a homomorphism $T_l f : T_l X \to T_l Y$. It sends a point $(0, x_1, x_2, \dots )\in T_l X$ to $(0, f(x_1), f(x_2), \dots)\in T_l Y$. It follows from the definition that this is functorial. In particular, $\End_k(X)\to \End_{\mathbb{Z}_l}(T_l X), f \mapsto T_l f$, as well as, \begin{align}V_l: \End_k(X)\otimes_{\Z} \mathbb{Q} \to \End_{\mathbb{Q}_l}(V_l X), f\otimes c\mapsto c\cdot(T_l(f)\otimes_{\Z_l}\id_{\Q_l})\label{eq vl is algebra homo} 
 	\end{align} are algebra homomorphisms. 
 	\begin{rmk}\label{rmk tate as hom}
-	$\mathbb{Q}_l/\mathbb{Z}_l$ is the union of its subgroups $l^{-n}\mathbb{Z}_l/\mathbb{Z}_l$, which we identify with $\mathbb{Z}/l^n \mathbb{Z}$. Therefore as rings $\mathbb{Q}_l/\mathbb{Z}_l =\colim \mathbb{Z}/l^n \mathbb{Z}$, where the colimit is taken over the homomorphisms $\mathbb{Z}/l^n \mathbb{Z} \hookrightarrow \mathbb{Z}/l^{n+1}\mathbb{Z}$ given by $(1 \mod l^n) \mapsto (l \mod l^{n+1})$ and we see that $T_l X = \Hom(\mathbb{Q}_l/\mathbb{Z}_l, X(k_s))$. Using this characterization of the Tate module and the long exact sequence of $\text{Ext}_\mathbb{Z}(\mathbb{Q}_l/\mathbb{Z}_l, \cdot )$ modules it can be shown that for any isogeny $f: X \to Y$ the induced map $T_l f: T_l X \to T_l Y$ is injective with cokernel isomorphic to the $l$-Sylow group of $(\ker f)(k_s)$ and further that $V_l f: V_l X \to V_l Y$ is an isomorphism, see \cite[Cor. 10.7]{van2007abelian}.  
+	$\mathbb{Q}_l/\mathbb{Z}_l$ is the union of its subgroups $l^{-n}\mathbb{Z}_l/\mathbb{Z}_l$, which we identify with $\mathbb{Z}/l^n \mathbb{Z}$. Therefore as rings $\mathbb{Q}_l/\mathbb{Z}_l =\colim (\mathbb{Z}/l^n \mathbb{Z})$, where the colimit is taken over the homomorphisms $\mathbb{Z}/l^n \mathbb{Z} \hookrightarrow \mathbb{Z}/l^{n+1}\mathbb{Z}$ given by $(1 \mod l^n) \mapsto (l \mod l^{n+1})$ and we see that $T_l X = \Hom(\mathbb{Q}_l/\mathbb{Z}_l, X(k_s))$. Using this characterization of the Tate module and the long exact sequence of $\text{Ext}_\mathbb{Z}(\mathbb{Q}_l/\mathbb{Z}_l, \cdot )$ modules it can be shown that for any isogeny $f: X \to Y$ the induced map $T_l f: T_l X \to T_l Y$ is injective with cokernel isomorphic to the $l$-Sylow group of $(\ker f)(k_s)$ and further that $V_l f: V_l X \to V_l Y$ is an isomorphism, see \cite[Cor. 10.7]{van2007abelian}.  
 	\end{rmk}
 	\begin{lem}\label{lem divisble}Let $f:X\to Y$ be a homomorphism. If $T_lf \in \Hom_{\Z_l}(T_lX,T_lY)$ is divisible by $l^n$ then $f$ is divible by $l^n$ in $\Hom(X,Y)$.
 	\end{lem}
@@ -489,7 +500,7 @@
  	\end{proof}
  	\noindent We define the trace of $f\in \End^0(X)$ via the following equation $P_f(x)=x^{2g}-\tr(f)x^{2g-1}+\dots + \deg(f)$. 
  	\section{The Jacobian variety}
- 	In this section $C$ shall be a non-singular proper curve of genus $g$ over a field $k$.
+ 	In this section $C$ shall be a non-singular proper curve of genus $g$ over a field $k$. Curves are assumed to be geometrically integral one-dimensional schemes of finite type and separated over $k$. 
  	
  	\begin{prop}\label{prop Jacobian is smooth}$\Pic_{C/k}$ is smooth over $k$.
  	 \end{prop}
