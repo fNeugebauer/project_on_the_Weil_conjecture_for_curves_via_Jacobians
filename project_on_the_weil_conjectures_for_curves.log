@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.14)  9 FEB 2023 13:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.14)  9 FEB 2023 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -855,19 +855,19 @@ Package hyperref Info: Link coloring OFF on input line 63.
 \@outlinefile=\write4
 \openout4 = `project_on_the_weil_conjectures_for_curves.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
 
 
 (C:\Users\fabio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
 
 
 (C:\Users\fabio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 65
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 69
 .
 
 (C:\Users\fabio\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
@@ -880,14 +880,14 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
  [1
 
 {C:/Users/fabio/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 197
+LaTeX Font Info:    Trying to load font information for U+euf on input line 199
 .
 
 (C:\Users\fabio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
 [4] [5]
-Overfull \hbox (11.09703pt too wide) in paragraph at lines 285--286
+Overfull \hbox (11.09703pt too wide) in paragraph at lines 287--288
 []\OT1/cmr/m/n/10 Conversely, as-sum-ing $[] [][] = [] \OML/cmm/m/it/10 H[]\OT1
 /cmr/m/n/10 (\OML/cmm/m/it/10 X; \OMS/cmsy/m/n/10 O[]\OT1/cmr/m/n/10 )$ we con-
 clude that $[] [][] = [] \OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 ([][])$.
@@ -895,27 +895,27 @@ clude that $[] [][] = [] \OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 ([][])$.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 287.
+(hyperref)                removing `math shift' on input line 289.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\not' on input line 287.
+(hyperref)                removing `\not' on input line 289.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\emptyset' on input line 287.
+(hyperref)                removing `\emptyset' on input line 289.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 287.
+(hyperref)                removing `math shift' on input line 289.
 
 [6]
-Overfull \hbox (36.24814pt too wide) detected at line 357
+Overfull \hbox (36.24814pt too wide) detected at line 359
 [][][]
  []
 
 [7] [8] [9]
-Overfull \hbox (19.14655pt too wide) in paragraph at lines 484--485
+Overfull \hbox (19.14655pt too wide) in paragraph at lines 486--487
 []\OT1/cmr/m/n/10 For an abelian va-ri-ety $\OML/cmm/m/it/10 X$ \OT1/cmr/m/n/10
  the $\U/msb/m/n/10 Z[]$\OT1/cmr/m/n/10 -module $\OML/cmm/m/it/10 T[]X$ \OT1/cm
 r/m/n/10 is free of rank $2 \OMS/cmsy/m/n/10 ^^A [] \OML/cmm/m/it/10 X$ \OT1/cm
@@ -923,7 +923,7 @@ r/m/n/10 and there-fore $[][](\OML/cmm/m/it/10 T[]X; T[]Y\OT1/cmr/m/n/10 )$
  []
 
 [10]
-Overfull \hbox (17.45859pt too wide) in paragraph at lines 519--522
+Overfull \hbox (17.45859pt too wide) in paragraph at lines 521--524
 \OT1/cmr/m/n/10 The map $([][])[]\OMS/cmsy/m/n/10 O[] ! \OT1/cmr/m/n/10 ([][])[
 ]\OMS/cmsy/m/n/10 O[]$ \OT1/cmr/m/n/10 is a sur-jec-tive map of sheaves on $\OM
 L/cmm/m/it/10 Z$ \OT1/cmr/m/n/10 and there-fore $\OML/cmm/m/it/10 R[]\OT1/cmr/m
@@ -934,14 +934,14 @@ L/cmm/m/it/10 Z$ \OT1/cmr/m/n/10 and there-fore $\OML/cmm/m/it/10 R[]\OT1/cmr/m
 [11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 532.
+(hyperref)                removing `math shift' on input line 534.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 532.
+(hyperref)                removing `math shift' on input line 534.
 
 
-Overfull \hbox (2.84512pt too wide) in paragraph at lines 558--560
+Overfull \hbox (2.84512pt too wide) in paragraph at lines 560--562
 [][]\OT1/cmr/bx/n/10 Proposition 2.2. []\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 ^
 ^W \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C; \
 OMS/cmsy/m/n/10 O[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 T[]J$ 
@@ -951,7 +951,7 @@ OMS/cmsy/m/n/10 O[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 T[]J$
  []
 
 [12] [13] [14] [15] [16] [17]
-Overfull \hbox (5.3427pt too wide) detected at line 752
+Overfull \hbox (5.3427pt too wide) detected at line 754
 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 J[]; J[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/1
 0 ! fL 2 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/
 m/it/10 C[]\OT1/cmr/m/n/10 ) : \OMS/cmsy/m/n/10 Lj[][]Lj[][]g\OML/cmm/m/it/10 ;
@@ -963,14 +963,14 @@ m/it/10 C[]\OT1/cmr/m/n/10 ) : \OMS/cmsy/m/n/10 Lj[][]Lj[][]g\OML/cmm/m/it/10 ;
 [18] [19] [20] [21]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 951.
+(hyperref)                removing `math shift' on input line 953.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 951.
+(hyperref)                removing `math shift' on input line 953.
 
 [22] [23] [24] [25] [26]
-Overfull \hbox (8.11635pt too wide) in paragraph at lines 1138--1139
+Overfull \hbox (8.11635pt too wide) in paragraph at lines 1140--1141
 []\OT1/cmr/m/n/10 In par-tic-u-lar, $1 \OMS/cmsy/m/n/10 ^^@ [][]$ \OT1/cmr/m/n/
 10 is an isogeny by the-o-rem []1.4[] and by equa-tion ([]1[]) $\OML/cmm/m/it/1
 0 h[]\OT1/cmr/m/n/10 ([](1 \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 )\OML/cmm/m
@@ -1028,7 +1028,7 @@ sers/fabio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
 bm7.pfb><C:/Users/fabio/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/r
 sfs10.pfb>
 Output written on project_on_the_weil_conjectures_for_curves.pdf (28 pages, 582
-970 bytes).
+647 bytes).
 PDF statistics:
  753 PDF objects out of 1000 (max. 8388607)
  165 named destinations out of 1000 (max. 500000)
